@@ -1,0 +1,1353 @@
+block,range,reg,rw,pnum,name,desc,lo,hi,unit,res,obj,rvs61,rvs21
+,,"teehs ""noitpircseDllocotorP"" ]ced[",W/R,rebmuN,retemaraP,noitpircseD,timiL,timiL,tinU,noituloseR,tcejbO,16SVR,12SVR
+,,ees( sserddA,,,,,rewoL,reppU,,,,,
+,,retsigeR,,,,/noitaremunE,,,,,,,
+,,BdM,,,,,,,,,,,
+Heating circuit 1,0x0400...0x07FBFL,1024,R/W,700,Operating Mode,0: Protection | x 1: Automatic | 2: Reduced | 3: Comfort,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1025,R/W,710,Comfort setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1026,R/W,712,Reduced setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1027,R/W,714,Frost protection setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1028,R/W,720,Heating curve slope,,0.1,4,,1/50,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1029,R/W,721,Heating curve displacement,,-4.5,4.5,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1030,R/W,730,Summer/winter heating limit,,8,30,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1031,R/W,730,Status/Comand,"See sheet ""Status_Command"" | Status: (Read) | Bit0:ObjectUnused | Bit1:SensorShortCircuit | Bit6:DeviceFailure | Comand: (Write) | 0: Release | 1: Write | 5: SetOutOfService | 6: ResetOutOfService",,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1032,R/W,732,24-hour heating limit,,-10,10,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1033,R/W,732,Status/Comand,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1034,R/W,740,Flow temp setpoint min,,8,95,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1035,R/W,741,Flow temp setpoint max,,8,95,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1036,R/W,742,Flow temp setpoint room stat,,8,95,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1037,R/W,742,Status/Comand,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1038,R/W,750,Room influence,,1,100,%,1,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1039,R/W,750,Status/Comand,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1040,R,8739,Relative room humidity 1,,0,100,%,1,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1041,R,8739,Status,Status: (Read) | Bit0:ObjectUnused | Bit1:SensorShortCircuit | Bit6:DeviceFailure,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1042,R,8740,Room temperature 1,,0,50,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1043,R,8740,Status,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1044,R,8741,Room setpoint 1,,4,35,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1045,R,8741,Status,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1046,R,8743,Flow temperature 1,,0,140,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1047,R,8743,Status,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1048,R,8744,Flow temperature setpoint 1,,0,140,°C,1/64,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1049,R,8744,Status,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1050,R,8749,Room thermostat 1,x 0: No demand | 1: Demand,0,1,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1051,R,8749,Status,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1052,R/W,6740,Flow temp 1 alarm,,10,240,min,1,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1053,R/W,6740,Status/Comand,see description,,,,,x,x,x
+Heating circuit 1,0x0400...0x07FBFL,1054,R,8000,State heating circuit 1,see description: status codes,0,1000,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2048,R/W,901,Operating mode,0: Off | x 1: Automatic,0,1,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2049,R/W,902,Comfort setpoint,,15,40,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2050,R/W,907,Release,x 1: 24h/day,1,3,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2051,R/W,908,Flow temp setp at OT 25°C,,6,35,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2052,R/W,909,Flow temp setp at OT 35°C,,6,35,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2053,R/W,912,Cooling limit at OT,,8,35,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2054,R/W,912,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2055,R/W,913,Lock time at end of heating,,8,100,h,1,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2056,R/W,913,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2057,R/W,918,Summer comp start at OT,,20,50,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2058,R/W,919,Summer comp end at OT,,20,50,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2059,R/W,920,Summer comp setp increase,,1,10,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2060,R/W,920,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2061,R/W,923,Flow temp setp min OT 25°C,,6,35,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2062,R/W,924,Flow temp setp min OT 35°C,,6,35,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2063,R/W,928,Room influence,,1,100,%,1,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2064,R/W,928,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2065,R,8747,Dewpoint temp 1,,0,50,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2066,R,8747,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2067,R,8756,Flow temp cooling 1,,0,140,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2068,R,8756,Status,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2069,R,8757,Flow temp setp cooling 1,,0,140,°C,1/64,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2070,R,8757,Status,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2071,R/W,6746,Flow temp cooling 1 alarm,,10,240,min,1,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2072,R/W,6740,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 1,0x0800...0x0BFBFL,2073,R,8004,State cooling circuit 1,see description: status codes,0,1000,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4096,R/W,1000,Op.mode,0: Protection | x 1: Automatic | 2: Reduced | 3: Comfort,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4097,R/W,1010,Comfort setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4098,R/W,1012,Reduced setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4099,R/W,1014,Frost protection setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4100,R/W,1020,Heating curve slope,,0.1,4,,1/50,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4101,R/W,1021,Heating curve displacement,,-4.5,4.5,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4102,R/W,1030,Summer/winter heating limit,,8,30,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4103,R/W,1030,Status/Comand,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4104,R/W,1032,24-hour heating limit,,-10,10,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4105,R/W,1032,Status/Comand,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4106,R/W,1040,Flow temp setpoint min,,8,95,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4107,R/W,1041,Flow temp setpoint max,,8,95,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4108,R/W,1042,Flow temp setpoint room stat,,8,95,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4109,R/W,1042,Status/Comand,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4110,R/W,1050,Room influence,,1,100,%,1,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4111,R/W,1050,Status/Comand,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4112,R,8769,Relative room humidity 2,,0,100,%,1,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4113,R,8769,Status,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4114,R,8770,Room temp 2,,0,50,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4115,R,8770,Status,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4116,R,8771,Room setpoint 2,,4,35,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4117,R,8771,Status,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4118,R,8773,Flow temp 2,,0,140,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4119,R,8773,Status,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4120,R,8774,Flow temp setpoint 2,,0,140,°C,1/64,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4121,R,8774,Status,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4122,R,8779,Room thermostat 2,x 0: No demand | 1: Demand,0,1,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4123,R,8779,Status,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4124,R/W,6741,Flow temp 2 alarm,,10,240,min,1,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4125,R/W,6741,Status/Comand,see description,,,,,x,x,x
+Heating circuit 2,0x1000...0x13FBFL,4126,R,8001,State heating circuit 2,see description: status codes,0,1000,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5120,R/W,1201,Operating mode cooling circuit 2,0: Off | x 1: Automatic,0,1,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5121,R/W,1202,Room temp Comfort setpoint cooling circuit 2,,15,40,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5122,R/W,1207,Release,x 1: 24h/day,1,3,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5123,R/W,1208,Flow setpoint at outside temp 25°C CC2,,6,35,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5124,R/W,1209,Flow setpoint at outside temp 35°C CC2,,6,35,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5125,R/W,1212,Cooling limit at outs temp cooling circuit 2,,8,35,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5126,R/W,1212,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5127,R/W,1213,Remaining time after heating cooling circuit 2,,8,100,h,1,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5128,R/W,1213,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5129,R/W,1218,Summer comp start at OT,,20,50,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5130,R/W,1219,Summer comp end at OT,,20,50,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5131,R/W,1220,Summer comp setp increase,,1,10,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5132,R/W,1220,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5133,R/W,1223,Flow setpoint min at outside temp 25°C CC2,,6,35,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5134,R/W,1224,Flow setpoint min at outside temp 35°C CC2,,6,35,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5135,R/W,1228,Room temperature gain factor cooling circuit 2,,1,100,%,1,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5136,R/W,1228,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5137,R,8777,Dewpoint temp 2,,0,50,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5138,R,8777,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5139,R,8786,Flow temp cooling 2,,0,140,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5140,R,8786,Status,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5141,R,8787,Flow temp setp cooling 2,,0,140,°C,1/64,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5142,R,8787,Status,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5143,R/W,6747,Flow temp cooling 2 alarm,,10,240,min,1,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5144,R/W,6747,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 2,0x1400...0x17FBFL,5145,R,8025,State cooling circuit 2,see description: status codes,0,1000,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7168,R/W,1300,Operating mode,0: Protection | x 1: Automatic | 2: Reduced | 3: Comfort,0,3,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7169,R/W,1310,Comfort setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7170,R/W,1312,Reduced setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7171,R/W,1314,Frost protection setpoint,,4,35,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7172,R/W,1320,Heating curve slope,,0.1,4,,1/50,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7173,R/W,1321,Heating curve displacement,,-4.5,4.5,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7174,R/W,1330,Summer/winter heating limit,,8,30,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7175,R/W,1330,Status/Comand,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7176,R/W,1332,24-hour heating limit,,-10,10,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7177,R/W,1332,Status/Comand,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7178,R/W,1340,Flow temp setpoint min,,8,95,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7179,R/W,1341,Flow temp setpoint max,,8,95,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7180,R/W,1342,Flow temp setpoint room stat,,8,95,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7181,R/W,1342,Status/Comand,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7182,R/W,1350,Room influence,,1,100,%,1,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7183,R/W,1350,Status/Comand,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7185,R,8799,Status,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7186,R,8800,Room temp 3,,0,50,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7187,R,8800,Status,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7188,R,8801,Room setpoint 3,,4,35,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7189,R,8801,Status,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7190,R,8803,Flow temp setpoint 3,,0,140,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7191,R,8803,Status,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7192,R,8804,Flow temp 3,,0,140,°C,1/64,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7193,R,8804,Status,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7194,R,8809,Room thermostat 3,x 0: No demand | 1: Demand,0,1,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7195,R,8809,Status,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7196,R/W,6742,Flow temp 3 alarm,,10,240,min,1,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7197,R/W,6742,Status/Comand,see description,,,,,x,x,x
+Heating circuit 3,0x1C00...0x1FFBFL,7198,R,8002,State heating circuit 3,see description: status codes,0,1000,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8192,R/W,1501,Operating mode cooling circuit 3,0: Off | x 1: Automatic,0,1,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8193,R/W,1502,Room temp Comfort setpoint cooling circuit 3,,17,40,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8194,R/W,1507,Release,x 1: 24h/day,1,3,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8195,R/W,1508,Flow setpoint at outside temp 35°C CC3,,6,35,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8196,R/W,1509,Flow setpoint at outside temp 35°C CC3,,6,35,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8197,R/W,1512,Cooling limit at outs temp cooling circuit 3,,8,35,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8198,R/W,1512,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8199,R/W,1513,Remaining time after heating cooling circuit 3,,8,100,h,1,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8200,R/W,1513,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8201,R/W,1518,Summer comp start at OT,,20,50,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8202,R/W,1519,Summer comp end at OT,,20,50,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8203,R/W,1520,Summer comp setp increase,,1,10,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8204,R/W,1520,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8205,R/W,1523,Flow setpoint min at outside temp 35°C CC3,,6,35,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8206,R/W,1524,Flow setpoint min at outside temp 35°C CC3,,6,35,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8207,R/W,1528,Room temperature gain factor cooling circuit 3,,1,100,%,1,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8208,R/W,1528,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8209,R,8807,Dewpoint temp 3,,0,50,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8210,R,8807,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8211,R,8816,Flow temp cooling 3,,0,140,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8212,R,8816,Status,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8213,R,8817,Flow temp setp cooling 3,,0,140,°C,1/64,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8214,R,8817,Status,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8215,R/W,6748,Flow temp cooling 3 alarm,,10,240,min,1,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8216,R/W,6748,Status/Comand,see description,,,,,x,x,x
+Cooling circuit 3,0x2000...0x23FBFL,8217,R,8026,State cooling circuit 3,see description: status codes,0,1000,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10240,R/W,1600,DHW Operating mode,0: Off | x 1:On | 2: Eco,0,2,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10241,R/W,1610,Nominal setpoint,,8,80,°C,1/64,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10242,R/W,1612,Reduced setpoint,,8,80,°C,1/64,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10243,R/W,1620,Release,0: 24h/day | 1: Time programs HCs | x 2: Time program 4/DHW | 3: Low-tariff | 4: T'prog 4/DHW or low-tariff,0,4,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10244,R/W,1640,Legionella function,x 0: Off | 1: Periodically | 2: Fixed weekday,0,2,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10245,R/W,1641,Legionella funct periodically,,1,7,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10246,R/W,1642,Legionella funct weekday,x 1: Monday | 2: Tuesday | 3: Wednesday | 4: Thursday | 5: Friday | 6: Saturday | 7: Sunday,1,7,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10247,R/W,1644,Legionella funct time,,00:00,23:50,h:m,10min,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10248,R/W,1644,Status/Comand,see description,,,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10249,R/W,1645,Legionella funct setpoint,,55,95,°C,1/64,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10250,R/W,1646,Legionella funct duration,,2,360,min,1,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10251,R/W,1646,Status/Comand,see description,,,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10252,R/W,6745,DHW charging alarm,,1,48,h,1,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10253,R/W,6745,Status/Comand,see description,,,,,x,x,x
+Domestic hot water,0x2800…0x2BFBFL,10254,R,8003,State DHW,see description: status codes,0,1000,,,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11264,R,8830,DHW temp 1,,0,140,°C,1/64,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11265,R,8830,Status,see description,,,,,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11266,R,8832,DHW temp 2,,0,140,°C,1/64,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11267,R,8832,Status,see description,,,,,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11268,R/W,8840,Hours run DHW pump,,0,199'999,h,1/3600,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11269,,,,(32 Bit Data),,,,,,,
+DHW storage tank,0x2C00…0x2FFBFL,11270,R/W,8841,Start counter DHW pump,,0,199999,,1,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11271,,,,(32 Bit Data),,,,,,,
+DHW storage tank,0x2C00…0x2FFBFL,11272,R/W,8842,Hours run el DHW,,0,199'999,h,1/3600,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11273,,,,(32 Bit Data),,,,,,,
+DHW storage tank,0x2C00…0x2FFBFL,11274,R/W,8843,Start counter el DHW,,0,199999,,1,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11275,,,,(32 Bit Data),,,,,,,
+DHW storage tank,0x2C00…0x2FFBFL,11277,R/W,7092,DHW charg temp HP min,,8,80,°C,1/64,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11278,R/W,7092,Status/Comand,see description,,,,,x,x,x
+DHW storage tank,0x2C00…0x2FFBFL,11279,R/W,7093,Curr DHW charg temp HP,,8,80,°C,1/64,x,x,x
+Consumer circuit 1,0x3400…0x37FBFL,13312,R/W,1854,Request opt energy,x 0: Off | 1: On,0,1,,,x,x,x
+Consumer circuit 1,0x3400…0x37FBFL,13313,R/W,1859,Flow temp setp cons request,,8,120,°C,1/64,x,x,x
+Consumer circuit 2,0x3800…0x3BFBFL,14336,R/W,1904,Request opt energy,x 0: Off | 1: On,0,1,,,x,x,x
+Consumer circuit 2,0x3800…0x3BFBFL,14337,R/W,1909,Flow temp setp cons request,,8,120,°C,1/64,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15360,R/W,1959,Flow temp setpoint,,8,120,°C,1/64,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15361,R/W,2055,Setpoint solar heating,,8,80,°C,1/64,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15362,R/W,2056,Setpoint source heating,,8,35,°C,1/64,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15363,R,8900,Swimming pool temp,,0,140,°C,1/64,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15364,R,8900,Status,see description,,,,,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15365,R,8901,Swimming pool setpoint,,0,80,°C,1/64,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15366,R,8901,Status,see description,,,,,x,x,x
+Swimming pool,0x3C00…0x3FFBFL,15367,R,8011,State swimming pool,see description: status codes,0,1000,,,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17408,R,8981,Buffer setpoint,,0,140,°C,1/64,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17409,R,8981,Status/Comand,see description,,,,,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17410,R,8980,Buffer temp 1,,0,140,°C,1/64,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17411,R,8980,Status,see description,,,,,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17412,R,8982,Buffer temp 2,,0,140,°C,1/64,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17413,R,8982,Status,see description,,,,,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17414,R/W,8990,Hours run el buffer,,0,199'999,h,1/3600,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17415,,,,(32 Bit Data),,,,,,,
+Buffer storage tank,0x4400…0x47FBFL,17416,R/W,8991,Start counter el buffer,,0,199999,,1,x,x,x
+Buffer storage tank,0x4400…0x47FBFL,17417,,,,(32 Bit Data),,,,,,,
+Buffer storage tank,0x4400…0x47FBFL,17418,R,8010,State buffer,see description: status codes,0,1000,,,x,x,x
+Common flow,0x4800…0x4BFBFL,18432,R,8951,Common flow temp setpoint,,0,140,°C,1/64,x,x,x
+Common flow,0x4800…0x4BFBFL,18433,R,8951,Status,see description,,,,,x,x,x
+Common flow,0x4800…0x4BFBFL,18434,R,8957,Common flow setp refrig,,0,140,°C,1/64,x,x,x
+Common flow,0x4800…0x4BFBFL,18435,R,8957,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20480,R,8410,Return temp HP,,0,140,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20481,R,8410,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20482,R,8411,Setpoint HP,,0,140,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20483,R,8411,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20484,R,8412,Flow temp HP,,0,140,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20485,R,8412,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20486,R,8435,Evaporation temp,,-50,180,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20487,R,8435,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20488,R,8436,Superheat,,-10,180,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20489,R,8436,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20490,R,8436,Superheat setpoint,,0,140,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20491,R,8436,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20492,R,8440,Remain sDaye 1 off time min,,0,255,min,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20493,R,8440,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20494,R,8441,Remain sDaye 2 off time min,,0,255,min,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20495,R,8441,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20496,R,8442,Remain sDaye 1 on time min,,0,255,min,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20497,R,8442,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20498,R,8443,Remain sDaye 2 on time min,,0,255,min,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20499,R,8443,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20500,R,8444,Remain limit source temp,,0,65'535,h:m,1min,x,x,x
+Heat pump,0x5000…0x53FBFL,20501,R,8444,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20502,R,8446,Compressor sequence,x 0: 1 - 2 | 1: 2 - 1,0,1,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20503,R/W,8449,Hours run refrigerant circuit,,0,199'999,h,1/3600,x,x,x
+Heat pump,0x5000…0x53FBFL,20504,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20505,R/W,8450,Hours run compressor 1,,0,199'999,h,1/3600,x,x,x
+Heat pump,0x5000…0x53FBFL,20506,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20507,R/W,8451,Start counter compressor 1,,0,199999,,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20508,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20509,R/W,8452,Hours run compressor 2,,0,199'999,h,1/3600,x,x,
+Heat pump,0x5000…0x53FBFL,20510,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20511,R/W,8453,Start counter compressor 2,,0,199999,,1,x,x,
+Heat pump,0x5000…0x53FBFL,20512,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20513,R/W,8454,Locking time HP,,0,199'999,h,1/3600,x,x,x
+Heat pump,0x5000…0x53FBFL,20514,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20515,R/W,8455,Counter number of locks HP,,0,199999,,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20516,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20517,R/W,8456,Hours run el flow,,0,199'999,h,1/3600,x,x,x
+Heat pump,0x5000…0x53FBFL,20518,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20519,R/W,8457,Start counter el flow,,0,199999,,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20520,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20521,R/W,8458,Hours run el 2 flow,,0,199'999,h,1/3600,x,x,x
+Heat pump,0x5000…0x53FBFL,20522,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20523,R/W,8459,Start counter el 2 flow,,0,199999,,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20524,,,,(32 Bit Data),,,,,,,
+Heat pump,0x5000…0x53FBFL,20525,R,8463,Evaporation temp EVI,,-50,180,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20526,R,8463,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20528,R,8464,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20529,R,8464,Superheat setpoint EVI,,0,140,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20530,R,8464,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20531,R,8477,Temp diff defrost act value,,-50,50,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20532,R,8477,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20533,R,8478,Temp diff defrost setpoint,,-50,50,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20534,R,8478,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20535,R,8480,Remain time defrost lock,,0,255,min,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20536,R,8480,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20537,R,8481,Remain time forced defrost,,0,65'535,h:m,1min,x,x,x
+Heat pump,0x5000…0x53FBFL,20538,R,8481,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20539,R,8482,Remain time defrost settling,,0,255,min,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20540,R,8482,Status,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20541,R,8485,Number defrost attempts,,0,10,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20542,R,8487,Defrost state,"x 0: HP off,defr release OT off | 1: Locked | 2: Monitoring ice | 3: Preheating for defrost | 4: Defrost active | 5: Dripping | 6: Cooling down evaporator | 7: Fault | 8: Forced defrost | 9: Defrost settling | 10: Defrost with fan | 11: Defrost with compressor | 12: Forced defrost fan | 13: Forced defrost compressor | 14: Start delay defrost",0,14,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20543,R/W,2909,Release below outside temp,,-50,50,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20544,R/W,2909,Status/Comand,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20545,R/W,2910,Release above outside temp,,-30,30,°C,1/64,x,x,x
+Heat pump,0x5000…0x53FBFL,20546,R/W,2910,Status/Comand,see description,,,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20547,R/W,6711,Reset HP,x 0: No | 1: Yes,0,1,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20548,R/W,7071,HP time since maint,,0,240,Months,1,x,x,x
+Heat pump,0x5000…0x53FBFL,20549,R/W,7073,Cur starts compr1/hrs run,,0,12,,1/10,x,x,x
+Heat pump,0x5000…0x53FBFL,20550,R/W,7075,Cur starts compr2/hrs run,,0,12,,1/10,x,x,
+Heat pump,0x5000…0x53FBFL,20551,R/W,7077,Cur diff condens max/week,,0,250,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20552,R/W,7079,Cur diff condens min/week,,0,250,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20553,R/W,7081,Cur diff evap max/week,,0,250,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20554,R/W,7083,Cur diff evap min/week,,0,250,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20555,R/W,7152,Triggering defrost,x 0: No,0,1,,,x,x,x
+Heat pump,0x5000…0x53FBFL,20556,R,8006,State heat pump,see description: status codes,0,1000,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29696,R,3110,Heat delivered,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29697,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29698,R,3110,Status/Comand,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29699,R,3113,Energy brought in,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29700,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29701,R,3113,Status/Comand,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29702,R,3116,Performance factor,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29703,R,3116,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29704,R,3120,Yearly perf factor 1,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29705,R,3120,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29706,R,3120,Fixed day 1,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29707,R,3120,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29708,R,3120,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29709,R,3120,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29710,R,3121,Heat delivered heating 1,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29711,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29712,R,3121,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29713,R,3122,Heat delivered DHW 1,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29714,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29715,R,3122,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29716,R,3124,Energy brought in heating 1,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29717,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29718,R,3124,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29719,R,3125,Energy brought in DHW 1,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29720,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29721,R,3125,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29722,R,3127,Yearly perf factor 2,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29723,R,3127,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29724,R,3127,Fixed day 2,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29725,R,3127,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29726,R,3127,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29727,R,3127,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29728,R,3128,Heat delivered heating 2,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29729,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29730,R,3128,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29731,R,3129,Heat delivered DHW 2,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29732,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29733,R,3129,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29734,R,3131,Energy brought in heating 2,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29735,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29736,R,3131,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29738,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29739,R,3132,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29740,R,3134,Yearly perf factor 3,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29741,R,3134,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29742,R,3134,Fixed day 3,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29743,R,3134,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29744,R,3134,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29745,R,3134,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29746,R,3135,Heat delivered heating 3,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29747,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29748,R,3135,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29749,R,3136,Heat delivered DHW 3,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29750,,,,,,,,,,,
+Energy meter,0x7400…0x77FBFL,29751,R,3136,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29752,R,3138,Energy brought in heating 3,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29753,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29754,R,3138,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29755,R,3139,Energy brought in DHW 3,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29756,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29757,R,3139,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29758,R,3141,Yearly perf factor 4,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29759,R,3141,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29760,R,3141,Fixed day 4,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29761,R,3141,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29762,R,3141,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29763,R,3141,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29764,R,3142,Heat delivered heating 4,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29765,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29766,R,3142,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29767,R,3143,Heat delivered DHW 4,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29768,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29769,R,3143,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29770,R,3145,Energy brought in heating 4,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29771,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29772,R,3145,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29773,R,3146,Energy brought in DHW 4,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29774,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29775,R,3146,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29776,R,3148,Yearly perf factor 5,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29777,R,3148,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29778,R,3148,Fixed day 5,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29779,R,3148,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29780,R,3148,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29781,R,3148,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29782,R,3149,Heat delivered heating 5,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29783,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29784,R,3149,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29785,R,3150,Heat delivered DHW 5,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29786,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29787,R,3150,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29788,R,3152,Energy brought in heating 5,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29789,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29790,R,3152,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29791,R,3153,Energy brought in DHW 5,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29792,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29793,R,3153,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29794,R,3155,Yearly perf factor 6,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29795,R,3155,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29796,R,3155,Fixed day 6,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29797,R,3155,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29798,R,3155,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29799,R,3155,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29800,R,3156,Heat delivered heating 6,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29801,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29802,R,3156,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29803,R,3157,Heat delivered DHW 6,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29804,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29805,R,3157,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29806,R,3159,Energy brought in heating 6,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29807,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29808,R,3159,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29809,R,3160,Energy brought in DHW 6,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29810,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29811,R,3160,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29812,R,3162,Yearly perf factor 7,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29813,R,3162,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29814,R,3162,Fixed day 7,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29815,R,3162,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29816,R,3162,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29817,R,3162,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29818,R,3163,Heat delivered heating 7,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29819,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29820,R,3162,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29821,R,3164,Heat delivered DHW 7,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29822,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29823,R,3164,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29825,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29826,R,3166,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29827,R,3167,Energy brought in DHW 7,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29828,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29829,R,3167,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29830,R,3169,Yearly perf factor 8,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29831,R,3169,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29832,R,3169,Fixed day 8,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29833,R,3169,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29834,R,3169,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29835,R,3169,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29836,R,3170,Heat delivered heating 8,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29837,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29838,R,3170,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29839,R,3171,Heat delivered DHW 8,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29840,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29841,R,3171,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29842,R,3173,Energy brought in heating 8,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29843,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29844,R,3173,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29845,R,3174,Energy brought in DHW 8,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29846,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29847,R,3174,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29848,R,3176,Yearly perf factor 9,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29849,R,3176,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29850,R,3176,Fixed day 9,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29851,R,3176,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29852,R,3176,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29853,R,3176,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29854,R,3177,Heat delivered heating 9,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29855,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29856,R,3177,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29857,R,3178,Heat delivered DHW 9,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29858,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29859,R,3178,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29860,R,3180,Energy brought in heating 9,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29861,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29862,R,3180,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29863,R,3181,Energy brought in DHW 9,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29864,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29865,R,3181,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29866,R,3183,Yearly perf factor 10,,0,10,,1/100,x,x,x
+Energy meter,0x7400…0x77FBFL,29867,R,3183,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29868,R,3183,Fixed day 10,Year,100,199,Year,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29869,R,3183,,Month,1,12,Month,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29870,R,3183,,Day,1,31,Day,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29871,R,3183,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29872,R,3184,Heat delivered heating 10,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29873,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29874,R,3184,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29875,R,3185,Heat delivered DHW 10,,0,9999999,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29876,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29877,R,3185,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29878,R,3187,Energy brought in heat 10,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29879,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29880,R,3187,Status,see description,,,,,x,x,x
+Energy meter,0x7400…0x77FBFL,29881,R,3188,Energy brought in DHW 10,,0,3500000,kWh,1,x,x,x
+Energy meter,0x7400…0x77FBFL,29882,,,,(32 Bit Data),,,,,,,
+Energy meter,0x7400…0x77FBFL,29883,R,3188,Status,see description,,,,,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30720,R/W,3700,Release below outside temp,,-50,50,°C,1/64,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30721,R/W,3700,Status/Comand,see description,,,,,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30722,R/W,3701,Release above outside temp,,-50,50,°C,1/64,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30723,R/W,3701,Status/Comand,see description,,,,,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30724,R,8586,Suppl source setpoint,,0,140,°C,1/64,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30725,R,8586,Status/Comand,see description,,,,,x,x,x
+Supplementary source,0x7800…0x7BFBFL,30726,R,8022,State supplementary source,see description: status codes,0,1000,,,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31744,R/W,8570,Hours run solid fuel boiler,,0,199'999,h,1/3600,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31745,,,,(32 Bit Data),,,,,,,
+Solid fuel boiler,0x7C00…0x7FFBFL,31746,R,8560,Solid fuel boiler temp,,0,140,°C,1/64,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31747,R,8560,Status,see description,,,,,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31748,R,8561,Solid fuel boiler setpoint,,0,140,°C,1/64,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31749,R,8561,Status,see description,,,,,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31750,R,8563,Solid fuel boiler return temp,,0,140,°C,1/64,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31751,R,8563,Status,see description,,,,,x,x,x
+Solid fuel boiler,0x7C00…0x7FFBFL,31752,R,8008,State solid fuel boiler,see description: status codes,0,1000,,,x,x,x
+Solar,0x8000…0x83FBFL,32768,R/W,3810,Temp diff on,,0,40,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32769,R/W,3811,Temp diff off,,0,40,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32770,R/W,3812,Charg temp min DHW st tank,,8,95,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32771,R/w,3812,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32772,R/W,3813,Temp diff on buffer,,0,40,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32773,R/W,3813,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32774,R/W,3814,Temp diff off buffer,,0,40,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32775,R/W,3814,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32777,R/W,3815,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32778,R/W,3816,Temp diff on swi pool,,0,40,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32779,R/W,3816,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32780,R/W,3817,Temp diff off swi pool,,0,40,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32781,R/W,3817,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32782,R/W,3818,Charging temp min swi pool,,8,95,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32783,R/W,3818,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32784,R,8510,Collector temp 1,,-28,350,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32785,R,8510,Status,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32786,R,8519,Solar flow temp,,-28,350,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32787,R,8519,Status,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32788,R,8520,Solar return temp,,-28,350,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32789,R,8520,Status,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32790,R,8526,24-hour yield solar energy,,0,999.9,kWh,1/10,x,x,x
+Solar,0x8000…0x83FBFL,32791,R,8526,Status,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32792,R,8527,Total yield solar energy,,0,199999,kWh,1/10,x,x,x
+Solar,0x8000…0x83FBFL,32793,,,,(32 Bit Data),,,,,,,
+Solar,0x8000…0x83FBFL,32794,R,8527,Status/Comand,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32795,R/W,8530,Hours run solar yield,,0,199'999,h,1/3600,x,x,x
+Solar,0x8000…0x83FBFL,32796,,,,(32 Bit Data),,,,,,,
+Solar,0x8000…0x83FBFL,32797,R/W,8531,Hours run collect overtemp,,0,199'999,h,1/3600,x,x,x
+Solar,0x8000…0x83FBFL,32798,,,,(32 Bit Data),,,,,,,
+Solar,0x8000…0x83FBFL,32799,R,8547,Collector temp 2,,-28,350,°C,1/64,x,x,x
+Solar,0x8000…0x83FBFL,32800,R,8547,Status,see description,,,,,x,x,x
+Solar,0x8000…0x83FBFL,32801,R,8007,State solar,see description: status codes,0,1000,,,x,x,x
+Cascade,0x8800..0x8BFF,34816,R,8100,Priority source 1,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34817,R,8101,State source 1,x 0: Missing | 1: Faulty | 2: Manual control active | 3: Heat generation lock active | 4: Chimney sweep funct active | 5: Temporarily unavailable | 6: Outside temp limit active | 7: Not released | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34818,R,8102,Priority source 2,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34819,R,8103,State source 2,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34820,R,8104,Priority source 3,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34821,R,8105,State source 3,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34822,R,8106,Priority source 4,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34823,R,8107,State source 4,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34824,R,8108,Priority source 5,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34825,R,8109,State source 5,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34826,R,8110,Priority source 6,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34827,R,8111,State source 6,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34828,R,8112,Priority source 7,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34829,R,8113,State source 7,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34830,R,8114,Priority source 8,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34831,R,8115,State source 8,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34832,R,8116,Priority source 9,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34833,R,8117,State source 9,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34834,R,8118,Priority source 10,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34835,R,8119,State source 10,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34836,R,8120,Priority source 11,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34837,R,8121,State source 11,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34838,R,8122,Priority source 12,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34839,R,8123,State source 12,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34840,R,8124,Priority source 13,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34841,R,8125,State source 13,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34842,R,8126,Priority source 14,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34843,R,8127,State source 14,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34844,R,8128,Priority source 15,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34845,R,8129,State source 15,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34846,R,8130,Priority source 16,,0,16,,,x,x,x
+Cascade,0x8800..0x8BFF,34847,R,8131,State source 16,x 0: Missing | …. | 8: Released,0,8,,,x,x,x
+Cascade,0x8800..0x8BFF,34848,R,8138,Cascade flow temp,,0,140,°C,1/64,x,x,x
+Cascade,0x8800..0x8BFF,34849,R,8138,Status,see description,,,,,x,x,x
+Cascade,0x8800..0x8BFF,34850,R,8139,Cascade flow temp setp,,0,140,°C,1/64,x,x,x
+Cascade,0x8800..0x8BFF,34851,R,8139,Status,see description,,,,,x,x,x
+Cascade,0x8800..0x8BFF,34852,R,8150,Source seq ch'over current,,0,990,h,1,x,x,x
+Cascade,0x8800..0x8BFF,34853,R,8150,Status,see description,,,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35840,R/W,5570,Temp diff on dT contr 1,,0,40,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35841,R/W,5571,Temp diff off dT contr 1,,0,40,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35842,R/W,5572,On temp min dT contr 1,,-30,120,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35843,R/W,5580,Temp diff on dT contr 2,,0,40,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35844,R/W,5581,Temp diff off dT contr 2,,0,40,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35845,R/W,5582,On temp min dT contr 2,,-30,120,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35846,R/W,6110,Time constant building,,0,50,h,1,x,x,x
+General functions,0x8C00..0x8FFBFL,35847,R,8565,Flue gas temp,,0,350,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35848,R,8565,Status,see description,,,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35849,R,8567,Flue gas temp max,,0,350,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35850,R,8567,Status,see description,,,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35851,R,8700,Outside temp,,-50,50,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35852,R,8700,Status,see description,,,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35853,R,8701,Outside temp min,,-50,50,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35854,R,8702,Outside temp max,,-50,50,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35855,R/W,8703,Outside temp attenuated,,-50,50,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35856,R,8704,Outside temp composite,,-50,50,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35857,R/W,7150,Simulation outside temp,,-50,50,°C,1/64,x,x,x
+General functions,0x8C00..0x8FFBFL,35858,R/W,7150,Status/Comand,see description,,,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35859,R/W,5600,Air dehumidifier,x 0: Off | 1: On,0,1,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35860,R/W,5602,Air dehumidifier r.h. on,,0,100,%,1,x,x,x
+General functions,0x8C00..0x8FFBFL,35861,R/W,5603,Air dehumidifier r.h. SD,,2,50,%,1,x,x,x
+General functions,0x8C00..0x8FFBFL,35862,R/W,6710,Reset alarm relay,x 0: No | 1: Yes,0,1,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35863,R/W,7120,Economy mode,x 0: Off | 1: On,0,1,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35864,R/W,7120,Status/Comand,see description,,,,,x,x,x
+General functions,0x8C00..0x8FFBFL,35865,R/W,7141,Emergency operation,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,37888,R/W,7700,Relay test,x 0: No test | 1: Everything off | 2: Relay output QX1 | 3: Relay output QX2 | 4: Relay output QX3 | 5: Output QX4/ZX4 | 6: Relay output QX5 | 7: Relay output QX6 | 8: Relay output QX7 | 9: Relay output QX8 | 10: Relay output QX9 | 11: Relay output QX10 | 12: Relay output QX11 | 13: Relay output QX12 | 14: Relay output QX13 | 15: Relay output QX31 | 16: Relay output QX32 | 17: Relay output QX33 | 18: Relay output QX34 | 19: Relay output QX35 | 20: Relay output QX21 module 1 | 21: Relay output QX22 module 1 | 22: Relay output QX23 module 1 | 23: Relay output QX21 module 2 | 24: Relay output QX22 module 2 | 25: Relay output QX23 module 2 | 26: Relay output QX21 module 3 | 27: Relay output QX22 module 3 | 28: Relay output QX23 module 3,0,28,,,x,x,x
+Device,0x9400..0x97FFBL,37889,R/W,7710,Output test UX1,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37890,R/W,7710,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37891,R,7711,Output signal UX1,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37892,R,7711,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37893,R,7711,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37895,R/W,7716,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37896,R,7717,Output signal UX2,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37897,R,7717,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37898,R,7717,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37899,R/W,7724,Output test UX3,,0,100,%,1,x,,x
+Device,0x9400..0x97FFBL,37900,R/W,7724,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,37901,R,7725,Output signal UX3,,0,10,V,1/100,x,,x
+Device,0x9400..0x97FFBL,37902,R,7725,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,37903,R,7725,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,,x
+Device,0x9400..0x97FFBL,37904,R/W,7780,Output test UX21 module 1,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37905,R/W,7780,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37906,R,7781,Output signal UX21 module 1,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37907,R,7781,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37908,R,7781,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37909,R/W,7782,Output test UX22 module 1,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37910,R/W,7782,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37911,R,7783,Output signal UX22 module 1,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37912,R,7783,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37913,R,7783,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37914,R/W,7784,Output test UX21 module 2,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37915,R/W,7784,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37916,R,7785,Output signal UX21 module 2,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37917,R,7785,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37918,R,7785,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37919,R/W,7786,Output test UX22 module 2,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37920,R/W,7786,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37921,R,7787,Output signal UX22 module 2,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37922,R,7787,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37923,R,7787,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37924,R/W,7788,Output test UX21 module 3,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37925,R/W,7788,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37926,R,7789,Output signal UX21 module 3,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37927,R,7789,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37928,R,7789,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37929,R/W,7790,Output test UX22 module 3,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37930,R/W,7790,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37931,R,7791,Output signal UX22 module 3,,0,10,V,1/100,x,x,x
+Device,0x9400..0x97FFBL,37932,R,7791,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37933,R,7791,Unit,0..3: reserved | 4: Voltage V | 5: PWM %,0,5,,,x,x,x
+Device,0x9400..0x97FFBL,37934,R/W,7796,Output test WX21 module 1,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37935,R/W,7796,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37936,R,7797,Pos step motor WX21 mod 1,,0,65535,,1,x,x,x
+Device,0x9400..0x97FFBL,37937,R,7797,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37938,R/W,7798,Output test WX21 module 2,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37939,R/W,7798,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37940,R,7799,Pos step motor WX21 mod 2,,0,65535,,1,x,x,x
+Device,0x9400..0x97FFBL,37941,R,7799,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37942,R/W,7800,Output test WX21 module 3,,0,100,%,1,x,x,x
+Device,0x9400..0x97FFBL,37943,R/W,7800,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37944,R,7801,Pos step motor WX21 mod 3,,0,65535,,1,x,x,x
+Device,0x9400..0x97FFBL,37945,R,7801,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,37946,R/W,7965,Output test WX31,,0,100,%,1,x,,x
+Device,0x9400..0x97FFBL,37947,R/W,7965,Status/Comand,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,37948,R,7966,Pos stepper motor WX31,,0,65535,,1,x,,x
+Device,0x9400..0x97FFBL,37949,R,7966,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,37950,R/W,7705,Mod setp ZX6 relay test,,0,100,%,1,x,,x
+Device,0x9400..0x97FFBL,37951,R,7708,Modulation signal ZX6,,0,100,%,1,x,,x
+Device,0x9400..0x97FFBL,37952,R,7708,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,37953,R/W,7969,Mod setp ZX34 relay test,,0,100,%,1,x,,x
+Device,0x9400..0x97FFBL,37954,R,7970,Modulation signal ZX34,,0,100,%,1,x,,x
+Device,0x9400..0x97FFBL,37955,R,7970,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,37956,R/W,7705,Mod setp ZX4 relay test,,0,100,%,1,x,x,
+Device,0x9400..0x97FFBL,37958,R,7708,Status Register reserve,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38000,R,7804,Sensor temp BX1,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38001,R,7804,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38002,R,7805,Sensor temp BX2,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38003,R,7805,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38004,R,7806,Sensor temp BX3,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38005,R,7806,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38006,R,7807,Sensor temp BX4,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38007,R,7807,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38008,R,7808,Sensor temp BX5,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38009,R,7808,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38010,R,7809,Sensor temp BX6,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38011,R,7809,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38012,R,7810,Sensor temp BX7,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38013,R,7810,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38014,R,7811,Sensor temp BX8,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38015,R,7811,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38016,R,7812,Sensor temp BX9,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38017,R,7812,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38018,R,7813,Sensor temp BX10,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38019,R,7813,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38020,R,7814,Sensor temp BX11,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38021,R,7814,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38022,R,7815,Sensor temp BX12,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38023,R,7815,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38024,R,7816,Sensor temp BX13,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38025,R,7816,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38026,R,7817,Sensor temp BX14,,-28,350,°C,1/64,x,x,
+Device,0x9400..0x97FFBL,38027,R,7817,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38028,R,7830,Sensor temp BX21 module 1,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38029,R,7830,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38030,R,7831,Sensor temp BX22 module 1,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38031,R,7831,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38032,R,7832,Sensor temp BX21 module 2,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38033,R,7832,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38034,R,7833,Sensor temp BX22 module 2,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38035,R,7833,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38036,R,7834,Sensor temp BX21 module 3,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38037,R,7834,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38038,R,7835,Sensor temp BX22 module 3,,-28,350,°C,1/64,x,x,x
+Device,0x9400..0x97FFBL,38039,R,7835,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38040,R,7973,Sensor temp BX31,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38041,R,7973,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38042,R,7974,Sensor temp BX32,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38043,R,7974,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38044,R,7975,Sensor temp BX33,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38045,R,7975,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38046,R,7976,Sensor temp BX34,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38047,R,7976,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38048,R,7977,Sensor temp BX35,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38049,R,7977,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38050,R,7978,Sensor temp BX36,,-28,350,°C,1/64,x,,x
+Device,0x9400..0x97FFBL,38051,R,7978,Status Register reserve,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38100,R,7844,Input signal H1,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38101,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38102,R,7844,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38103,R,7844,Unit,"x 0: None | 1: Closed (ooo), Open (---) | 2: Pulse | 3: Frequency Hz | 4: Voltage V",0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38104,R,7845,Input signal H2 module 1,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38105,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38106,R,7845,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38107,R,7845,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38108,R,7845,Input signal H21 module 1,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38109,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38110,R,7845,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38111,R,7845,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38112,R,7846,Input signal H22 module 1,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38113,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38114,R,7846,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38115,R,7846,Unit,x 0: None | ... | 4: Voltage V,0,4,,,,,
+Device,0x9400..0x97FFBL,38116,R,7847,Input signal H2 module 2,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38117,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38118,R,7847,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38119,R,7847,Unit,x 0: None | ...,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38120,R,7847,Input signal H21 module 2,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38121,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38122,R,7847,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38123,R,7847,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38124,R,7848,Input signal H22 module 2,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38125,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38126,R,7848,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38127,R,7848,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38128,R,7849,Input signal H2 module 3,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38129,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38130,R,7849,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38131,R,7849,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38132,R,7849,Input signal H21 module 3,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38133,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38134,R,7849,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38135,R,7849,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38136,R,7850,Input signal H22 module 3,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38137,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38138,R,7850,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38139,R,7850,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38140,R,7858,Input signal H3,,0,2^32,,,x,x,x
+Device,0x9400..0x97FFBL,38141,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38142,R,7858,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38143,R,7858,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,x,x
+Device,0x9400..0x97FFBL,38144,R,7989,Input signal H31,,0,2^32,,,x,,x
+Device,0x9400..0x97FFBL,38145,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38146,R,7859,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38147,R,7859,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,,x
+Device,0x9400..0x97FFBL,38148,R,7994,Input signal H32,,0,2^32,,,x,,x
+Device,0x9400..0x97FFBL,38149,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38150,R,7994,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38151,R,7994,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,,x
+Device,0x9400..0x97FFBL,38152,R,7999,Input signal H33,,0,2^32,,,x,,x
+Device,0x9400..0x97FFBL,38153,,,,(32 Bit Data),,,,,,,
+Device,0x9400..0x97FFBL,38154,R,7999,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38155,R,7999,Unit,x 0: None | ... | 4: Voltage V,0,4,,,x,,x
+Device,0x9400..0x97FFBL,38156,R,7728,Defrosting DI6,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38157,R,7728,Status/Comand,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38158,R,7729,Error/alarm message DI7,x 0: Off | 1: On,0,255,,,x,,x
+Device,0x9400..0x97FFBL,38159,R,7729,Status/Comand,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38160,R,7911,Input EX1,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38161,R,7911,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38162,R,7912,Input EX2,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38163,R,7912,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38164,R,7913,Input EX3,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38165,R,7913,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38166,R,7914,Input EX4,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38167,R,7914,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38168,R,7915,Input EX5,x 0: 0V | 1: 230V,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38169,R,7915,Status/Comand,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38170,R,7916,Input EX6,x 0: 0V | 1: 230V,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38171,R,7916,Status/Comand,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38172,R,7917,Input EX7,x 0: 0V | 1: 230V,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38173,R,7917,Status/Comand,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38174,R,7919,Input EX9,x 0: 0V | 1: 230V,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38175,R,7919,Status/Comand,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38176,R,7945,Input EX10,x 0: 0V | 1: 230V,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38178,R,7946,Input EX11,x 0: 0V | 1: 230V,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38179,R,7946,Status/Comand,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38180,R,7950,Input EX21 module 1,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38181,R,7950,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38182,R,7951,Input EX21 module 2,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38183,R,7951,Status/Comand,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38184,R,7952,Input EX21 module 3,x 0: 0V | 1: 230V,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38185,R,7952,Status/Comand Register reserve,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38400,R,7721,Heating mode D1,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38401,R,7721,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38402,R,7722,Cooling mode D2,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38403,R,7722,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38404,R,7723,Heat pump D3,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38405,R,7723,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38406,R,9031,Relay output QX1,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38407,R,9031,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38408,R,9032,Relay output QX2,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38409,R,9032,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38410,R,9033,Relay output QX3,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38411,R,9033,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38412,R,9034,Triac output ZX4/Relay output QX4,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38413,R,9034,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38414,R,9035,Relay output QX5,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38415,R,9035,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38416,R,9036,Triac output ZX6 / Relay output QX6,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38417,R,9036,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38418,R,9037,Relay output QX7,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38419,R,9037,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38420,R,9038,Relay output QX8,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38421,R,9038,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38422,R,9039,Relay output QX9,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38423,R,9039,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38424,R,9040,Relay output QX10,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38425,R,9040,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38426,R,9041,Relay output QX11,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38427,R,9041,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38428,R,9042,Relay output QX12,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38429,R,9042,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38430,R,9043,Relay output QX13,x 0: Off | 1: On,0,1,,,x,x,
+Device,0x9400..0x97FFBL,38431,R,9043,Status,see description,,,,,x,x,
+Device,0x9400..0x97FFBL,38432,R,9050,Relay output QX21 module 1,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38433,R,9050,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38434,R,9051,Relay output QX22 module 1,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38435,R,9051,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38436,R,9052,Relay output QX23 module 1,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38437,R,9052,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38438,R,9053,Relay output QX21 module 2,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38439,R,9053,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38440,R,9054,Relay output QX22 module 2,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38441,R,9054,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38442,R,9055,Relay output QX23 module 2,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38443,R,9055,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38444,R,9056,Relay output QX21 module 3,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38445,R,9056,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38446,R,9057,Relay output QX22 module 3,x 0: Off | 1: On,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38447,R,9057,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38448,R,9058,Relay output QX23 module 3,x 0: Off,0,1,,,x,x,x
+Device,0x9400..0x97FFBL,38449,R,9058,Status,see description,,,,,x,x,x
+Device,0x9400..0x97FFBL,38450,R,9071,Relay output QX31,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38451,R,9071,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38452,R,9072,Relay output QX32,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38453,R,9072,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38454,R,9073,Relay output QX33,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38455,R,9073,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38456,R,9074,Triac output ZX34 / Relay output QX34,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38457,R,9074,Status,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38458,R,9075,Relay output QX35,x 0: Off | 1: On,0,1,,,x,,x
+Device,0x9400..0x97FFBL,38459,R,9075,Status Register reserve,see description,,,,,x,,x
+Device,0x9400..0x97FFBL,38600,R,,Partial diagram heat pump,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38601,R,,Partial diagram solar collector,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38602,R,,Partial diagram dhw storage,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38603,R,,Partial diagram buffer,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38604,R,,Partial diagram heat circuit 1,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38605,R,,Partial diagram cooling circuit 1,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38606,R,,Partial diagram heat circuit 2,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38607,R,,Partial diagram cooling circuit 2,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38608,R,,Partial diagram heat circuit 2,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38609,R,,Partial diagram cooling circuit 3,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38610,R,,Partial diagram converter,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38611,R,,Partial diagram solid fuel boiler,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38612,R,,Partial diagram swimming pool,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38613,R,,Partial diagram hydraulic balancing,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38614,R,,Partial diagram instantaneous heater,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38615,R,,Partial diagram Consumer circuit 1,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38616,R,,Partial diagram Consumer circuit 2,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38617,R,,Partial diagram Consumer circuit 3,,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38618,R,,Cascade status,0: Inactiv | 1: Active,0,255,,,x,x,x
+Device,0x9400..0x97FFBL,38619,R,,Partial diagram suppl source,,0,255,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38912,R,6220,Software version,,0.0,99,,1/10,x,x,x
+Device block 2,0x9800..0x9BFFBL,38913,R,6221,Development index,,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38914,R,,Modbus Object List Version,,0.0,65535,,1/10,x,x,x
+Device block 2,0x9800..0x9BFFBL,38915,R,6222,Device hours run,,0,199'999,h,1/3600,x,x,x
+Device block 2,0x9800..0x9BFFBL,38916,,,Register reserve,(32 Bit Data),,,,,,,
+Device block 2,0x9800..0x9BFFBL,38928,R,6800,History 1,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38929,R,6800,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38930,R,6800,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38931,R,6800,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38932,R,6800,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38933,R,6800,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38934,R,6801,Error code 1,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38935,R,6801,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38936,R,6802,History 2,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38937,R,6802,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38938,R,6802,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38939,R,6802,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38940,R,6802,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38941,R,6802,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38942,R,6803,Error code 2,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38943,R,6803,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38944,R,6804,History 3,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38945,R,6804,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38946,R,6804,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38947,R,6804,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38948,R,6804,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38949,R,6804,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38950,R,6805,Error code 3,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38951,R,6805,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38952,R,6806,History 4,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38953,R,6806,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38954,R,6806,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38955,R,6806,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38956,R,6806,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38957,R,6806,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38958,R,6807,Error code 4,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38959,R,6807,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38960,R,6808,History 5,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38961,R,6808,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38962,R,6808,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38963,R,6808,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38964,R,6808,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38965,R,6808,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38966,R,6809,Error code 5,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38967,R,6809,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38968,R,6810,History 6,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38970,R,6810,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38971,R,6810,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38972,R,6810,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38973,R,6810,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38974,R,6811,Error code 6,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38975,R,6811,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38976,R,6812,History 7,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38977,R,6812,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38978,R,6812,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38979,R,6812,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38980,R,6812,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38981,R,6812,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38982,R,6813,Error code 7,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38983,R,6813,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38984,R,6814,History 8,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38985,R,6814,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38986,R,6814,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38987,R,6814,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38988,R,6814,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38989,R,6814,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38990,R,6815,Error code 8,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38991,R,6815,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38992,R,6816,History 9,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38993,R,6816,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38994,R,6816,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38995,R,6816,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38996,R,6816,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,38997,R,6816,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38998,R,6817,Error code 9,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,38999,R,6817,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39000,R,6818,History 10,Year,100,199,Year,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39001,R,6818,,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39002,R,6818,,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39003,R,6818,,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39004,R,6818,,Minute,0,59,m,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39005,R,6818,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39006,R,6819,Error code 10,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39007,R,6819,Status,see description,,,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39008,R/W,6820,Reset history Register reserve,x 0: No | 1: Yes,0,1,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39040,R,,Error Message,ErrorCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39041,R,,Error Prio,priority,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39042,R,,Service Message,ServiceCode,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39043,R,,Error Prio,priority,0,65535,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39044,R,,Info Sonderbetrieb block 3,Bit7: Special opreration active | Bit0..6: Special operation: | 0= Normal (no special opreration) | 1= Manual operation | 2= SLT test | 3= Chimney sweep function | 4= Controller stop | 5= Combustion optimization low- | fire | 6= Combustion optimization high- | fire | 7= Emergency operation | 8= Output test | 9= Simulation outside temp | 10= Alternative energy mode | 11= Commissioning function | 12= Deareation function | 13= Dry fire function | 14= Eco opertation | 15= Initializing | 16= DHW Push,0,255,,,x,x,x
+Device block 2,0x9800..0x9BFFBL,39920,R/W,,Clock time and Date,Year,100,199,Jahr,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39921,R/W,,Clock time and Date,Month,1,12,Month,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39922,R/W,,Clock time and Date,Day,1,31,Day,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39923,R/W,,Clock time and Date,Hour,0,23,h,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39924,R/W,,Clock time and Date,Minute,0,59,min,1,x,x,x
+Device block 2,0x9800..0x9BFFBL,39925,R/W,,Clock time and Date,Second,0,59,s,1,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39940,R/W,"501, 502",Monday 1st phase on Monday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39941,R/W,,Monday 2nd phase on Monday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39942,,,Monday 3rd phase on,H-Byte: phase on,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,,R/W,"505, 506",Monday 3rd phase off,L-Byte: phase off,00:00,24:00,,,,,
+Time prog heating circuit 1,0x9800..0x9BFFBL,39943,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39944,R/W,"501, 502",Tuesday 1st phase on Tuesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39945,R/W,,Tuesday 2nd phase on Tuesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39946,R/W,,Tuesday 3rd phase on Tuesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39947,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39948,R/W,"501, 502",Wednesday 1st phase on Wednesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39949,R/W,,Wednesday 2nd phase on Wednesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39950,R/W,,Wednesday 3rd phase on Wednesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39951,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39952,R/W,"501, 502",Thursday 1st phase on Thursday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39953,R/W,,Thursday 2nd phase on Thursday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39954,R/W,,Thursday 3rd phase on Thursday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39955,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39956,R/W,"501, 502",Friday 1st phase on Friday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39957,R/W,,Friday 2nd phase on Friday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39958,R/W,,Friday 3rd phase on Friday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39959,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39960,R/W,"501, 502",Saturday 1st phase on Saturday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39961,R/W,,Saturday 2nd phase on Saturday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39962,R/W,,Saturday 3rd phase on Saturday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39963,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39964,R/W,"501, 502",Sunday 1st phase on Sunday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39965,R/W,,Sunday 2nd phase on Sunday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39966,R/W,,Sunday 3rd phase on Sunday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39967,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 1,0x9800..0x9BFFBL,39968,R,516,Default values,x 0: No | 1: Yes,0,1,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39980,R/W,"521, 522",Monday 1st phase on Monday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39981,R/W,,Monday 2nd phase on Monday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39982,R/W,,Monday 3rd phase on,H-Byte: phase on,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39983,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39984,R/W,"521, 522",Tuesday 1st phase on Tuesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39985,R/W,,Tuesday 2nd phase on Tuesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39986,R/W,,Tuesday 3rd phase on Tuesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39987,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39988,R/W,"521, 522",Wednesday 1st phase on Wednesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39989,R/W,,Wednesday 2nd phase on Wednesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39990,R/W,,Wednesday 3rd phase on Wednesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39991,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39992,R/W,"521, 522",Thursday 1st phase on Thursday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39993,R/W,,Thursday 2nd phase on Thursday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39994,R/W,,Thursday 3rd phase on Thursday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39995,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39996,R/W,"521, 522",Friday 1st phase on Friday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39997,R/W,,Friday 2nd phase on Friday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39998,R/W,,Friday 3rd phase on Friday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,39999,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40000,R/W,"521, 522",Saturday 1st phase on Saturday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40001,R/W,,Saturday 2nd phase on Saturday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40002,R/W,,Saturday 3rd phase on Saturday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40003,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40004,R/W,"521, 522",Sunday 1st phase on Sunday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40005,R/W,,Sunday 2nd phase on Sunday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40006,R/W,,Sunday 3rd phase on Sunday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40007,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time prog heating circuit 2,0x9800..0x9BFFBL,40008,R/W,536,Default values,x 0: No,0,1,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40040,R/W,"541, 542",Monday 1st phase on Monday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40041,R/W,,Monday 2nd phase on Monday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40042,R/W,,Monday 3rd phase on Monday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40043,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40044,R/W,"541, 542",Tuesday 1st phase on Tuesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40045,R/W,,Tuesday 2nd phase on Tuesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40046,R/W,,Tuesday 3rd phase on Tuesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40047,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40048,R/W,"541, 542",Wednesday 1st phase on Wednesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40049,R/W,,Wednesday 2nd phase on Wednesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40050,R/W,,Wednesday 3rd phase on Wednesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40051,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40052,R/W,"541, 542",Thursday 1st phase on Thursday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40053,R/W,,Thursday 2nd phase on Thursday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40054,R/W,,Thursday 3rd phase on Thursday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40055,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40056,R/W,"541, 542",Friday 1st phase on Friday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40057,R/W,,Friday 2nd phase on Friday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40058,R/W,,Friday 3rd phase on Friday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40059,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40060,R/W,"541, 542",Saturday 1st phase on Saturday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40061,R/W,,Saturday 2nd phase on Saturday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40062,R/W,,Saturday 3rd phase on Saturday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40063,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40064,R/W,"541, 542",Sunday 1st phase on Sunday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40065,R/W,,Sunday 2nd phase on Sunday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40066,R/W,,Sunday 3rd phase on Sunday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40067,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 3/HC3,0x9800..0x9BFFBL,40068,R/W,556,Default values,x 0: No | 1: Yes,0,1,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40080,R/W,"561, 562",Monday 1st phase on Monday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40081,R/W,,Monday 2nd phase on Monday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40082,R/W,,Monday 3rd phase on Monday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40083,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40084,R/W,"561, 562",Tuesday 1st phase on Tuesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40085,R/W,,Tuesday 2nd phase on Tuesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40086,R/W,,Tuesday 3rd phase on Tuesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40087,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40088,R/W,"561, 562",Wednesday 1st phase on Wednesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40089,R/W,,Wednesday 2nd phase on Wednesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40090,R/W,,Wednesday 3rd phase on Wednesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40091,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40092,R/W,"561, 562",Thursday 1st phase on Thursday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40093,R/W,,Thursday 2nd phase on Thursday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40094,R/W,,Thursday 3rd phase on Thursday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40095,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40096,R/W,"561, 562",Friday 1st phase on Friday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40097,R/W,,Friday 2nd phase on Friday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40098,R/W,,Friday 3rd phase on Friday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40099,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40100,R/W,"561, 562",Saturday 1st phase on Saturday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40101,R/W,,Saturday 2nd phase on Saturday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40102,R/W,,Saturday 3rd phase on Saturday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40103,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40104,R/W,"561, 562",Sunday 1st phase on Sunday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40105,R/W,,Sunday 2nd phase on Sunday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40106,R/W,,Sunday 3rd phase on Sunday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40107,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 4 / DHW,0x9800..0x9BFFBL,40108,R/W,576,Default values,x 0: No | 1: Yes,0,1,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40140,R/W,"601, 602",Monday 1st phase on Monday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40141,R/W,,Monday 2nd phase on Monday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40142,R/W,,Monday 3rd phase on Monday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40143,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40144,R/W,"601, 602",Tuesday 1st phase on Tuesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40145,R/W,,Tuesday 2nd phase on Tuesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40146,R/W,,Tuesday 3rd phase on Tuesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40147,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40148,R/W,"601, 602",Wednesday 1st phase on Wednesday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40149,R/W,,Wednesday 2nd phase on Wednesday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40150,R/W,,Wednesday 3rd phase on Wednesday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40151,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40152,R/W,"601, 602",Thursday 1st phase on Thursday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40153,R/W,,Thursday 2nd phase on Thursday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40154,R/W,,Thursday 3rd phase on Thursday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40155,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40156,R/W,"601, 602",Friday 1st phase on Friday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40157,R/W,,Friday 2nd phase on Friday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40158,R/W,,Friday 3rd phase on Friday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40159,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40160,R/W,"601, 602",Saturday 1st phase on Saturday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40161,R/W,,Saturday 2nd phase on Saturday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40162,R/W,,Saturday 3rd phase on Saturday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40163,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40164,R/W,"601, 602",Sunday 1st phase on Sunday 1st phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40165,R/W,,Sunday 2nd phase on Sunday 2nd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40166,R/W,,Sunday 3rd phase on Sunday 3rd phase off,H-Byte: phase on | L-Byte: phase off,00:00,24:00,h:m,10min,x,x,x
+Time program 5,0x9800..0x9BFFBL,40167,R/W,,Status / Comand Switching phase status,Bit 0:1st phase on inactive | Bit 1:1st phase off inactive | Bit 2:2nd phase on inactive | Bit 3:2nd phase off inactive | Bit 4:3rd phase on inactive | Bit 5:3rd phase off inactive | Bit6-15: Unused,,,,,x,x,x
+Time program 5,0x9800..0x9BFFBL,40168,R/W,616,Default values,x 0: No | 1: Yes,0,1,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40400,R/W,642,Holidays Start 1,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40401,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40402,R/W,643,Holidays Ende 1,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40403,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40404,R/W,642,Holidays Start 2,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40405,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40406,R/W,643,Holidays Ende 2,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40407,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40408,R/W,642,Holidays Start 3,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40409,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40410,R/W,643,Holidays Ende 3,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40411,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40412,R/W,642,Holidays Start 4,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40413,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40414,R/W,643,Holidays Ende 4,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40415,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40416,R/W,642,Holidays Start 5,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40417,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40418,R/W,643,Holidays Ende 5,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40419,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40420,R/W,642,Holidays Start 6,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40421,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40422,R/W,643,Holidays Ende 6,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40423,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40424,R/W,642,Holidays Start 7,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40425,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40426,R/W,643,Holidays Ende 7,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40427,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40428,R/W,642,Holidays Start 8,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40429,R/W,642,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40430,R/W,643,Holidays Ende 8,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40431,R/W,643,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40432,R/W,648,Holidays Operating level,x 0: Frost protection | 1: Reduced,0,1,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40440,R/W,652,Holidays Start 1,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40441,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40442,R/W,653,Holidays Ende 1,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40443,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40444,R/W,652,Holidays Start 2,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40445,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40446,R/W,653,Holidays Ende 2,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40447,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40448,R/W,652,Holidays Start 3,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40449,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40450,R/W,653,Holidays Ende 3,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40451,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40452,R/W,652,Holidays Start 4,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40453,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40454,R/W,653,Holidays Ende 4,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40455,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40456,R/W,652,Holidays Start 5,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40457,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40458,R/W,653,Holidays Ende 5,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40459,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40460,R/W,652,Holidays Start 6,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40461,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40462,R/W,653,Holidays Ende 6,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40463,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40464,R/W,652,Holidays Start 7,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40465,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40466,R/W,653,Holidays Ende 7,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40467,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40468,R/W,652,Holidays Start 8,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40469,R/W,652,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40470,R/W,653,Holidays Ende 8,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40471,R/W,653,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 1,0x9800..0x9BFFBL,40472,R/W,658,Holidays Operating level,x 0: Frost protection | 1: Reduced,0,1,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40480,R/W,662,Holidays Start 1,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40481,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40482,R/W,663,Holidays Ende 1,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40483,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40484,R/W,662,Holidays Start 2,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40485,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40486,R/W,663,Holidays Ende 2,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40487,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40488,R/W,662,Holidays Start 3,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40489,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40490,R/W,663,Holidays Ende 3,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40491,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40492,R/W,662,Holidays Start 4,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40493,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40494,R/W,663,Holidays Ende 4,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40495,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40496,R/W,662,Holidays Start 5,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40497,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40498,R/W,663,Holidays Ende 5,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40499,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40500,R/W,662,Holidays Start 6,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40501,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40502,R/W,663,Holidays Ende 6,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40504,R/W,662,Holidays Start 7,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40505,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40506,R/W,663,Holidays Ende 7,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40507,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40508,R/W,662,Holidays Start 8,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40509,R/W,662,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40510,R/W,663,Holidays Ende 8,H-Byte: Month | L-Byte: Day,1,12,Month,1,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40511,R/W,663,Status/Comand,see description,,,,,x,x,x
+Holidays heating circuit 3,0x9800..0x9BFFBL,40512,R/W,668,Holidays Operating level,x 0: Frost protection | 1: Reduced,0,1,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41984,R,,TempAnfoEMxt,Value,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41985,,,,Attribute,0,65535,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41986,,,,Prio,0,16,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41987,,,,Lrel,0,100,%,1,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41988,,,,AttributeExt,0,65535,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41990,R/W,,StatEExt,Attribute,0,65535,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41991,,,,LeistRel,0,100,%,1,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41992,,,,LeistAbs,0,65535,kWh,1/10,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41993,,,,BetStd,0,65535,h,1,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41994,,,,AttributeExt,0,65535,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41997,R/W,,ProzSperrErz,H-Byte: c8Value | L-Byte: c8Attribut,0,100,%,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41998,R/W,,ProzZwangErz,H-Byte: c8Value | L-Byte: c8Attribut,0,100,%,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,41999,R,,TempAnfoKuehlEMxt,Wert,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42000,,,,Attribute,0,65535,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42005,R/W,,StatEEKuehl,Attribute,0,65535,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42016,R/W,,TempAnfo,Value,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42017,,,,Attribute,0,65535,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42018,R,,StatEM,Attribute,0,65535,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42019,,,,LeistRel,0,100,%,1,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42020,,,,LeistAbs,0,65535,kWh,1/10,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42021,R,,ProzSperrEM,H-Byte: c8Value | L-Byte: c8Attribut,0,100,%,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42022,R,,ProzZwangEM,H-Byte: c8Value | L-Byte: c8Attribut,0,100,%,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42023,R,,StatVM,Attribute,,,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42024,R,,ProzSperrVM,H-Byte: c8Value | L-Byte: c8Attribut,0,100,%,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42025,R,,ProzZwangVM,Wert | Attribut,0,100,%,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42032,R/W,,TempAnfoKuehl,Value,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42033,,,,Attribute,0,65535,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42034,R,,StatEMKuehl,Attribute,0,65535,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42035,R,,StatVMKuehl,Attribute,0,65535,,,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,not used,,,,,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42048,R/W,,TempErzWert,Value,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42049,,,Status,see description,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42050,R,,TempSchiVor,Value,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42051,,,Status,see description,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42052,R,,TempPuffer,Value,0,140,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42053,,,Status,see description,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42054,R/W,,TempAuss,Value,-50,50,°C,1/64,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42055,,,Status,see description,,,,,,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,42056,R/W,,"Switch-on command heat pump See ""Swi-on command HP stage x"" in the manual",0: Control | 1: Off | 2: Stage1 | 3: Stage1 and 2,0,3,,1,x,x,x
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,10:Outside,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,11:Solar,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,12:Wind,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,1,,,,,,,,20:Boiler,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,2,,,,,,,,22:Boiler,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,solid,fuel,,,,,,,25:Boiler,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,flow,sensor,,,,,,,,26:Common,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,flow,sensor,,,,,,,,27:Common,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,temp,sensor,,,,,,,,28:Flue,,gas
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor 1,,,,,,,,,30:Flow,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor cooling,,1,,,,,,,31:Flow,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor 2,,,,,,,,,32:Flow,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor HP,,,,,,,,,33:Flow,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,34:Condenser,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,inlet sensor,,,,,,,,,35:Source,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,1,,,,,,,,36:Hot-gas,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,2,,,,,,,,37:Hot-gas,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor prim,,contr,,,,,,,38:Flow,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,39:Evaporator,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,1,,,,,,,,40:Return,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,2,,,,,,,,42:Return,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,solid,fuel,,,,,,,43:Return,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,HP,,,,,,,,44:Return,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,outlet,sensor,,,,,,,,45:Source,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,cascade,,,,,,,,46:Return,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,return,,sensor,,,,,,,47:Common,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,liquid,,,,,,,48:Refrigerant,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,1,,,,,,,,50:DHW,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,flow sensor,,,,,,,,,54:DHW,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,2 DHW,sens,1,,,,,,,55:St,,tank
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,2 DHW,sens,2,,,,,,,56:St,,tank
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,circulation,,sensor,,,,,,,57:DHW,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,thermostat,,,,,,,,,58:DHW,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,1,,,,,,,,60:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,unit 1,,,,,,,,,61:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,unit 1 type,,,,,,,,,62:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,unit 1 bus,,interr,,,,,,,64:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,2,,,,,,,,65:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,unit 2,,,,,,,,,66:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,unit 2 type,,,,,,,,,67:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,3,,,,,,,,68:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,unit 2 bus,,interr,,,,,,,69:Room,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,tank,sensor,1,,,,,,,70:Storage,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,tank,sensor,2,,,,,,,71:Storage,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,tank,sensor,3,,,,,,,72:Storage,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,1,,,,,,,73:Collector,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,2,,,,,,,74:Collector,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,75:Bypass,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,1,,,,,,,,76:Special,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,77:Air,,pressure
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,pressure,sensor,,,,,,,,78:Water,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,sensor,,,,,,,,,79:Brine,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,communication,,,,,,,,,80:LPB,,no
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,,collision,,,,,,,,82:LPB,,address
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,,collision,,,,,,,,84:BSB,,address
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,communication,,,,,,,,,85:BSB,,Radio
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,short-circuit,,,,,,,,,87:PPS,,2
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,communication,,,,,,,,,88:PPS,,no
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,loss in RAM,,,,,,,,,90:Data,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,loss in EEPROM,,,,,,,,,91:Data,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,electronics,,error,,,,,,,92:Device,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,battery,,,,,,,,,93:Change,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,memory,,card,,,,,,,94:Battery,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,of day invalid,,,,,,,,,95:Time,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,SW failure,,,,,,,,,96:Minor,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,HW failure,,,,,,,,,97:SW,,or
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,module,,1,,,,,,,98:Extension,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,module,,2,,,,,,,99:Extension,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,time,masters,,,,,,,,100:2,,clock
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,clock time,source,,,,,,,,101:Par,,
+Process Signal (Bridging Solution see special Document),0xA400..0xA7FBFL,without,backup,,,,,,,,102:Clock,,
