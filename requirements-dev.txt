@@ -4,3 +4,10 @@
 pymodbus>=3.6.9,<4.0.0
 pytest>=8.0
 pytest-asyncio>=0.23
+
+# Home Assistant test harness.  It pins its own Home Assistant version, which is
+# what the integration is developed against.  Home Assistant does not support
+# Windows; tests/win_compat.py patches around the two places that matter.
+pytest-homeassistant-custom-component
+
+ruff

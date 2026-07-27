@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Fujitsu Waterstage",
+        "description": "Az RS-485/TCP átjáró címe és az FWS-MBIO-002 panel Modbus slave címe. A beállítás előbb ellenőrzi, hogy tényleg MBIO panel válaszol-e.",
+        "data": {
+          "host": "Átjáró címe",
+          "port": "Átjáró portja",
+          "slave_id": "Modbus slave cím",
+          "name": "Név"
+        },
+        "data_description": {
+          "slave_id": "A panel SW2[1-4] DIP kapcsolójával állítható. Az átjárón más eszköz is lehet, ezért fontos, hogy pontos legyen."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nem válaszol az átjáró vagy az adott slave cím.",
+      "unknown_device": "Válaszolt valami, de nem FWS-MBIO-002 panel (a 9900-as regiszter nem 0x0401 értéket adott). Ellenőrizd a slave címet.",
+      "unknown": "Váratlan hiba, részletek a naplóban."
+    },
+    "abort": {
+      "already_configured": "Ez a panel már be van állítva."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Beállítások",
+        "description": "Mely részeit kérdezzük le a rendszernek, milyen gyakran, és mennyi paraméter írható.",
+        "data": {
+          "blocks": "Funkcióblokkok",
+          "write_level": "Írási szint",
+          "scan_interval_fast": "Gyors lekérdezés (mp)",
+          "scan_interval_normal": "Normál lekérdezés (mp)",
+          "scan_interval_slow": "Lassú lekérdezés (mp)",
+          "inter_request_delay_ms": "Kérések közti szünet (ms)",
+          "timeout_s": "Időtúllépés (mp)",
+          "retries": "Újrapróbálkozások",
+          "max_registers_per_read": "Regiszter kérésenként"
+        },
+        "data_description": {
+          "blocks": "A felderítés töltötte ki. Kapcsold be azt a blokkot, ami létezik, de nem lett felismerve.",
+          "write_level": "basic: csak a napi setpointok. advanced: minden írható paraméter. expert: ezen felül a fizikai kimeneteket kapcsoló és újraindító regiszterek is.",
+          "scan_interval_fast": "A panel legfeljebb 30 másodpercenként frissíti ezeket a BSB buszról, ennél sűrűbben kérdezni csak a buszt terheli.",
+          "inter_request_delay_ms": "Ennyi ideig hagyjuk szabadon az RS-485 buszt a többi eszköznek."
+        }
+      }
+    }
+  },
+  "selector": {
+    "write_level": {
+      "options": {
+        "basic": "basic - csak a napi setpointok",
+        "advanced": "advanced - minden írható paraméter",
+        "expert": "expert - relétesztek és újraindítás is"
+      }
+    },
+    "blocks": {
+      "options": {
+        "heat_pump": "Hőszivattyú",
+        "dhw": "Használati melegvíz",
+        "heating_circuit_1": "1. fűtőkör",
+        "heating_circuit_2": "2. fűtőkör",
+        "cooling_circuit_1": "1. hűtőkör",
+        "cooling_circuit_2": "2. hűtőkör",
+        "solar": "Szolár",
+        "buffer": "Puffertartály",
+        "swimming_pool": "Medence",
+        "supplementary_source": "Kiegészítő hőforrás",
+        "faults": "Hibák",
+        "relays": "Relékimenetek"
+      }
+    }
+  }
+}

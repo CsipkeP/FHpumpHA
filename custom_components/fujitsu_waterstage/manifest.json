@@ -1,0 +1,12 @@
+{
+  "domain": "fujitsu_waterstage",
+  "name": "Fujitsu Waterstage (FWS-MBIO Modbus)",
+  "codeowners": ["@CsipkeP"],
+  "config_flow": true,
+  "documentation": "https://github.com/CsipkeP/FHpumpHA",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/CsipkeP/FHpumpHA/issues",
+  "requirements": ["pymodbus>=3.6.9,<4.0.0"],
+  "version": "0.1.0"
+}

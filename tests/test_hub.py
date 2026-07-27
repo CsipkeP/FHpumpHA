@@ -6,7 +6,6 @@ No hardware and no sockets -- a fake pymodbus client stands in for the gateway.
 from __future__ import annotations
 
 import asyncio
-from dataclasses import dataclass, field
 from typing import Any
 
 import pytest
@@ -26,6 +25,8 @@ from fujitsu_waterstage.hub import (
     build_read_groups,
 )
 from fujitsu_waterstage.registers import Register, RegisterMap
+
+from .fake_board import FakeClient, FakeResponse
 
 # ---------------------------------------------------------------------------
 # Read groups
@@ -136,67 +137,6 @@ class TestReadGroups:
         group = ReadGroup(start=7, count=1, registers=(register_map.at(7),))
         with pytest.raises(ValueError):
             group.words_for(register_map.at(9), [0])
-
-
-# ---------------------------------------------------------------------------
-# Fake pymodbus client
-# ---------------------------------------------------------------------------
-
-
-class FakeResponse:
-    def __init__(self, registers: list[int] | None = None, error: bool = False) -> None:
-        self.registers = registers or []
-        self._error = error
-
-    def isError(self) -> bool:  # noqa: N802 - pymodbus spelling
-        return self._error
-
-
-@dataclass
-class FakeClient:
-    """Minimal stand-in for ``AsyncModbusTcpClient``."""
-
-    words: dict[int, int] = field(default_factory=dict)
-    connected: bool = False
-    fail_reads: int = 0
-    read_error_response: bool = False
-    connect_failures: int = 0
-    calls: list[tuple[str, Any, Any]] = field(default_factory=list)
-    connects: int = 0
-
-    async def connect(self) -> bool:
-        self.connects += 1
-        if self.connect_failures > 0:
-            self.connect_failures -= 1
-            return False
-        self.connected = True
-        return True
-
-    def close(self) -> None:
-        self.connected = False
-
-    async def read_holding_registers(self, address: int, *, count: int = 1, **kwargs: Any):
-        self.calls.append(("read", address, count))
-        if self.fail_reads > 0:
-            self.fail_reads -= 1
-            raise TimeoutError("bus busy")
-        if self.read_error_response:
-            return FakeResponse(error=True)
-        return FakeResponse([self.words.get(address + i, 0) for i in range(count)])
-
-    async def read_input_registers(self, address: int, *, count: int = 1, **kwargs: Any):
-        return await self.read_holding_registers(address, count=count, **kwargs)
-
-    async def write_register(self, address: int, value: int, **kwargs: Any):
-        self.calls.append(("write", address, value))
-        self.words[address] = value
-        return FakeResponse()
-
-    async def write_registers(self, address: int, values: list[int], **kwargs: Any):
-        self.calls.append(("write_multi", address, list(values)))
-        for offset, value in enumerate(values):
-            self.words[address + offset] = value
-        return FakeResponse()
 
 
 def _gateway(client: FakeClient, **kwargs: Any) -> ModbusGateway:

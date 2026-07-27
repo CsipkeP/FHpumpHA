@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Fujitsu Waterstage",
+        "description": "Address of the RS-485 to TCP gateway and the Modbus slave address of the FWS-MBIO-002 board. Setup verifies that the board really is an MBIO before it goes any further.",
+        "data": {
+          "host": "Gateway host",
+          "port": "Gateway port",
+          "slave_id": "Modbus slave address",
+          "name": "Name"
+        },
+        "data_description": {
+          "slave_id": "Set with DIP switch SW2[1-4] on the board. Other devices may share this gateway, so the address has to be right."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "No answer from the gateway or from that slave address.",
+      "unknown_device": "Something answered, but it is not an FWS-MBIO-002 board (register 9900 did not return 0x0401). Check the slave address before trying again.",
+      "unknown": "Unexpected error, see the log."
+    },
+    "abort": {
+      "already_configured": "This board is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "description": "Which parts of the installation to poll, how often, and how much of the parameter surface may be written.",
+        "data": {
+          "blocks": "Function blocks",
+          "write_level": "Write level",
+          "scan_interval_fast": "Fast interval (s)",
+          "scan_interval_normal": "Normal interval (s)",
+          "scan_interval_slow": "Slow interval (s)",
+          "inter_request_delay_ms": "Delay between requests (ms)",
+          "timeout_s": "Timeout (s)",
+          "retries": "Retries",
+          "max_registers_per_read": "Registers per request"
+        },
+        "data_description": {
+          "blocks": "Discovery filled these in. Turn a block on if it exists but was not detected.",
+          "write_level": "basic writes only the everyday setpoints. advanced exposes every writable parameter. expert also exposes the registers that switch physical outputs and restart hardware.",
+          "scan_interval_fast": "The board refreshes these values from the BSB bus every 30 s at best, so a shorter interval only loads the bus.",
+          "inter_request_delay_ms": "Idle time left on the RS-485 bus for other devices."
+        }
+      }
+    }
+  },
+  "selector": {
+    "write_level": {
+      "options": {
+        "basic": "basic - everyday setpoints only",
+        "advanced": "advanced - every writable parameter",
+        "expert": "expert - also relay tests and restarts"
+      }
+    },
+    "blocks": {
+      "options": {
+        "heat_pump": "Heat pump",
+        "dhw": "Domestic hot water",
+        "heating_circuit_1": "Heating circuit 1",
+        "heating_circuit_2": "Heating circuit 2",
+        "cooling_circuit_1": "Cooling circuit 1",
+        "cooling_circuit_2": "Cooling circuit 2",
+        "solar": "Solar",
+        "buffer": "Buffer tank",
+        "swimming_pool": "Swimming pool",
+        "supplementary_source": "Supplementary heat source",
+        "faults": "Faults",
+        "relays": "Relay outputs"
+      }
+    }
+  }
+}
