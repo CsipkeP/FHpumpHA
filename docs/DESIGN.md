@@ -460,6 +460,13 @@ népszerűségi feltétel. A `manifest.json` + `hacs.json` + release tag összes
 { "name": "Fujitsu Waterstage (FWS-MBIO Modbus)", "render_readme": true, "homeassistant": "2024.10.0" }
 ```
 
+**A `hacs/action` a repó *beállításait* is nézi, nem csak a fájlokat.** Ez nem javítható commitból:
+a `topics` ellenőrzés akkor bukik, ha a GitHub repónak egyetlen topic-ja sincs (a HACS forrása csak a
+lista ürességét nézi, konkrét topic-okat nem vár). A többi metaadat-ellenőrzés — leírás, licenc,
+issue-k engedélyezve, nem archivált — szintén repóbeállítás. A `brands` ellenőrzés a
+`home-assistant/brands` repóba való felvételt kérné, ezért az `ignore: brands` a workflow-ban;
+a topic-ot viszont felvenni könnyebb, mint kihagyni.
+
 **pymodbus:** a HA core is szállítja. A `requirements`-ben megadott tartomány ütközhet a core pinjével. Kezdéskor igazodjunk ahhoz, ami a HA-ban van; ha ez tartósan gondot okoz, a szükséges funkciókészlet (`0x03`, `0x04`, `0x06`, `0x10` RTU kereten, TCP socketen át) néhány száz sorban saját kóddal is megírható, függőség nélkül.
 
 Kell még: `README.md` (bekötés, DIP beállítások, slave cím, entitáslista, írási szintek, a nem hivatalos
