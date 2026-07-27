@@ -34,7 +34,7 @@ import asyncio
 import inspect
 import logging
 import time
-from collections.abc import Awaitable, Callable, Iterable, Sequence
+from collections.abc import Awaitable, Callable, Collection, Iterable, Sequence
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Any, Final
@@ -58,7 +58,6 @@ _LOGGER = logging.getLogger(__name__)
 
 __all__ = [
     "DEFAULT_INTER_REQUEST_DELAY",
-    "DEFAULT_MAX_GAP",
     "DEFAULT_PORT",
     "DEFAULT_RETRIES",
     "DEFAULT_TIMEOUT",
@@ -104,9 +103,6 @@ DEFAULT_FRAMING: Final = FRAMING_TCP
 
 #: Registers per read request.  Below the Modbus RTU limit of 125.
 MAX_REGISTERS_PER_READ: Final = 120
-
-#: Largest run of unused addresses that may be swallowed into one request.
-DEFAULT_MAX_GAP: Final = 8
 
 #: Product code in register 9900 that identifies an MBIO board.
 MBIO_PRODUCT_CODE: Final = 0x0401
@@ -170,22 +166,28 @@ def build_read_groups(
     registers: Iterable[Register],
     *,
     max_registers: int = MAX_REGISTERS_PER_READ,
-    max_gap: int = DEFAULT_MAX_GAP,
+    readable: Collection[int] | None = None,
 ) -> tuple[ReadGroup, ...]:
     """Pack registers into as few read requests as possible.
 
-    Two rules are non-negotiable:
+    Three rules, all learned the hard way:
 
     * a request never asks for more than ``max_registers`` registers;
     * a ``uint32``/``dtime`` pair is never split across two requests -- groups
-      always grow by whole data points, so both words stay together.
+      always grow by whole data points, so both words stay together;
+    * a group may span an address that is simply not being polled -- another
+      tier's register, say -- but never one the board does not implement.
+      A real board answers such a request with an illegal-data-address
+      exception and the **entire** request is lost, not just the unimplemented
+      word, so one hole silently takes a hundred registers with it.
 
-    ``max_gap`` bounds how many unused addresses may be pulled in just to merge
-    two runs; the address space is sparse, and reading a 60-word hole is still
-    cheaper than a second round trip, but reading a 2000-word one is not.
+    ``readable`` is the set of addresses the board implements, normally
+    :attr:`RegisterMap.addresses`.  Left out, no gap is bridged at all: correct
+    everywhere, at the cost of more requests.
     """
     if max_registers < 1:
         raise ValueError("max_registers must be at least 1")
+    known = None if readable is None else frozenset(readable)
 
     ordered = sorted(registers, key=lambda register: (register.address, register.length))
     groups: list[ReadGroup] = []
@@ -208,8 +210,11 @@ def build_read_groups(
         if current:
             start = current[0].address
             end = max(r.end_address for r in current)
-            gap = register.address - end - 1
-            if gap > max_gap or register.end_address - start + 1 > max_registers:
+            gap = range(end + 1, register.address)
+            bridgeable = not gap or (
+                known is not None and all(address in known for address in gap)
+            )
+            if not bridgeable or register.end_address - start + 1 > max_registers:
                 flush()
         current.append(register)
     flush()

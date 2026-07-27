@@ -218,6 +218,12 @@ HEATING_CIRCUITS: Final[tuple[HeatingCircuit, ...]] = (
     HeatingCircuit("heating_circuit_2", 200, 201, 202, 203, 204, 220, 224, False),
 )
 
+#: A room temperature register outside this range is not reporting a room.
+#: Verified on hardware 2026-07-27: with no room unit connected, both circuits
+#: reported exactly 50.0 °C, which would otherwise have been taken as a live
+#: sensor and produced a thermostat showing 50 °C.
+ROOM_TEMPERATURE_RANGE: Final = (5.0, 40.0)
+
 #: The ``water_heater`` entity: operating mode, nominal setpoint, B3 sensor.
 DHW_MODE_ADDRESS: Final = 40
 DHW_SETPOINT_ADDRESS: Final = 41

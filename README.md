@@ -143,6 +143,12 @@ options.
 | Timeout, retries | 5 s, 3 | A single timeout is usually bus contention, not a fault |
 | Registers per request | 120 | Below the Modbus RTU limit of 125 |
 
+A read request never spans an address the board does not implement. Such a
+request is answered with an illegal-data-address exception and the **whole**
+request is lost, not just the missing word, so one hole would silently take a
+hundred registers with it. Requests may still read past a register that is
+simply not being polled.
+
 Changing any option reloads the integration.
 
 ---
@@ -255,8 +261,11 @@ room temperature sensor**. Without one, a thermostat showing a target and no
 current temperature reads as broken rather than as a controller running on a
 heating curve, so the circuit keeps a mode select and a setpoint number instead.
 
-Discovery decides this and stores the answer; if it got it wrong, the **Room
-sensors** option overrides it. HC2's thermostat needs the `advanced` write
+A missing room unit does not read as 0: the controller reports a fixed
+out-of-range value instead (50.0 °C on the hardware this was written against),
+so the detection requires a plausible room temperature rather than merely a
+non-zero one. Discovery decides this and stores the answer; if it got it wrong,
+the **Room sensors** option overrides it. HC2's thermostat needs the `advanced` write
 level, because its registers are not among the basic seven.
 
 ### Blocks

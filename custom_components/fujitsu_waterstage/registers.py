@@ -221,6 +221,18 @@ class RegisterMap:
         return tuple(register.key for register in self.registers)
 
     @property
+    def addresses(self) -> frozenset[int]:
+        """Every Modbus address the board implements.
+
+        A read that touches anything outside this set is answered with an
+        illegal-data-address exception, and the *whole* request is lost -- so
+        this is what bounds a read group (DESIGN.md section 8.2).
+        """
+        return frozenset(
+            address for register in self.registers for address in register.addresses
+        )
+
+    @property
     def blocks(self) -> tuple[str, ...]:
         """Functional block names, in first-appearance order."""
         return tuple(dict.fromkeys(register.block for register in self.registers))

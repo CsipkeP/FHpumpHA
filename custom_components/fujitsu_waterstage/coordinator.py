@@ -14,7 +14,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from collections.abc import Callable, Iterable, Mapping
+from collections.abc import Callable, Collection, Iterable, Mapping
 from dataclasses import dataclass, field
 from datetime import timedelta
 from typing import Any
@@ -57,12 +57,13 @@ class MbioCoordinator(DataUpdateCoordinator[CoordinatorData]):
         *,
         interval: int,
         max_registers: int = 120,
+        readable: Collection[int] | None = None,
     ) -> None:
         self.tier = tier
         self.client = client
         self.registers: tuple[Register, ...] = tuple(registers)
         self.groups: tuple[ReadGroup, ...] = build_read_groups(
-            self.registers, max_registers=max_registers
+            self.registers, max_registers=max_registers, readable=readable
         )
         #: Groups that failed in the last cycle, for diagnostics.
         self.group_errors: dict[str, str] = {}

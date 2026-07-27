@@ -241,6 +241,13 @@ A címtér ritka, de kicsi. Javasolt fix csoportok (mind egy-egy `0x03` kérés)
 
 Egy kérés legfeljebb **120 regisztert** kérjen (a Modbus RTU 125-ös elvi maximuma alatt). A `uint32` és `dtime` párokat **soha ne vágjuk ketté** csoportok között.
 
+**Definiálatlan címen átolvasni tilos.** A fenti javasolt csoportok egy része
+lyukas (pl. 140–162 a 154–159 fölött) — a valós panel az ilyen kérésre
+illegal-data-address kivételt ad, és **az egész kérés elvész**, nem csak a
+hiányzó szó. 2026-07-27-én hardveren igazolva: nyolc csoportból öt így halt el.
+A csoportépítés ezért átolvashat olyan címen, amit épp nem pollozunk (másik tier
+regisztere), de definiálatlanon soha.
+
 A ki nem választott blokkok csoportjai kimaradnak — HC2/CC1/CC2/medence nélkül a teljes forgalom nagyjából a felére csökken.
 
 ### 8.3 Idő- és sávszélesség-számítás
@@ -287,7 +294,7 @@ Ennél a telepítésnél az átjárón egy másik Modbus eszköz is van (slave 1
 - `preset_modes` ← 100/200 regiszter: `protection`, `automatic`, `reduced`, `comfort`
 - `hvac_modes`: `OFF` (Protection), `AUTO` (Automatic), `HEAT` (Comfort)
 - `target_temperature` → 101/201 (komfort setpoint), 4–35 °C, 0,5 °C lépés
-- `current_temperature` → 124/224 (szobahőmérséklet), **ha van szobaérzékelő**. Ha a 124-es tartósan 0 vagy letiltott, akkor a `climate` entitás **ne** jöjjön létre — helyette maradjon a `select` + `number` páros. Szobaérzékelő nélkül a `climate` entitás félrevezető.
+- `current_temperature` → 124/224 (szobahőmérséklet), **ha van szobaérzékelő**. Ha a 124-es tartósan 0, letiltott, **vagy hihetetlen értéket ad** (hardveren igazolva: szobaegység nélkül fix 50,0 °C jön, nem 0), akkor a `climate` entitás **ne** jöjjön létre — helyette maradjon a `select` + `number` páros. Szobaérzékelő nélkül a `climate` entitás félrevezető.
 - `hvac_action`: a 120/220 státuszkód alapján (`137 Heating mode`, `114 Comfort heating mode`, `116 Reduced heating mode` → `HEATING`; `162 Heating mode off`, `118 Summer operation` → `IDLE`)
 - `min_temp`/`max_temp`: 103 (fagyvédelem) és 104 (max komfort) aktuális értékéből — így a HA UI ugyanazt a tartományt engedi, amit a vezérlő elfogad
 

@@ -17,12 +17,13 @@ from fujitsu_waterstage.const import (
 from fujitsu_waterstage.discovery import (
     analyse_blocks,
     async_run_discovery,
+    find_room_sensors,
     is_board_local,
     select_registers,
     tier_for_register,
     tier_registers,
 )
-from fujitsu_waterstage.hub import MbioClient, ModbusGateway
+from fujitsu_waterstage.hub import MbioClient, ModbusGateway, build_read_groups
 from fujitsu_waterstage.registers import RegisterMap
 
 from .fake_board import FakeClient, make_board
@@ -189,11 +190,33 @@ class TestRunDiscovery:
         result = await async_run_discovery(
             self._client(fake), register_map, delay=0, rounds=2
         )
+        groups = build_read_groups(
+            register_map.registers, readable=register_map.addresses
+        )
         reads = [call for call in fake.calls if call[0] == "read"]
-        assert len(reads) == 16  # eight groups, twice
+        assert len(reads) == 2 * len(groups)
         assert result.blocks["heat_pump"] is True
         # The default board has no pool, no solar and no second circuit.
         assert set(result.excluded) == DISCOVERABLE_BLOCKS
+
+    async def test_a_placeholder_room_temperature_is_not_a_sensor(
+        self, register_map: RegisterMap
+    ) -> None:
+        """Hardware, 2026-07-27: no room unit reads 50.0 °C, not 0."""
+        values = _all_zero(register_map)
+        values["heating_circuit_1_room_temperature_1_actual_value"] = DecodedValue(
+            50.0, False
+        )
+        assert find_room_sensors(register_map, [values]) == ()
+
+    async def test_a_real_room_temperature_is_a_sensor(
+        self, register_map: RegisterMap
+    ) -> None:
+        values = _all_zero(register_map)
+        values["heating_circuit_1_room_temperature_1_actual_value"] = DecodedValue(
+            21.5, False
+        )
+        assert find_room_sensors(register_map, [values]) == ("heating_circuit_1",)
 
     async def test_finds_a_swimming_pool(self, register_map: RegisterMap) -> None:
         fake = make_board(**{"90": 0})

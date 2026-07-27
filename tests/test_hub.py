@@ -11,7 +11,6 @@ from typing import Any
 import pytest
 from fujitsu_waterstage.codec import RegisterType
 from fujitsu_waterstage.hub import (
-    DEFAULT_MAX_GAP,
     FRAMING_RTU,
     FRAMING_TCP,
     FUNCTION_READ_HOLDING,
@@ -53,18 +52,36 @@ class TestReadGroups:
         assert len(groups) == 1
         assert (groups[0].start, groups[0].count) == (0, 10)
 
-    def test_large_gap_splits(self) -> None:
-        groups = build_read_groups([_register(0), _register(1), _register(500)])
-        assert [(g.start, g.count) for g in groups] == [(0, 2), (500, 1)]
+    def test_a_gap_splits_when_nothing_says_it_is_safe(self) -> None:
+        groups = build_read_groups([_register(0), _register(1), _register(5)])
+        assert [(g.start, g.count) for g in groups] == [(0, 2), (5, 1)]
 
-    def test_small_gap_is_merged(self) -> None:
-        groups = build_read_groups([_register(0), _register(1 + DEFAULT_MAX_GAP)])
-        assert len(groups) == 1
-        assert groups[0].count == DEFAULT_MAX_GAP + 2
+    def test_a_gap_of_implemented_addresses_is_bridged(self) -> None:
+        """Another tier's registers are fine to read past and throw away."""
+        groups = build_read_groups(
+            [_register(0), _register(5)], readable=range(0, 6)
+        )
+        assert [(g.start, g.count) for g in groups] == [(0, 6)]
 
-    def test_gap_one_larger_splits(self) -> None:
-        groups = build_read_groups([_register(0), _register(2 + DEFAULT_MAX_GAP)])
-        assert len(groups) == 2
+    def test_a_gap_with_one_unimplemented_address_is_not_bridged(self) -> None:
+        """The board rejects the whole request, not just the missing word."""
+        readable = set(range(0, 6)) - {3}
+        groups = build_read_groups([_register(0), _register(5)], readable=readable)
+        assert [(g.start, g.count) for g in groups] == [(0, 1), (5, 1)]
+
+    def test_the_real_map_never_spans_an_unimplemented_address(
+        self, register_map: RegisterMap
+    ) -> None:
+        """Verified on hardware: five tier groups were being rejected whole."""
+        implemented = register_map.addresses
+        for tier_registers in (
+            register_map.registers,
+            [r for r in register_map if r.refresh_s == 255],
+            [r for r in register_map if r.block.startswith("cooling")],
+        ):
+            for group in build_read_groups(tier_registers, readable=implemented):
+                holes = set(range(group.start, group.end + 1)) - implemented
+                assert not holes, f"{group.start}..{group.end} spans {sorted(holes)}"
 
     def test_never_exceeds_the_request_limit(self) -> None:
         groups = build_read_groups(

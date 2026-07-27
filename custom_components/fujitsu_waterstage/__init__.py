@@ -123,6 +123,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
             tier_regs,
             interval=_interval_for(options, tier),
             max_registers=max_registers,
+            readable=register_map.addresses,
         )
 
     room_sensors = options.get(CONF_ROOM_SENSORS)

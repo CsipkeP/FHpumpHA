@@ -98,10 +98,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="largest read request (Modbus RTU allows at most 125)",
     )
     parser.add_argument(
-        "--max-gap",
-        type=int,
-        default=hub.DEFAULT_MAX_GAP,
-        help="unused addresses that may be merged into one request",
+        "--no-gaps",
+        action="store_true",
+        help=(
+            "never merge two runs, even across addresses the board implements. "
+            "By default a group may span a register that is simply not being "
+            "read, but never one the board does not implement -- such a request "
+            "is rejected whole"
+        ),
     )
     parser.add_argument(
         "--rounds",
@@ -307,7 +311,9 @@ async def _run(args: argparse.Namespace) -> int:
         return 2
 
     groups = hub.build_read_groups(
-        selected, max_registers=args.max_registers, max_gap=args.max_gap
+        selected,
+        max_registers=args.max_registers,
+        readable=None if args.no_gaps else register_map.addresses,
     )
     print(
         f"{len(selected)} registers in {len(groups)} read request(s): "

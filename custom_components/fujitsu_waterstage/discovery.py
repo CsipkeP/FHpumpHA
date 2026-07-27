@@ -34,6 +34,7 @@ from .const import (
     HEATING_CIRCUITS,
     INTERFACE_DIAGNOSTIC_ADDRESSES,
     RESET_BY_WRITE_ADDRESSES,
+    ROOM_TEMPERATURE_RANGE,
     SETUP_SECOND_READ_DELAY,
     Control,
     Tier,
@@ -293,8 +294,15 @@ def find_room_sensors(
     stored in the config entry rather than re-derived on every start, because a
     board that was only just powered up answers 0 for a few minutes and that
     would silently drop the entity on an unlucky restart.
+
+    "Plausible" is doing real work here: a non-zero value is not enough.  A
+    controller with no room unit connected reports a fixed out-of-range number
+    rather than 0 -- 50.0 °C on the hardware this was written against -- and
+    taking that at face value produces a thermostat that claims the living room
+    is at 50 degrees.
     """
     rounds = list(rounds)
+    minimum, maximum = ROOM_TEMPERATURE_RANGE
     found: list[str] = []
     for circuit in HEATING_CIRCUITS:
         register = register_map.at(circuit.room_temperature)
@@ -302,7 +310,19 @@ def find_room_sensors(
             continue
         for values in rounds:
             decoded = values.get(register.key)
-            if decoded is None or decoded.disabled or not decoded.value:
+            if decoded is None or decoded.disabled or decoded.value is None:
+                continue
+            if not isinstance(decoded.value, int | float):  # pragma: no cover
+                continue
+            if not minimum <= decoded.value <= maximum:
+                _LOGGER.debug(
+                    "%s room temperature reads %s, outside %s..%s: treating it as "
+                    "no room sensor",
+                    circuit.block,
+                    decoded.value,
+                    minimum,
+                    maximum,
+                )
                 continue
             found.append(circuit.block)
             break
@@ -394,7 +414,9 @@ async def async_run_discovery(
     flow, a failed setup is not.
     """
     groups: tuple[ReadGroup, ...] = build_read_groups(
-        register_map.registers, max_registers=max_registers
+        register_map.registers,
+        max_registers=max_registers,
+        readable=register_map.addresses,
     )
     collected: list[Mapping[str, DecodedValue]] = []
 
