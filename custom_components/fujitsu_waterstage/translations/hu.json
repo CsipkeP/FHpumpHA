@@ -75,5 +75,903 @@
         "relays": "Relékimenetek"
       }
     }
+  },
+  "entity": {
+    "binary_sensor": {
+      "interface_communication_status": {
+        "name": "Kommunikációs állapot"
+      },
+      "heat_pump_compressor_1_status": {
+        "name": "1. kompresszor állapot"
+      },
+      "heat_pump_electric_immersion_heater_1_status_k25": {
+        "name": "1. elektromos fűtőbetét állapot (K25)"
+      },
+      "heat_pump_electric_immersion_heater_2_status_k26": {
+        "name": "2. elektromos fűtőbetét állapot (K26)"
+      },
+      "heat_pump_condenser_pump_status": {
+        "name": "Kondenzátorszivattyú állapot"
+      },
+      "heat_pump_defrost_trigger": {
+        "name": "Leolvasztás indítása"
+      },
+      "heat_pump_reset_heat_pump": {
+        "name": "Hőszivattyú újraindítása"
+      },
+      "dhw_dhw_pump_status": {
+        "name": "HMV szivattyú állapot"
+      },
+      "dhw_dhw_electric_immersion_heater_status": {
+        "name": "HMV elektromos fűtőbetét állapot"
+      },
+      "heating_circuit_1_pump_status_hc1": {
+        "name": "HC1 szivattyú állapot"
+      },
+      "heating_circuit_1_mixing_valve_hc1_open": {
+        "name": "HC1 keverőszelep nyit"
+      },
+      "heating_circuit_1_mixing_valve_hc1_close": {
+        "name": "HC1 keverőszelep zár"
+      },
+      "heating_circuit_1_room_thermostat_1": {
+        "name": "1. szobatermosztát"
+      },
+      "heating_circuit_1_operating_mode_changeover_hc1_status": {
+        "name": "HC1 üzemmód átkapcsolás állapot"
+      },
+      "heating_circuit_2_pump_status_hc2": {
+        "name": "HC2 szivattyú állapot"
+      },
+      "heating_circuit_2_mixing_valve_hc2_open": {
+        "name": "HC2 keverőszelep nyit"
+      },
+      "heating_circuit_2_mixing_valve_hc2_close": {
+        "name": "HC2 keverőszelep zár"
+      },
+      "heating_circuit_2_room_thermostat_2": {
+        "name": "2. szobatermosztát"
+      },
+      "heating_circuit_2_operating_mode_changeover_hc2_status": {
+        "name": "HC2 üzemmód átkapcsolás állapot"
+      },
+      "relays_relay_output_qx1_status": {
+        "name": "QX1 relékimenet állapot"
+      },
+      "relays_relay_output_qx2_status": {
+        "name": "QX2 relékimenet állapot"
+      },
+      "relays_relay_output_qx3_status": {
+        "name": "QX3 relékimenet állapot"
+      },
+      "relays_relay_output_qx4_status": {
+        "name": "QX4 relékimenet állapot"
+      },
+      "relays_relay_output_qx5_status": {
+        "name": "QX5 relékimenet állapot"
+      },
+      "relays_relay_output_qx31_status": {
+        "name": "QX31 relékimenet állapot"
+      },
+      "relays_relay_output_qx32_status": {
+        "name": "QX32 relékimenet állapot"
+      },
+      "relays_relay_output_qx33_status": {
+        "name": "QX33 relékimenet állapot"
+      },
+      "relays_relay_output_qx34_status": {
+        "name": "QX34 relékimenet állapot"
+      },
+      "relays_relay_output_qx35_status": {
+        "name": "QX35 relékimenet állapot"
+      }
+    },
+    "button": {
+      "heat_pump_outside_temperature_minimum_value": {
+        "name": "Külső hőmérséklet minimum nullázása"
+      },
+      "heat_pump_outside_temperature_maximum_value": {
+        "name": "Külső hőmérséklet maximum nullázása"
+      },
+      "heat_pump_outside_temperature_attenuated_value": {
+        "name": "Külső hőmérséklet csillapított érték nullázása"
+      },
+      "heat_pump_compressor_1_runtime": {
+        "name": "Kompresszor 1 üzemidő nullázása"
+      },
+      "heat_pump_compressor_1_start_counter": {
+        "name": "Kompresszor 1 indításszámláló nullázása"
+      },
+      "heat_pump_heat_pump_locking_time": {
+        "name": "Hőszivattyú letiltási idő nullázása"
+      },
+      "heat_pump_heat_pump_lockings_counter": {
+        "name": "Hőszivattyú letiltásszámláló nullázása"
+      },
+      "heat_pump_electric_heater_runtime": {
+        "name": "Elektromos fűtőbetét üzemidő nullázása"
+      },
+      "heat_pump_electric_heater_start_counter": {
+        "name": "Elektromos fűtőbetét indításszámláló nullázása"
+      },
+      "heat_pump_time_since_maintenance": {
+        "name": "Karbantartás óta eltelt idő nullázása"
+      },
+      "heat_pump_defrost_trigger": {
+        "name": "Leolvasztás indítása"
+      },
+      "heat_pump_reset_heat_pump": {
+        "name": "Hőszivattyú újraindítása"
+      },
+      "dhw_dhw_pump_runtime": {
+        "name": "HMV szivattyú üzemidő nullázása"
+      },
+      "dhw_dhw_pump_start_counter": {
+        "name": "HMV szivattyú indításszámláló nullázása"
+      },
+      "dhw_dhw_electric_immersion_heater_runtime": {
+        "name": "HMV elektromos fűtőbetét üzemidő nullázása"
+      },
+      "dhw_dhw_electric_immersion_heater_start_counter": {
+        "name": "HMV elektromos fűtőbetét indításszámláló nullázása"
+      },
+      "interface_oscillator_calibration_soft_restart": {
+        "name": "Illesztő újraindítása"
+      },
+      "interface_interface_error_code": {
+        "name": "Illesztő hibakód nullázása"
+      },
+      "interface_modbus_framing_error_count": {
+        "name": "Modbus keretezési hibák száma nullázása"
+      },
+      "interface_modbus_parity_error_count": {
+        "name": "Modbus paritáshibák száma nullázása"
+      },
+      "interface_modbus_crc_error_count": {
+        "name": "Modbus CRC hibák száma nullázása"
+      },
+      "interface_bsb_framing_error_count": {
+        "name": "BSB keretezési hibák száma nullázása"
+      },
+      "interface_bsb_parity_error_count": {
+        "name": "BSB paritáshibák száma nullázása"
+      },
+      "interface_bsb_crc_error_count": {
+        "name": "BSB CRC hibák száma nullázása"
+      },
+      "interface_bsb_tx_collision_count": {
+        "name": "BSB Tx ütközések száma nullázása"
+      },
+      "interface_bsb_bus_maximum_utilisation": {
+        "name": "BSB busz maximális kihasználtság nullázása"
+      }
+    },
+    "climate": {
+      "heating_circuit_1": {
+        "name": "1. fűtőkör"
+      },
+      "heating_circuit_2": {
+        "name": "2. fűtőkör"
+      }
+    },
+    "number": {
+      "heat_pump_outside_temperature_simulation": {
+        "name": "Külső hőmérséklet szimuláció"
+      },
+      "heat_pump_maintenance_interval": {
+        "name": "Karbantartási időköz"
+      },
+      "dhw_dhw_reduced_temperature_setpoint": {
+        "name": "HMV csökkentett hőmérséklet alapjel"
+      },
+      "dhw_dhw_legionella_function_periodicity": {
+        "name": "HMV legionella funkció periodicitás"
+      },
+      "dhw_dhw_time_for_legionella_function": {
+        "name": "HMV legionella funkció időpontja"
+      },
+      "dhw_dhw_legionella_function_setpoint": {
+        "name": "HMV legionella funkció alapjel"
+      },
+      "dhw_dhw_dwelling_time_at_legionella_setpoint": {
+        "name": "HMV legionella alapjel tartási idő"
+      },
+      "dhw_dhw_switching_differential_temperature": {
+        "name": "HMV kapcsolási hőmérséklet-különbség"
+      },
+      "dhw_dhw_charging_time_limitation": {
+        "name": "HMV töltési idő korlát"
+      },
+      "heating_circuit_1_room_comfort_temperature_setpoint_hc1": {
+        "name": "HC1 komfort szobahőmérséklet alapjel"
+      },
+      "heating_circuit_1_room_reduced_temperature_setpoint_hc1": {
+        "name": "HC1 csökkentett szobahőmérséklet alapjel"
+      },
+      "heating_circuit_1_room_frost_protection_temperature_setpoint_hc1": {
+        "name": "HC1 fagyvédelmi szobahőmérséklet alapjel"
+      },
+      "heating_circuit_1_maximum_comfort_temperature_setpoint_hc1": {
+        "name": "HC1 maximális komfort hőmérséklet alapjel"
+      },
+      "heating_circuit_1_heating_curve_1_slope": {
+        "name": "1. fűtésgörbe meredekség"
+      },
+      "heating_circuit_1_heating_curve_1_parallel_displacement": {
+        "name": "1. fűtésgörbe párhuzamos eltolás"
+      },
+      "heating_circuit_1_summer_winter_changeover_temperature_hc1": {
+        "name": "HC1 nyár/tél átkapcsolási hőmérséklet"
+      },
+      "heating_circuit_1_24_hour_heating_limit_hc1": {
+        "name": "HC1 24 órás fűtési határ"
+      },
+      "heating_circuit_1_flow_temperature_minimum_limit_hc1": {
+        "name": "HC1 előremenő hőmérséklet alsó határ"
+      },
+      "heating_circuit_1_flow_temperature_maximum_limit_hc1": {
+        "name": "HC1 előremenő hőmérséklet felső határ"
+      },
+      "heating_circuit_1_flow_temperature_room_stat_hc1": {
+        "name": "HC1 előremenő hőmérséklet szobatermosztáttal"
+      },
+      "heating_circuit_1_room_temperature_gain_factor_room_influence_hc1": {
+        "name": "HC1 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "cooling_circuit_1_room_comfort_temperature_setpoint_cc1": {
+        "name": "CC1 komfort szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_1_room_reduced_temperature_setpoint_cc1": {
+        "name": "CC1 csökkentett szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_1_flow_temperature_at_25_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_flow_temperature_at_35_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_cooling_limit_at_outdoor_temp_cc1": {
+        "name": "CC1 hűtési határ külső hőmérséklet szerint"
+      },
+      "cooling_circuit_1_lock_time_at_end_of_heating_cooling_cc1": {
+        "name": "CC1 letiltási idő fűtés/hűtés végén"
+      },
+      "cooling_circuit_1_start_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "CC1 nyári kompenzáció kezdete külső hőmérséklet szerint"
+      },
+      "cooling_circuit_1_end_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "CC1 nyári kompenzáció vége külső hőmérséklet szerint"
+      },
+      "cooling_circuit_1_summer_compensation_setpoint_increase_cc1": {
+        "name": "CC1 nyári kompenzáció alapjel-növelés"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_25_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet minimum 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_35_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet minimum 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_room_temperature_gain_factor_room_influence_cc1": {
+        "name": "CC1 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "heating_circuit_2_room_comfort_temperature_setpoint_hc2": {
+        "name": "HC2 komfort szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_room_reduced_temperature_setpoint_hc2": {
+        "name": "HC2 csökkentett szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_room_frost_protection_temperature_setpoint_hc2": {
+        "name": "HC2 fagyvédelmi szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_maximum_comfort_temperature_setpoint_hc2": {
+        "name": "HC2 maximális komfort hőmérséklet alapjel"
+      },
+      "heating_circuit_2_heating_curve_2_slope": {
+        "name": "2. fűtésgörbe meredekség"
+      },
+      "heating_circuit_2_heating_curve_2_parallel_displacement": {
+        "name": "2. fűtésgörbe párhuzamos eltolás"
+      },
+      "heating_circuit_2_summer_winter_changeover_temperature_hc2": {
+        "name": "HC2 nyár/tél átkapcsolási hőmérséklet"
+      },
+      "heating_circuit_2_24_hour_heating_limit_hc2": {
+        "name": "HC2 24 órás fűtési határ"
+      },
+      "heating_circuit_2_flow_temperature_minimum_limit_hc2": {
+        "name": "HC2 előremenő hőmérséklet alsó határ"
+      },
+      "heating_circuit_2_flow_temperature_maximum_limit_hc2": {
+        "name": "HC2 előremenő hőmérséklet felső határ"
+      },
+      "heating_circuit_2_flow_temperature_room_stat_hc2": {
+        "name": "HC2 előremenő hőmérséklet szobatermosztáttal"
+      },
+      "heating_circuit_2_room_temperature_gain_factor_room_influence_hc2": {
+        "name": "HC2 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "cooling_circuit_2_room_comfort_temperature_setpoint_cc2": {
+        "name": "CC2 komfort szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_2_room_reduced_temperature_setpoint_cc2": {
+        "name": "CC2 csökkentett szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_2_flow_temperature_at_25_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_flow_temperature_at_35_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_cooling_limit_at_outdoor_temp_cc2": {
+        "name": "CC2 hűtési határ külső hőmérséklet szerint"
+      },
+      "cooling_circuit_2_lock_time_at_end_of_heating_cooling_cc2": {
+        "name": "CC2 letiltási idő fűtés/hűtés végén"
+      },
+      "cooling_circuit_2_start_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "CC2 nyári kompenzáció kezdete külső hőmérséklet szerint"
+      },
+      "cooling_circuit_2_end_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "CC2 nyári kompenzáció vége külső hőmérséklet szerint"
+      },
+      "cooling_circuit_2_summer_compensation_setpoint_increase_cc2": {
+        "name": "CC2 nyári kompenzáció alapjel-növelés"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_25_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet minimum 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_35_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet minimum 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_room_temperature_gain_factor_room_influence_cc2": {
+        "name": "CC2 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "relays_relay_test": {
+        "name": "Reléteszt"
+      },
+      "relays_output_test_ux2": {
+        "name": "UX2 kimeneti teszt"
+      }
+    },
+    "select": {
+      "dhw_dhw_release": {
+        "name": "HMV engedélyezés"
+      },
+      "dhw_dhw_legionella_function": {
+        "name": "HMV legionella funkció"
+      },
+      "dhw_dhw_legionella_function_day": {
+        "name": "HMV legionella funkció napja"
+      },
+      "heating_circuit_1_operating_mode_heating_circuit_1": {
+        "name": "1. fűtőkör üzemmód"
+      },
+      "heating_circuit_1_operating_mode_changeover_hc1": {
+        "name": "HC1 üzemmód átkapcsolás"
+      },
+      "cooling_circuit_1_operating_mode_cooling_circuit_1": {
+        "name": "1. hűtőkör üzemmód"
+      },
+      "cooling_circuit_1_release_cooling_circuit_1": {
+        "name": "1. hűtőkör engedélyezés"
+      },
+      "heating_circuit_2_operating_mode_heating_circuit_2": {
+        "name": "2. fűtőkör üzemmód"
+      },
+      "heating_circuit_2_operating_mode_changeover_hc2": {
+        "name": "HC2 üzemmód átkapcsolás"
+      },
+      "cooling_circuit_2_operating_mode_cooling_circuit_2": {
+        "name": "2. hűtőkör üzemmód"
+      },
+      "cooling_circuit_2_release_cooling_circuit_2": {
+        "name": "2. hűtőkör engedélyezés"
+      }
+    },
+    "sensor": {
+      "heat_pump_heat_pump_status": {
+        "name": "Hőszivattyú állapot"
+      },
+      "heat_pump_condenser_pump_speed": {
+        "name": "Kondenzátorszivattyú fordulatszám"
+      },
+      "heat_pump_return_temperature": {
+        "name": "Visszatérő hőmérséklet"
+      },
+      "heat_pump_temperature_setpoint": {
+        "name": "Hőmérséklet alapjel"
+      },
+      "heat_pump_flow_temperature": {
+        "name": "Előremenő hőmérséklet"
+      },
+      "heat_pump_compressor_modulation": {
+        "name": "Kompresszor moduláció"
+      },
+      "heat_pump_electric_immersion_heater_modulation": {
+        "name": "Elektromos fűtőbetét moduláció"
+      },
+      "heat_pump_condenser_temperature_differential": {
+        "name": "Kondenzátor hőmérséklet-különbség"
+      },
+      "heat_pump_heat_exchanger_internal_temperature": {
+        "name": "Hőcserélő belső hőmérséklet"
+      },
+      "heat_pump_common_flow_temperature": {
+        "name": "Közös előremenő hőmérséklet"
+      },
+      "heat_pump_common_flow_heating_temperature_setpoint": {
+        "name": "Közös előremenő fűtési hőmérséklet alapjel"
+      },
+      "heat_pump_common_flow_cooling_temperature_setpoint": {
+        "name": "Közös előremenő hűtési hőmérséklet alapjel"
+      },
+      "heat_pump_outside_temperature_actual_value": {
+        "name": "Külső hőmérséklet aktuális érték"
+      },
+      "heat_pump_outside_temperature_minimum_value": {
+        "name": "Külső hőmérséklet minimum"
+      },
+      "heat_pump_outside_temperature_maximum_value": {
+        "name": "Külső hőmérséklet maximum"
+      },
+      "heat_pump_outside_temperature_attenuated_value": {
+        "name": "Külső hőmérséklet csillapított érték"
+      },
+      "heat_pump_outside_temperature_composite_value": {
+        "name": "Külső hőmérséklet összegzett érték"
+      },
+      "heat_pump_outside_temperature_simulation": {
+        "name": "Külső hőmérséklet szimuláció"
+      },
+      "heat_pump_current_starts_compressor_1_per_hours_run": {
+        "name": "Kompresszor 1 indítás per üzemóra"
+      },
+      "heat_pump_compressor_1_runtime": {
+        "name": "Kompresszor 1 üzemidő"
+      },
+      "heat_pump_compressor_1_start_counter": {
+        "name": "Kompresszor 1 indításszámláló"
+      },
+      "heat_pump_heat_pump_locking_time": {
+        "name": "Hőszivattyú letiltási idő"
+      },
+      "heat_pump_heat_pump_lockings_counter": {
+        "name": "Hőszivattyú letiltásszámláló"
+      },
+      "heat_pump_electric_heater_runtime": {
+        "name": "Elektromos fűtőbetét üzemidő"
+      },
+      "heat_pump_electric_heater_start_counter": {
+        "name": "Elektromos fűtőbetét indításszámláló"
+      },
+      "heat_pump_maintenance_interval": {
+        "name": "Karbantartási időköz"
+      },
+      "heat_pump_time_since_maintenance": {
+        "name": "Karbantartás óta eltelt idő"
+      },
+      "dhw_dhw_reduced_temperature_setpoint": {
+        "name": "HMV csökkentett hőmérséklet alapjel"
+      },
+      "dhw_dhw_release": {
+        "name": "HMV engedélyezés"
+      },
+      "dhw_dhw_legionella_function": {
+        "name": "HMV legionella funkció"
+      },
+      "dhw_dhw_legionella_function_periodicity": {
+        "name": "HMV legionella funkció periodicitás"
+      },
+      "dhw_dhw_legionella_function_day": {
+        "name": "HMV legionella funkció napja"
+      },
+      "dhw_dhw_time_for_legionella_function": {
+        "name": "HMV legionella funkció időpontja"
+      },
+      "dhw_dhw_legionella_function_setpoint": {
+        "name": "HMV legionella funkció alapjel"
+      },
+      "dhw_dhw_dwelling_time_at_legionella_setpoint": {
+        "name": "HMV legionella alapjel tartási idő"
+      },
+      "dhw_dhw_switching_differential_temperature": {
+        "name": "HMV kapcsolási hőmérséklet-különbség"
+      },
+      "dhw_dhw_charging_time_limitation": {
+        "name": "HMV töltési idő korlát"
+      },
+      "dhw_dhw_status": {
+        "name": "HMV állapot"
+      },
+      "dhw_dhw_temperature_actual_value_b3": {
+        "name": "HMV hőmérséklet aktuális érték (B3)"
+      },
+      "dhw_dhw_temperature_resulting_setpoint": {
+        "name": "HMV hőmérséklet eredő alapjel"
+      },
+      "dhw_dhw_temperature_actual_value_2": {
+        "name": "HMV hőmérséklet aktuális érték 2"
+      },
+      "dhw_dhw_circulation_temperature_actual_value": {
+        "name": "HMV cirkulációs hőmérséklet aktuális érték"
+      },
+      "dhw_dhw_charge_setpoint": {
+        "name": "HMV töltési alapjel"
+      },
+      "dhw_dhw_pump_runtime": {
+        "name": "HMV szivattyú üzemidő"
+      },
+      "dhw_dhw_pump_start_counter": {
+        "name": "HMV szivattyú indításszámláló"
+      },
+      "dhw_dhw_electric_immersion_heater_runtime": {
+        "name": "HMV elektromos fűtőbetét üzemidő"
+      },
+      "dhw_dhw_electric_immersion_heater_start_counter": {
+        "name": "HMV elektromos fűtőbetét indításszámláló"
+      },
+      "dhw_flow_temperature_dhw_actual_value": {
+        "name": "HMV előremenő hőmérséklet aktuális érték"
+      },
+      "dhw_flow_temperature_resulting_setpoint_dhw": {
+        "name": "HMV előremenő hőmérséklet eredő alapjel"
+      },
+      "dhw_flow_heater_temperature_dhw_actual_value": {
+        "name": "HMV fűtőelem előremenő hőmérséklet aktuális érték"
+      },
+      "dhw_flow_heater_temperature_resulting_setpoint_dhw": {
+        "name": "HMV fűtőelem előremenő hőmérséklet eredő alapjel"
+      },
+      "solar_solar_status": {
+        "name": "Szolár állapot"
+      },
+      "buffer_buffer_tank_status": {
+        "name": "Puffertartály állapot"
+      },
+      "supplementary_source_supplementary_source_status": {
+        "name": "Kiegészítő hőforrás állapot"
+      },
+      "swimming_pool_swimming_pool_temperature": {
+        "name": "Medence hőmérséklet"
+      },
+      "swimming_pool_swimming_pool_setpoint": {
+        "name": "Medence alapjel"
+      },
+      "swimming_pool_swimming_pool_status": {
+        "name": "Medence állapot"
+      },
+      "heating_circuit_1_room_frost_protection_temperature_setpoint_hc1": {
+        "name": "HC1 fagyvédelmi szobahőmérséklet alapjel"
+      },
+      "heating_circuit_1_maximum_comfort_temperature_setpoint_hc1": {
+        "name": "HC1 maximális komfort hőmérséklet alapjel"
+      },
+      "heating_circuit_1_heating_curve_1_slope": {
+        "name": "1. fűtésgörbe meredekség"
+      },
+      "heating_circuit_1_24_hour_heating_limit_hc1": {
+        "name": "HC1 24 órás fűtési határ"
+      },
+      "heating_circuit_1_flow_temperature_minimum_limit_hc1": {
+        "name": "HC1 előremenő hőmérséklet alsó határ"
+      },
+      "heating_circuit_1_flow_temperature_maximum_limit_hc1": {
+        "name": "HC1 előremenő hőmérséklet felső határ"
+      },
+      "heating_circuit_1_flow_temperature_room_stat_hc1": {
+        "name": "HC1 előremenő hőmérséklet szobatermosztáttal"
+      },
+      "heating_circuit_1_room_temperature_gain_factor_room_influence_hc1": {
+        "name": "HC1 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "heating_circuit_1_operating_mode_changeover_hc1": {
+        "name": "HC1 üzemmód átkapcsolás"
+      },
+      "heating_circuit_1_heating_circuit_1_status": {
+        "name": "1. fűtőkör állapot"
+      },
+      "heating_circuit_1_room_temperature_1_actual_value": {
+        "name": "1. szobahőmérséklet aktuális érték"
+      },
+      "heating_circuit_1_room_temperature_1_setpoint": {
+        "name": "1. szobahőmérséklet alapjel"
+      },
+      "heating_circuit_1_flow_temperature_hc1_actual_value": {
+        "name": "HC1 előremenő hőmérséklet aktuális érték"
+      },
+      "heating_circuit_1_flow_temperature_resulting_setpoint_hc1": {
+        "name": "HC1 előremenő hőmérséklet eredő alapjel"
+      },
+      "cooling_circuit_1_operating_mode_cooling_circuit_1": {
+        "name": "1. hűtőkör üzemmód"
+      },
+      "cooling_circuit_1_room_comfort_temperature_setpoint_cc1": {
+        "name": "CC1 komfort szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_1_room_reduced_temperature_setpoint_cc1": {
+        "name": "CC1 csökkentett szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_1_release_cooling_circuit_1": {
+        "name": "1. hűtőkör engedélyezés"
+      },
+      "cooling_circuit_1_flow_temperature_at_25_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_flow_temperature_at_35_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_cooling_limit_at_outdoor_temp_cc1": {
+        "name": "CC1 hűtési határ külső hőmérséklet szerint"
+      },
+      "cooling_circuit_1_lock_time_at_end_of_heating_cooling_cc1": {
+        "name": "CC1 letiltási idő fűtés/hűtés végén"
+      },
+      "cooling_circuit_1_start_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "CC1 nyári kompenzáció kezdete külső hőmérséklet szerint"
+      },
+      "cooling_circuit_1_end_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "CC1 nyári kompenzáció vége külső hőmérséklet szerint"
+      },
+      "cooling_circuit_1_summer_compensation_setpoint_increase_cc1": {
+        "name": "CC1 nyári kompenzáció alapjel-növelés"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_25_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet minimum 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_35_c_outdoor_temp_cc1": {
+        "name": "CC1 előremenő hőmérséklet minimum 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_1_room_temperature_gain_factor_room_influence_cc1": {
+        "name": "CC1 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "cooling_circuit_1_cooling_circuit_1_status": {
+        "name": "1. hűtőkör állapot"
+      },
+      "cooling_circuit_1_flow_temperature_cooling_circuit_1_actual_value": {
+        "name": "1. hűtőkör előremenő hőmérséklet aktuális érték"
+      },
+      "cooling_circuit_1_flow_temperature_resulting_setpoint_cc1": {
+        "name": "CC1 előremenő hőmérséklet eredő alapjel"
+      },
+      "heating_circuit_2_operating_mode_heating_circuit_2": {
+        "name": "2. fűtőkör üzemmód"
+      },
+      "heating_circuit_2_room_comfort_temperature_setpoint_hc2": {
+        "name": "HC2 komfort szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_room_reduced_temperature_setpoint_hc2": {
+        "name": "HC2 csökkentett szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_room_frost_protection_temperature_setpoint_hc2": {
+        "name": "HC2 fagyvédelmi szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_maximum_comfort_temperature_setpoint_hc2": {
+        "name": "HC2 maximális komfort hőmérséklet alapjel"
+      },
+      "heating_circuit_2_heating_curve_2_slope": {
+        "name": "2. fűtésgörbe meredekség"
+      },
+      "heating_circuit_2_heating_curve_2_parallel_displacement": {
+        "name": "2. fűtésgörbe párhuzamos eltolás"
+      },
+      "heating_circuit_2_summer_winter_changeover_temperature_hc2": {
+        "name": "HC2 nyár/tél átkapcsolási hőmérséklet"
+      },
+      "heating_circuit_2_24_hour_heating_limit_hc2": {
+        "name": "HC2 24 órás fűtési határ"
+      },
+      "heating_circuit_2_flow_temperature_minimum_limit_hc2": {
+        "name": "HC2 előremenő hőmérséklet alsó határ"
+      },
+      "heating_circuit_2_flow_temperature_maximum_limit_hc2": {
+        "name": "HC2 előremenő hőmérséklet felső határ"
+      },
+      "heating_circuit_2_flow_temperature_room_stat_hc2": {
+        "name": "HC2 előremenő hőmérséklet szobatermosztáttal"
+      },
+      "heating_circuit_2_room_temperature_gain_factor_room_influence_hc2": {
+        "name": "HC2 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "heating_circuit_2_operating_mode_changeover_hc2": {
+        "name": "HC2 üzemmód átkapcsolás"
+      },
+      "heating_circuit_2_heating_circuit_2_status": {
+        "name": "2. fűtőkör állapot"
+      },
+      "heating_circuit_2_room_temperature_2_actual_value": {
+        "name": "2. szobahőmérséklet aktuális érték"
+      },
+      "heating_circuit_2_room_temperature_2_setpoint": {
+        "name": "2. szobahőmérséklet alapjel"
+      },
+      "heating_circuit_2_flow_temperature_hc2_actual_value": {
+        "name": "HC2 előremenő hőmérséklet aktuális érték"
+      },
+      "heating_circuit_2_flow_temperature_resulting_setpoint_hc2": {
+        "name": "HC2 előremenő hőmérséklet eredő alapjel"
+      },
+      "cooling_circuit_2_operating_mode_cooling_circuit_2": {
+        "name": "2. hűtőkör üzemmód"
+      },
+      "cooling_circuit_2_room_comfort_temperature_setpoint_cc2": {
+        "name": "CC2 komfort szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_2_room_reduced_temperature_setpoint_cc2": {
+        "name": "CC2 csökkentett szobahőmérséklet alapjel"
+      },
+      "cooling_circuit_2_release_cooling_circuit_2": {
+        "name": "2. hűtőkör engedélyezés"
+      },
+      "cooling_circuit_2_flow_temperature_at_25_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_flow_temperature_at_35_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_cooling_limit_at_outdoor_temp_cc2": {
+        "name": "CC2 hűtési határ külső hőmérséklet szerint"
+      },
+      "cooling_circuit_2_lock_time_at_end_of_heating_cooling_cc2": {
+        "name": "CC2 letiltási idő fűtés/hűtés végén"
+      },
+      "cooling_circuit_2_start_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "CC2 nyári kompenzáció kezdete külső hőmérséklet szerint"
+      },
+      "cooling_circuit_2_end_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "CC2 nyári kompenzáció vége külső hőmérséklet szerint"
+      },
+      "cooling_circuit_2_summer_compensation_setpoint_increase_cc2": {
+        "name": "CC2 nyári kompenzáció alapjel-növelés"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_25_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet minimum 25 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_35_c_outdoor_temp_cc2": {
+        "name": "CC2 előremenő hőmérséklet minimum 35 °C külső hőmérsékleten"
+      },
+      "cooling_circuit_2_room_temperature_gain_factor_room_influence_cc2": {
+        "name": "CC2 szobahőmérséklet erősítési tényező (szobahatás)"
+      },
+      "cooling_circuit_2_cooling_circuit_2_status": {
+        "name": "2. hűtőkör állapot"
+      },
+      "cooling_circuit_2_flow_temperature_cooling_circuit_2_actual_value": {
+        "name": "2. hűtőkör előremenő hőmérséklet aktuális érték"
+      },
+      "cooling_circuit_2_flow_temperature_resulting_setpoint_cc2": {
+        "name": "CC2 előremenő hőmérséklet eredő alapjel"
+      },
+      "faults_count_of_active_errors": {
+        "name": "Aktív hibák száma"
+      },
+      "faults_fault_history_1_error_code": {
+        "name": "1. hibanapló hibakód"
+      },
+      "faults_fault_history_2_error_code": {
+        "name": "2. hibanapló hibakód"
+      },
+      "faults_fault_history_3_error_code": {
+        "name": "3. hibanapló hibakód"
+      },
+      "faults_fault_history_4_error_code": {
+        "name": "4. hibanapló hibakód"
+      },
+      "faults_fault_history_5_error_code": {
+        "name": "5. hibanapló hibakód"
+      },
+      "faults_fault_history_6_error_code": {
+        "name": "6. hibanapló hibakód"
+      },
+      "faults_fault_history_7_error_code": {
+        "name": "7. hibanapló hibakód"
+      },
+      "faults_fault_history_8_error_code": {
+        "name": "8. hibanapló hibakód"
+      },
+      "faults_fault_history_9_error_code": {
+        "name": "9. hibanapló hibakód"
+      },
+      "faults_fault_history_10_error_code": {
+        "name": "10. hibanapló hibakód"
+      },
+      "faults_fault_history_1_date_time": {
+        "name": "1. hibanapló dátum/idő"
+      },
+      "faults_fault_history_2_date_time": {
+        "name": "2. hibanapló dátum/idő"
+      },
+      "faults_fault_history_3_date_time": {
+        "name": "3. hibanapló dátum/idő"
+      },
+      "faults_fault_history_4_date_time": {
+        "name": "4. hibanapló dátum/idő"
+      },
+      "faults_fault_history_5_date_time": {
+        "name": "5. hibanapló dátum/idő"
+      },
+      "faults_fault_history_6_date_time": {
+        "name": "6. hibanapló dátum/idő"
+      },
+      "faults_fault_history_7_date_time": {
+        "name": "7. hibanapló dátum/idő"
+      },
+      "faults_fault_history_8_date_time": {
+        "name": "8. hibanapló dátum/idő"
+      },
+      "faults_fault_history_9_date_time": {
+        "name": "9. hibanapló dátum/idő"
+      },
+      "faults_fault_history_10_date_time": {
+        "name": "10. hibanapló dátum/idő"
+      },
+      "faults_rvs21_software_version": {
+        "name": "RVS21 szoftververzió"
+      },
+      "interface_product_code": {
+        "name": "Termékkód"
+      },
+      "interface_hardware_and_software_version": {
+        "name": "Hardver- és szoftververzió"
+      },
+      "interface_serial_number_yyww": {
+        "name": "Sorozatszám YYWW"
+      },
+      "interface_serial_number_fsss": {
+        "name": "Sorozatszám FSSS"
+      },
+      "interface_modbus_address": {
+        "name": "Modbus cím"
+      },
+      "interface_modbus_baud_rate": {
+        "name": "Modbus átviteli sebesség"
+      },
+      "interface_modbus_serial_format": {
+        "name": "Modbus soros formátum"
+      },
+      "interface_oscillator_calibration_soft_restart": {
+        "name": "Oszcillátor kalibráció / újraindítás"
+      },
+      "interface_interface_uptime": {
+        "name": "Illesztő üzemidő"
+      },
+      "interface_interface_power_on_counter": {
+        "name": "Illesztő bekapcsolásszámláló"
+      },
+      "interface_interface_error_code": {
+        "name": "Illesztő hibakód"
+      },
+      "interface_modbus_framing_error_count": {
+        "name": "Modbus keretezési hibák száma"
+      },
+      "interface_modbus_parity_error_count": {
+        "name": "Modbus paritáshibák száma"
+      },
+      "interface_modbus_crc_error_count": {
+        "name": "Modbus CRC hibák száma"
+      },
+      "interface_bsb_framing_error_count": {
+        "name": "BSB keretezési hibák száma"
+      },
+      "interface_bsb_parity_error_count": {
+        "name": "BSB paritáshibák száma"
+      },
+      "interface_bsb_crc_error_count": {
+        "name": "BSB CRC hibák száma"
+      },
+      "interface_bsb_tx_collision_count": {
+        "name": "BSB Tx ütközések száma"
+      },
+      "interface_bsb_bus_current_utilisation": {
+        "name": "BSB busz aktuális kihasználtság"
+      },
+      "interface_bsb_bus_maximum_utilisation": {
+        "name": "BSB busz maximális kihasználtság"
+      }
+    },
+    "water_heater": {
+      "domestic_hot_water": {
+        "name": "Használati melegvíz"
+      }
+    }
   }
 }

@@ -26,7 +26,6 @@ from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .const import (
-    DHW_LABEL,
     DHW_MODE_ADDRESS,
     DHW_SETPOINT_ADDRESS,
     DHW_TEMPERATURE_ADDRESS,
@@ -85,7 +84,7 @@ class WaterstageWaterHeater(WaterstageEntity, WaterHeaterEntity):
         coordinator: MbioCoordinator,
     ) -> None:
         super().__init__(runtime, entry, register, coordinator)
-        self._attr_name = DHW_LABEL
+        self._attr_translation_key = "domestic_hot_water"
         self._setpoint = runtime.register_map.at(DHW_SETPOINT_ADDRESS)
         self._attr_min_temp = self._setpoint.minimum or 40.0
         self._attr_max_temp = self._setpoint.maximum or 65.0

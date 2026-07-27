@@ -1,0 +1,44 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # The integration is not pinned to a Home Assistant version, so a weekly run
+  # catches a breaking core change before the next time the heating is touched.
+  schedule:
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+
+jobs:
+  hassfest:
+    name: hassfest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    name: HACS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hacs/action@main
+        with:
+          # This repository is meant to be added as a custom repository, not to
+          # be submitted to the HACS default list, so the brands check -- which
+          # requires an entry in home-assistant/brands -- is skipped.
+          category: integration
+          ignore: brands
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements-dev.txt
+      - run: pytest
+      - run: pip install ruff && ruff check --select F,E9,UP,B,SIM,I custom_components tools tests

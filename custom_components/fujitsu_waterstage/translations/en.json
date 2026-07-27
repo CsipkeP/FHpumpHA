@@ -75,5 +75,903 @@
         "relays": "Relay outputs"
       }
     }
+  },
+  "entity": {
+    "binary_sensor": {
+      "interface_communication_status": {
+        "name": "Communication status"
+      },
+      "heat_pump_compressor_1_status": {
+        "name": "Compressor 1 status"
+      },
+      "heat_pump_electric_immersion_heater_1_status_k25": {
+        "name": "Electric immersion heater 1 status (K25)"
+      },
+      "heat_pump_electric_immersion_heater_2_status_k26": {
+        "name": "Electric immersion heater 2 status (K26)"
+      },
+      "heat_pump_condenser_pump_status": {
+        "name": "Condenser pump status"
+      },
+      "heat_pump_defrost_trigger": {
+        "name": "Defrost trigger"
+      },
+      "heat_pump_reset_heat_pump": {
+        "name": "Reset heat pump"
+      },
+      "dhw_dhw_pump_status": {
+        "name": "DHW pump status"
+      },
+      "dhw_dhw_electric_immersion_heater_status": {
+        "name": "DHW electric immersion heater status"
+      },
+      "heating_circuit_1_pump_status_hc1": {
+        "name": "Pump status HC1"
+      },
+      "heating_circuit_1_mixing_valve_hc1_open": {
+        "name": "Mixing valve HC1 open"
+      },
+      "heating_circuit_1_mixing_valve_hc1_close": {
+        "name": "Mixing valve HC1 close"
+      },
+      "heating_circuit_1_room_thermostat_1": {
+        "name": "Room thermostat 1"
+      },
+      "heating_circuit_1_operating_mode_changeover_hc1_status": {
+        "name": "Operating mode changeover HC1 status"
+      },
+      "heating_circuit_2_pump_status_hc2": {
+        "name": "Pump status HC2"
+      },
+      "heating_circuit_2_mixing_valve_hc2_open": {
+        "name": "Mixing valve HC2 open"
+      },
+      "heating_circuit_2_mixing_valve_hc2_close": {
+        "name": "Mixing valve HC2 close"
+      },
+      "heating_circuit_2_room_thermostat_2": {
+        "name": "Room thermostat 2"
+      },
+      "heating_circuit_2_operating_mode_changeover_hc2_status": {
+        "name": "Operating mode changeover HC2 status"
+      },
+      "relays_relay_output_qx1_status": {
+        "name": "Relay output QX1 status"
+      },
+      "relays_relay_output_qx2_status": {
+        "name": "Relay output QX2 status"
+      },
+      "relays_relay_output_qx3_status": {
+        "name": "Relay output QX3 status"
+      },
+      "relays_relay_output_qx4_status": {
+        "name": "Relay output QX4 status"
+      },
+      "relays_relay_output_qx5_status": {
+        "name": "Relay output QX5 status"
+      },
+      "relays_relay_output_qx31_status": {
+        "name": "Relay output QX31 status"
+      },
+      "relays_relay_output_qx32_status": {
+        "name": "Relay output QX32 status"
+      },
+      "relays_relay_output_qx33_status": {
+        "name": "Relay output QX33 status"
+      },
+      "relays_relay_output_qx34_status": {
+        "name": "Relay output QX34 status"
+      },
+      "relays_relay_output_qx35_status": {
+        "name": "Relay output QX35 status"
+      }
+    },
+    "button": {
+      "heat_pump_outside_temperature_minimum_value": {
+        "name": "Reset outside temperature minimum value"
+      },
+      "heat_pump_outside_temperature_maximum_value": {
+        "name": "Reset outside temperature maximum value"
+      },
+      "heat_pump_outside_temperature_attenuated_value": {
+        "name": "Reset outside temperature attenuated value"
+      },
+      "heat_pump_compressor_1_runtime": {
+        "name": "Reset compressor 1 runtime"
+      },
+      "heat_pump_compressor_1_start_counter": {
+        "name": "Reset compressor 1 start counter"
+      },
+      "heat_pump_heat_pump_locking_time": {
+        "name": "Reset heat pump locking time"
+      },
+      "heat_pump_heat_pump_lockings_counter": {
+        "name": "Reset heat pump lockings counter"
+      },
+      "heat_pump_electric_heater_runtime": {
+        "name": "Reset electric heater runtime"
+      },
+      "heat_pump_electric_heater_start_counter": {
+        "name": "Reset electric heater start counter"
+      },
+      "heat_pump_time_since_maintenance": {
+        "name": "Reset time since maintenance"
+      },
+      "heat_pump_defrost_trigger": {
+        "name": "Trigger defrost"
+      },
+      "heat_pump_reset_heat_pump": {
+        "name": "Reset heat pump"
+      },
+      "dhw_dhw_pump_runtime": {
+        "name": "Reset dhw pump runtime"
+      },
+      "dhw_dhw_pump_start_counter": {
+        "name": "Reset dhw pump start counter"
+      },
+      "dhw_dhw_electric_immersion_heater_runtime": {
+        "name": "Reset dhw electric immersion heater runtime"
+      },
+      "dhw_dhw_electric_immersion_heater_start_counter": {
+        "name": "Reset dhw electric immersion heater start counter"
+      },
+      "interface_oscillator_calibration_soft_restart": {
+        "name": "Restart interface board"
+      },
+      "interface_interface_error_code": {
+        "name": "Reset interface error code"
+      },
+      "interface_modbus_framing_error_count": {
+        "name": "Reset modbus framing error count"
+      },
+      "interface_modbus_parity_error_count": {
+        "name": "Reset modbus parity error count"
+      },
+      "interface_modbus_crc_error_count": {
+        "name": "Reset modbus crc error count"
+      },
+      "interface_bsb_framing_error_count": {
+        "name": "Reset bsb framing error count"
+      },
+      "interface_bsb_parity_error_count": {
+        "name": "Reset bsb parity error count"
+      },
+      "interface_bsb_crc_error_count": {
+        "name": "Reset bsb crc error count"
+      },
+      "interface_bsb_tx_collision_count": {
+        "name": "Reset bsb tx collision count"
+      },
+      "interface_bsb_bus_maximum_utilisation": {
+        "name": "Reset bsb bus maximum utilisation"
+      }
+    },
+    "climate": {
+      "heating_circuit_1": {
+        "name": "Heating circuit 1"
+      },
+      "heating_circuit_2": {
+        "name": "Heating circuit 2"
+      }
+    },
+    "number": {
+      "heat_pump_outside_temperature_simulation": {
+        "name": "Outside temperature simulation"
+      },
+      "heat_pump_maintenance_interval": {
+        "name": "Maintenance interval"
+      },
+      "dhw_dhw_reduced_temperature_setpoint": {
+        "name": "DHW reduced temperature setpoint"
+      },
+      "dhw_dhw_legionella_function_periodicity": {
+        "name": "DHW legionella function periodicity"
+      },
+      "dhw_dhw_time_for_legionella_function": {
+        "name": "DHW time for legionella function"
+      },
+      "dhw_dhw_legionella_function_setpoint": {
+        "name": "DHW legionella function setpoint"
+      },
+      "dhw_dhw_dwelling_time_at_legionella_setpoint": {
+        "name": "DHW dwelling time at legionella setpoint"
+      },
+      "dhw_dhw_switching_differential_temperature": {
+        "name": "DHW switching differential temperature"
+      },
+      "dhw_dhw_charging_time_limitation": {
+        "name": "DHW charging time limitation"
+      },
+      "heating_circuit_1_room_comfort_temperature_setpoint_hc1": {
+        "name": "Room comfort temperature setpoint HC1"
+      },
+      "heating_circuit_1_room_reduced_temperature_setpoint_hc1": {
+        "name": "Room reduced temperature setpoint HC1"
+      },
+      "heating_circuit_1_room_frost_protection_temperature_setpoint_hc1": {
+        "name": "Room frost protection temperature setpoint HC1"
+      },
+      "heating_circuit_1_maximum_comfort_temperature_setpoint_hc1": {
+        "name": "Maximum comfort temperature setpoint HC1"
+      },
+      "heating_circuit_1_heating_curve_1_slope": {
+        "name": "Heating curve 1 slope"
+      },
+      "heating_circuit_1_heating_curve_1_parallel_displacement": {
+        "name": "Heating curve 1 parallel displacement"
+      },
+      "heating_circuit_1_summer_winter_changeover_temperature_hc1": {
+        "name": "Summer/winter changeover temperature HC1"
+      },
+      "heating_circuit_1_24_hour_heating_limit_hc1": {
+        "name": "24-hour heating limit HC1"
+      },
+      "heating_circuit_1_flow_temperature_minimum_limit_hc1": {
+        "name": "Flow temperature minimum limit HC1"
+      },
+      "heating_circuit_1_flow_temperature_maximum_limit_hc1": {
+        "name": "Flow temperature maximum limit HC1"
+      },
+      "heating_circuit_1_flow_temperature_room_stat_hc1": {
+        "name": "Flow temperature room stat HC1"
+      },
+      "heating_circuit_1_room_temperature_gain_factor_room_influence_hc1": {
+        "name": "Room temperature gain factor (room influence) HC1"
+      },
+      "cooling_circuit_1_room_comfort_temperature_setpoint_cc1": {
+        "name": "Room comfort temperature setpoint CC1"
+      },
+      "cooling_circuit_1_room_reduced_temperature_setpoint_cc1": {
+        "name": "Room reduced temperature setpoint CC1"
+      },
+      "cooling_circuit_1_flow_temperature_at_25_c_outdoor_temp_cc1": {
+        "name": "Flow temperature at 25 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_flow_temperature_at_35_c_outdoor_temp_cc1": {
+        "name": "Flow temperature at 35 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_cooling_limit_at_outdoor_temp_cc1": {
+        "name": "Cooling limit at outdoor temp CC1"
+      },
+      "cooling_circuit_1_lock_time_at_end_of_heating_cooling_cc1": {
+        "name": "Lock time at end of heating/cooling CC1"
+      },
+      "cooling_circuit_1_start_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "Start summer compensation at outdoor temp CC1"
+      },
+      "cooling_circuit_1_end_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "End summer compensation at outdoor temp CC1"
+      },
+      "cooling_circuit_1_summer_compensation_setpoint_increase_cc1": {
+        "name": "Summer compensation setpoint increase CC1"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_25_c_outdoor_temp_cc1": {
+        "name": "Flow temperature minimum at 25 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_35_c_outdoor_temp_cc1": {
+        "name": "Flow temperature minimum at 35 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_room_temperature_gain_factor_room_influence_cc1": {
+        "name": "Room temperature gain factor (room influence) CC1"
+      },
+      "heating_circuit_2_room_comfort_temperature_setpoint_hc2": {
+        "name": "Room comfort temperature setpoint HC2"
+      },
+      "heating_circuit_2_room_reduced_temperature_setpoint_hc2": {
+        "name": "Room reduced temperature setpoint HC2"
+      },
+      "heating_circuit_2_room_frost_protection_temperature_setpoint_hc2": {
+        "name": "Room frost protection temperature setpoint HC2"
+      },
+      "heating_circuit_2_maximum_comfort_temperature_setpoint_hc2": {
+        "name": "Maximum comfort temperature setpoint HC2"
+      },
+      "heating_circuit_2_heating_curve_2_slope": {
+        "name": "Heating curve 2 slope"
+      },
+      "heating_circuit_2_heating_curve_2_parallel_displacement": {
+        "name": "Heating curve 2 parallel displacement"
+      },
+      "heating_circuit_2_summer_winter_changeover_temperature_hc2": {
+        "name": "Summer/winter changeover temperature HC2"
+      },
+      "heating_circuit_2_24_hour_heating_limit_hc2": {
+        "name": "24-hour heating limit HC2"
+      },
+      "heating_circuit_2_flow_temperature_minimum_limit_hc2": {
+        "name": "Flow temperature minimum limit HC2"
+      },
+      "heating_circuit_2_flow_temperature_maximum_limit_hc2": {
+        "name": "Flow temperature maximum limit HC2"
+      },
+      "heating_circuit_2_flow_temperature_room_stat_hc2": {
+        "name": "Flow temperature room stat HC2"
+      },
+      "heating_circuit_2_room_temperature_gain_factor_room_influence_hc2": {
+        "name": "Room temperature gain factor (room influence) HC2"
+      },
+      "cooling_circuit_2_room_comfort_temperature_setpoint_cc2": {
+        "name": "Room comfort temperature setpoint CC2"
+      },
+      "cooling_circuit_2_room_reduced_temperature_setpoint_cc2": {
+        "name": "Room reduced temperature setpoint CC2"
+      },
+      "cooling_circuit_2_flow_temperature_at_25_c_outdoor_temp_cc2": {
+        "name": "Flow temperature at 25 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_flow_temperature_at_35_c_outdoor_temp_cc2": {
+        "name": "Flow temperature at 35 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_cooling_limit_at_outdoor_temp_cc2": {
+        "name": "Cooling limit at outdoor temp CC2"
+      },
+      "cooling_circuit_2_lock_time_at_end_of_heating_cooling_cc2": {
+        "name": "Lock time at end of heating/cooling CC2"
+      },
+      "cooling_circuit_2_start_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "Start summer compensation at outdoor temp CC2"
+      },
+      "cooling_circuit_2_end_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "End summer compensation at outdoor temp CC2"
+      },
+      "cooling_circuit_2_summer_compensation_setpoint_increase_cc2": {
+        "name": "Summer compensation setpoint increase CC2"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_25_c_outdoor_temp_cc2": {
+        "name": "Flow temperature minimum at 25 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_35_c_outdoor_temp_cc2": {
+        "name": "Flow temperature minimum at 35 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_room_temperature_gain_factor_room_influence_cc2": {
+        "name": "Room temperature gain factor (room influence) CC2"
+      },
+      "relays_relay_test": {
+        "name": "Relay test"
+      },
+      "relays_output_test_ux2": {
+        "name": "Output test UX2"
+      }
+    },
+    "select": {
+      "dhw_dhw_release": {
+        "name": "DHW release"
+      },
+      "dhw_dhw_legionella_function": {
+        "name": "DHW legionella function"
+      },
+      "dhw_dhw_legionella_function_day": {
+        "name": "DHW legionella function day"
+      },
+      "heating_circuit_1_operating_mode_heating_circuit_1": {
+        "name": "Operating mode heating circuit 1"
+      },
+      "heating_circuit_1_operating_mode_changeover_hc1": {
+        "name": "Operating mode changeover HC1"
+      },
+      "cooling_circuit_1_operating_mode_cooling_circuit_1": {
+        "name": "Operating mode cooling circuit 1"
+      },
+      "cooling_circuit_1_release_cooling_circuit_1": {
+        "name": "Release cooling circuit 1"
+      },
+      "heating_circuit_2_operating_mode_heating_circuit_2": {
+        "name": "Operating mode heating circuit 2"
+      },
+      "heating_circuit_2_operating_mode_changeover_hc2": {
+        "name": "Operating mode changeover HC2"
+      },
+      "cooling_circuit_2_operating_mode_cooling_circuit_2": {
+        "name": "Operating mode cooling circuit 2"
+      },
+      "cooling_circuit_2_release_cooling_circuit_2": {
+        "name": "Release cooling circuit 2"
+      }
+    },
+    "sensor": {
+      "heat_pump_heat_pump_status": {
+        "name": "Heat pump status"
+      },
+      "heat_pump_condenser_pump_speed": {
+        "name": "Condenser pump speed"
+      },
+      "heat_pump_return_temperature": {
+        "name": "Return temperature"
+      },
+      "heat_pump_temperature_setpoint": {
+        "name": "Temperature setpoint"
+      },
+      "heat_pump_flow_temperature": {
+        "name": "Flow temperature"
+      },
+      "heat_pump_compressor_modulation": {
+        "name": "Compressor modulation"
+      },
+      "heat_pump_electric_immersion_heater_modulation": {
+        "name": "Electric immersion heater modulation"
+      },
+      "heat_pump_condenser_temperature_differential": {
+        "name": "Condenser temperature differential"
+      },
+      "heat_pump_heat_exchanger_internal_temperature": {
+        "name": "Heat exchanger internal temperature"
+      },
+      "heat_pump_common_flow_temperature": {
+        "name": "Common flow temperature"
+      },
+      "heat_pump_common_flow_heating_temperature_setpoint": {
+        "name": "Common flow heating temperature setpoint"
+      },
+      "heat_pump_common_flow_cooling_temperature_setpoint": {
+        "name": "Common flow cooling temperature setpoint"
+      },
+      "heat_pump_outside_temperature_actual_value": {
+        "name": "Outside temperature actual value"
+      },
+      "heat_pump_outside_temperature_minimum_value": {
+        "name": "Outside temperature minimum value"
+      },
+      "heat_pump_outside_temperature_maximum_value": {
+        "name": "Outside temperature maximum value"
+      },
+      "heat_pump_outside_temperature_attenuated_value": {
+        "name": "Outside temperature attenuated value"
+      },
+      "heat_pump_outside_temperature_composite_value": {
+        "name": "Outside temperature composite value"
+      },
+      "heat_pump_outside_temperature_simulation": {
+        "name": "Outside temperature simulation"
+      },
+      "heat_pump_current_starts_compressor_1_per_hours_run": {
+        "name": "Current starts compressor 1 per hours run"
+      },
+      "heat_pump_compressor_1_runtime": {
+        "name": "Compressor 1 runtime"
+      },
+      "heat_pump_compressor_1_start_counter": {
+        "name": "Compressor 1 start counter"
+      },
+      "heat_pump_heat_pump_locking_time": {
+        "name": "Heat pump locking time"
+      },
+      "heat_pump_heat_pump_lockings_counter": {
+        "name": "Heat pump lockings counter"
+      },
+      "heat_pump_electric_heater_runtime": {
+        "name": "Electric heater runtime"
+      },
+      "heat_pump_electric_heater_start_counter": {
+        "name": "Electric heater start counter"
+      },
+      "heat_pump_maintenance_interval": {
+        "name": "Maintenance interval"
+      },
+      "heat_pump_time_since_maintenance": {
+        "name": "Time since maintenance"
+      },
+      "dhw_dhw_reduced_temperature_setpoint": {
+        "name": "DHW reduced temperature setpoint"
+      },
+      "dhw_dhw_release": {
+        "name": "DHW release"
+      },
+      "dhw_dhw_legionella_function": {
+        "name": "DHW legionella function"
+      },
+      "dhw_dhw_legionella_function_periodicity": {
+        "name": "DHW legionella function periodicity"
+      },
+      "dhw_dhw_legionella_function_day": {
+        "name": "DHW legionella function day"
+      },
+      "dhw_dhw_time_for_legionella_function": {
+        "name": "DHW time for legionella function"
+      },
+      "dhw_dhw_legionella_function_setpoint": {
+        "name": "DHW legionella function setpoint"
+      },
+      "dhw_dhw_dwelling_time_at_legionella_setpoint": {
+        "name": "DHW dwelling time at legionella setpoint"
+      },
+      "dhw_dhw_switching_differential_temperature": {
+        "name": "DHW switching differential temperature"
+      },
+      "dhw_dhw_charging_time_limitation": {
+        "name": "DHW charging time limitation"
+      },
+      "dhw_dhw_status": {
+        "name": "DHW status"
+      },
+      "dhw_dhw_temperature_actual_value_b3": {
+        "name": "DHW temperature actual value (B3)"
+      },
+      "dhw_dhw_temperature_resulting_setpoint": {
+        "name": "DHW temperature resulting setpoint"
+      },
+      "dhw_dhw_temperature_actual_value_2": {
+        "name": "DHW temperature actual value 2"
+      },
+      "dhw_dhw_circulation_temperature_actual_value": {
+        "name": "DHW circulation temperature actual value"
+      },
+      "dhw_dhw_charge_setpoint": {
+        "name": "DHW charge setpoint"
+      },
+      "dhw_dhw_pump_runtime": {
+        "name": "DHW pump runtime"
+      },
+      "dhw_dhw_pump_start_counter": {
+        "name": "DHW pump start counter"
+      },
+      "dhw_dhw_electric_immersion_heater_runtime": {
+        "name": "DHW electric immersion heater runtime"
+      },
+      "dhw_dhw_electric_immersion_heater_start_counter": {
+        "name": "DHW electric immersion heater start counter"
+      },
+      "dhw_flow_temperature_dhw_actual_value": {
+        "name": "Flow temperature DHW actual value"
+      },
+      "dhw_flow_temperature_resulting_setpoint_dhw": {
+        "name": "Flow temperature resulting setpoint DHW"
+      },
+      "dhw_flow_heater_temperature_dhw_actual_value": {
+        "name": "Flow heater temperature DHW actual value"
+      },
+      "dhw_flow_heater_temperature_resulting_setpoint_dhw": {
+        "name": "Flow heater temperature resulting setpoint DHW"
+      },
+      "solar_solar_status": {
+        "name": "Solar status"
+      },
+      "buffer_buffer_tank_status": {
+        "name": "Buffer tank status"
+      },
+      "supplementary_source_supplementary_source_status": {
+        "name": "Supplementary source status"
+      },
+      "swimming_pool_swimming_pool_temperature": {
+        "name": "Swimming pool temperature"
+      },
+      "swimming_pool_swimming_pool_setpoint": {
+        "name": "Swimming pool setpoint"
+      },
+      "swimming_pool_swimming_pool_status": {
+        "name": "Swimming pool status"
+      },
+      "heating_circuit_1_room_frost_protection_temperature_setpoint_hc1": {
+        "name": "Room frost protection temperature setpoint HC1"
+      },
+      "heating_circuit_1_maximum_comfort_temperature_setpoint_hc1": {
+        "name": "Maximum comfort temperature setpoint HC1"
+      },
+      "heating_circuit_1_heating_curve_1_slope": {
+        "name": "Heating curve 1 slope"
+      },
+      "heating_circuit_1_24_hour_heating_limit_hc1": {
+        "name": "24-hour heating limit HC1"
+      },
+      "heating_circuit_1_flow_temperature_minimum_limit_hc1": {
+        "name": "Flow temperature minimum limit HC1"
+      },
+      "heating_circuit_1_flow_temperature_maximum_limit_hc1": {
+        "name": "Flow temperature maximum limit HC1"
+      },
+      "heating_circuit_1_flow_temperature_room_stat_hc1": {
+        "name": "Flow temperature room stat HC1"
+      },
+      "heating_circuit_1_room_temperature_gain_factor_room_influence_hc1": {
+        "name": "Room temperature gain factor (room influence) HC1"
+      },
+      "heating_circuit_1_operating_mode_changeover_hc1": {
+        "name": "Operating mode changeover HC1"
+      },
+      "heating_circuit_1_heating_circuit_1_status": {
+        "name": "Heating circuit 1 status"
+      },
+      "heating_circuit_1_room_temperature_1_actual_value": {
+        "name": "Room temperature 1 actual value"
+      },
+      "heating_circuit_1_room_temperature_1_setpoint": {
+        "name": "Room temperature 1 setpoint"
+      },
+      "heating_circuit_1_flow_temperature_hc1_actual_value": {
+        "name": "Flow temperature HC1 actual value"
+      },
+      "heating_circuit_1_flow_temperature_resulting_setpoint_hc1": {
+        "name": "Flow temperature resulting setpoint HC1"
+      },
+      "cooling_circuit_1_operating_mode_cooling_circuit_1": {
+        "name": "Operating mode cooling circuit 1"
+      },
+      "cooling_circuit_1_room_comfort_temperature_setpoint_cc1": {
+        "name": "Room comfort temperature setpoint CC1"
+      },
+      "cooling_circuit_1_room_reduced_temperature_setpoint_cc1": {
+        "name": "Room reduced temperature setpoint CC1"
+      },
+      "cooling_circuit_1_release_cooling_circuit_1": {
+        "name": "Release cooling circuit 1"
+      },
+      "cooling_circuit_1_flow_temperature_at_25_c_outdoor_temp_cc1": {
+        "name": "Flow temperature at 25 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_flow_temperature_at_35_c_outdoor_temp_cc1": {
+        "name": "Flow temperature at 35 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_cooling_limit_at_outdoor_temp_cc1": {
+        "name": "Cooling limit at outdoor temp CC1"
+      },
+      "cooling_circuit_1_lock_time_at_end_of_heating_cooling_cc1": {
+        "name": "Lock time at end of heating/cooling CC1"
+      },
+      "cooling_circuit_1_start_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "Start summer compensation at outdoor temp CC1"
+      },
+      "cooling_circuit_1_end_summer_compensation_at_outdoor_temp_cc1": {
+        "name": "End summer compensation at outdoor temp CC1"
+      },
+      "cooling_circuit_1_summer_compensation_setpoint_increase_cc1": {
+        "name": "Summer compensation setpoint increase CC1"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_25_c_outdoor_temp_cc1": {
+        "name": "Flow temperature minimum at 25 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_flow_temperature_minimum_at_35_c_outdoor_temp_cc1": {
+        "name": "Flow temperature minimum at 35 °C outdoor temp CC1"
+      },
+      "cooling_circuit_1_room_temperature_gain_factor_room_influence_cc1": {
+        "name": "Room temperature gain factor (room influence) CC1"
+      },
+      "cooling_circuit_1_cooling_circuit_1_status": {
+        "name": "Cooling circuit 1 status"
+      },
+      "cooling_circuit_1_flow_temperature_cooling_circuit_1_actual_value": {
+        "name": "Flow temperature cooling circuit 1 actual value"
+      },
+      "cooling_circuit_1_flow_temperature_resulting_setpoint_cc1": {
+        "name": "Flow temperature resulting setpoint CC1"
+      },
+      "heating_circuit_2_operating_mode_heating_circuit_2": {
+        "name": "Operating mode heating circuit 2"
+      },
+      "heating_circuit_2_room_comfort_temperature_setpoint_hc2": {
+        "name": "Room comfort temperature setpoint HC2"
+      },
+      "heating_circuit_2_room_reduced_temperature_setpoint_hc2": {
+        "name": "Room reduced temperature setpoint HC2"
+      },
+      "heating_circuit_2_room_frost_protection_temperature_setpoint_hc2": {
+        "name": "Room frost protection temperature setpoint HC2"
+      },
+      "heating_circuit_2_maximum_comfort_temperature_setpoint_hc2": {
+        "name": "Maximum comfort temperature setpoint HC2"
+      },
+      "heating_circuit_2_heating_curve_2_slope": {
+        "name": "Heating curve 2 slope"
+      },
+      "heating_circuit_2_heating_curve_2_parallel_displacement": {
+        "name": "Heating curve 2 parallel displacement"
+      },
+      "heating_circuit_2_summer_winter_changeover_temperature_hc2": {
+        "name": "Summer/winter changeover temperature HC2"
+      },
+      "heating_circuit_2_24_hour_heating_limit_hc2": {
+        "name": "24-hour heating limit HC2"
+      },
+      "heating_circuit_2_flow_temperature_minimum_limit_hc2": {
+        "name": "Flow temperature minimum limit HC2"
+      },
+      "heating_circuit_2_flow_temperature_maximum_limit_hc2": {
+        "name": "Flow temperature maximum limit HC2"
+      },
+      "heating_circuit_2_flow_temperature_room_stat_hc2": {
+        "name": "Flow temperature room stat HC2"
+      },
+      "heating_circuit_2_room_temperature_gain_factor_room_influence_hc2": {
+        "name": "Room temperature gain factor (room influence) HC2"
+      },
+      "heating_circuit_2_operating_mode_changeover_hc2": {
+        "name": "Operating mode changeover HC2"
+      },
+      "heating_circuit_2_heating_circuit_2_status": {
+        "name": "Heating circuit 2 status"
+      },
+      "heating_circuit_2_room_temperature_2_actual_value": {
+        "name": "Room temperature 2 actual value"
+      },
+      "heating_circuit_2_room_temperature_2_setpoint": {
+        "name": "Room temperature 2 setpoint"
+      },
+      "heating_circuit_2_flow_temperature_hc2_actual_value": {
+        "name": "Flow temperature HC2 actual value"
+      },
+      "heating_circuit_2_flow_temperature_resulting_setpoint_hc2": {
+        "name": "Flow temperature resulting setpoint HC2"
+      },
+      "cooling_circuit_2_operating_mode_cooling_circuit_2": {
+        "name": "Operating mode cooling circuit 2"
+      },
+      "cooling_circuit_2_room_comfort_temperature_setpoint_cc2": {
+        "name": "Room comfort temperature setpoint CC2"
+      },
+      "cooling_circuit_2_room_reduced_temperature_setpoint_cc2": {
+        "name": "Room reduced temperature setpoint CC2"
+      },
+      "cooling_circuit_2_release_cooling_circuit_2": {
+        "name": "Release cooling circuit 2"
+      },
+      "cooling_circuit_2_flow_temperature_at_25_c_outdoor_temp_cc2": {
+        "name": "Flow temperature at 25 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_flow_temperature_at_35_c_outdoor_temp_cc2": {
+        "name": "Flow temperature at 35 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_cooling_limit_at_outdoor_temp_cc2": {
+        "name": "Cooling limit at outdoor temp CC2"
+      },
+      "cooling_circuit_2_lock_time_at_end_of_heating_cooling_cc2": {
+        "name": "Lock time at end of heating/cooling CC2"
+      },
+      "cooling_circuit_2_start_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "Start summer compensation at outdoor temp CC2"
+      },
+      "cooling_circuit_2_end_summer_compensation_at_outdoor_temp_cc2": {
+        "name": "End summer compensation at outdoor temp CC2"
+      },
+      "cooling_circuit_2_summer_compensation_setpoint_increase_cc2": {
+        "name": "Summer compensation setpoint increase CC2"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_25_c_outdoor_temp_cc2": {
+        "name": "Flow temperature minimum at 25 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_flow_temperature_minimum_at_35_c_outdoor_temp_cc2": {
+        "name": "Flow temperature minimum at 35 °C outdoor temp CC2"
+      },
+      "cooling_circuit_2_room_temperature_gain_factor_room_influence_cc2": {
+        "name": "Room temperature gain factor (room influence) CC2"
+      },
+      "cooling_circuit_2_cooling_circuit_2_status": {
+        "name": "Cooling circuit 2 status"
+      },
+      "cooling_circuit_2_flow_temperature_cooling_circuit_2_actual_value": {
+        "name": "Flow temperature cooling circuit 2 actual value"
+      },
+      "cooling_circuit_2_flow_temperature_resulting_setpoint_cc2": {
+        "name": "Flow temperature resulting setpoint CC2"
+      },
+      "faults_count_of_active_errors": {
+        "name": "Count of active errors"
+      },
+      "faults_fault_history_1_error_code": {
+        "name": "Fault history 1 error code"
+      },
+      "faults_fault_history_2_error_code": {
+        "name": "Fault history 2 error code"
+      },
+      "faults_fault_history_3_error_code": {
+        "name": "Fault history 3 error code"
+      },
+      "faults_fault_history_4_error_code": {
+        "name": "Fault history 4 error code"
+      },
+      "faults_fault_history_5_error_code": {
+        "name": "Fault history 5 error code"
+      },
+      "faults_fault_history_6_error_code": {
+        "name": "Fault history 6 error code"
+      },
+      "faults_fault_history_7_error_code": {
+        "name": "Fault history 7 error code"
+      },
+      "faults_fault_history_8_error_code": {
+        "name": "Fault history 8 error code"
+      },
+      "faults_fault_history_9_error_code": {
+        "name": "Fault history 9 error code"
+      },
+      "faults_fault_history_10_error_code": {
+        "name": "Fault history 10 error code"
+      },
+      "faults_fault_history_1_date_time": {
+        "name": "Fault history 1 date/time"
+      },
+      "faults_fault_history_2_date_time": {
+        "name": "Fault history 2 date/time"
+      },
+      "faults_fault_history_3_date_time": {
+        "name": "Fault history 3 date/time"
+      },
+      "faults_fault_history_4_date_time": {
+        "name": "Fault history 4 date/time"
+      },
+      "faults_fault_history_5_date_time": {
+        "name": "Fault history 5 date/time"
+      },
+      "faults_fault_history_6_date_time": {
+        "name": "Fault history 6 date/time"
+      },
+      "faults_fault_history_7_date_time": {
+        "name": "Fault history 7 date/time"
+      },
+      "faults_fault_history_8_date_time": {
+        "name": "Fault history 8 date/time"
+      },
+      "faults_fault_history_9_date_time": {
+        "name": "Fault history 9 date/time"
+      },
+      "faults_fault_history_10_date_time": {
+        "name": "Fault history 10 date/time"
+      },
+      "faults_rvs21_software_version": {
+        "name": "RVS21 software version"
+      },
+      "interface_product_code": {
+        "name": "Product code"
+      },
+      "interface_hardware_and_software_version": {
+        "name": "Hardware and software version"
+      },
+      "interface_serial_number_yyww": {
+        "name": "Serial number YYWW"
+      },
+      "interface_serial_number_fsss": {
+        "name": "Serial number FSSS"
+      },
+      "interface_modbus_address": {
+        "name": "Modbus address"
+      },
+      "interface_modbus_baud_rate": {
+        "name": "Modbus baud rate"
+      },
+      "interface_modbus_serial_format": {
+        "name": "Modbus serial format"
+      },
+      "interface_oscillator_calibration_soft_restart": {
+        "name": "Oscillator calibration / soft restart"
+      },
+      "interface_interface_uptime": {
+        "name": "Interface uptime"
+      },
+      "interface_interface_power_on_counter": {
+        "name": "Interface power-on counter"
+      },
+      "interface_interface_error_code": {
+        "name": "Interface error code"
+      },
+      "interface_modbus_framing_error_count": {
+        "name": "Modbus framing error count"
+      },
+      "interface_modbus_parity_error_count": {
+        "name": "Modbus parity error count"
+      },
+      "interface_modbus_crc_error_count": {
+        "name": "Modbus CRC error count"
+      },
+      "interface_bsb_framing_error_count": {
+        "name": "BSB framing error count"
+      },
+      "interface_bsb_parity_error_count": {
+        "name": "BSB parity error count"
+      },
+      "interface_bsb_crc_error_count": {
+        "name": "BSB CRC error count"
+      },
+      "interface_bsb_tx_collision_count": {
+        "name": "BSB Tx collision count"
+      },
+      "interface_bsb_bus_current_utilisation": {
+        "name": "BSB bus current utilisation"
+      },
+      "interface_bsb_bus_maximum_utilisation": {
+        "name": "BSB bus maximum utilisation"
+      }
+    },
+    "water_heater": {
+      "domestic_hot_water": {
+        "name": "Domestic hot water"
+      }
+    }
   }
 }

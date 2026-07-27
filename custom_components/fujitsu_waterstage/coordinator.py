@@ -66,6 +66,10 @@ class MbioCoordinator(DataUpdateCoordinator[CoordinatorData]):
         )
         #: Groups that failed in the last cycle, for diagnostics.
         self.group_errors: dict[str, str] = {}
+        #: Last raw response per group start address.  Kept so a bug report can
+        #: show the words that came off the wire next to what they decoded to
+        #: (DESIGN.md section 12); a few hundred integers in total.
+        self.raw: dict[int, tuple[int, ...]] = {}
 
         # DESIGN.md section 5: exactly 0 from a temperature register during the
         # first minutes is more likely "not fetched yet" than 0 °C.  The
@@ -102,6 +106,7 @@ class MbioCoordinator(DataUpdateCoordinator[CoordinatorData]):
         other hundred registers of the tier (DESIGN.md section 10).
         """
         words = await self.client.async_read_group(group)
+        self.raw[group.start] = words
         data = dict(self.data or {})
         data.update(group.decode(words))
         self.async_set_updated_data(self._apply_warmup(data))
@@ -126,6 +131,7 @@ class MbioCoordinator(DataUpdateCoordinator[CoordinatorData]):
                 errors[label] = str(err)
                 _LOGGER.debug("%s: group %s failed: %s", self.name, label, err)
                 continue
+            self.raw[group.start] = words
             values.update(group.decode(words))
 
         self.group_errors = errors

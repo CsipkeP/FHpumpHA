@@ -54,11 +54,10 @@ class WaterstageButton(WaterstageEntity, ButtonEntity):
         super().__init__(runtime, entry, register, coordinator)
         action = EXPERT_ACTIONS.get(register.address)
         if action is not None:
-            self._value, self._attr_name = action
+            self._value = action[0]
             self._attr_entity_category = None  # a deliberate action, not config
         else:
             self._value = RESET_VALUE
-            self._attr_name = f"Reset {register.name.lower()}"
             self._attr_entity_category = EntityCategory.DIAGNOSTIC
 
     async def async_press(self) -> None:

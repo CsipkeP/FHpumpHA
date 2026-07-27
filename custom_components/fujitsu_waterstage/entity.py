@@ -136,7 +136,10 @@ class WaterstageEntity(CoordinatorEntity[MbioCoordinator]):
         self.register = register
         # The register key never changes between releases, so neither does this.
         self._attr_unique_id = f"{entry.entry_id}_{register.key}"
-        self._attr_name = register.name
+        # The name comes from the translation files, keyed by the same stable
+        # register key.  Nothing sets _attr_name: that would win over the
+        # translation and pin every entity to English.
+        self._attr_translation_key = register.key
         self._attr_entity_category = entity_category_for(register)
         self._attr_device_info = (
             board_device_info(entry, runtime)

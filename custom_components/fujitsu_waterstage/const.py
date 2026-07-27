@@ -23,6 +23,9 @@ DEFAULT_SLAVE_ID: Final = 1
 
 CONF_BLOCKS: Final = "blocks"
 CONF_ROOM_SENSORS: Final = "room_sensors"
+#: Why discovery decided the way it did.  Stored so a bug report can show it
+#: (DESIGN.md section 12); by setup time "off" and "never detected" look alike.
+CONF_DISCOVERY_REASONS: Final = "discovery_reasons"
 CONF_WRITE_LEVEL: Final = "write_level"
 CONF_SCAN_INTERVAL_FAST: Final = "scan_interval_fast"
 CONF_SCAN_INTERVAL_NORMAL: Final = "scan_interval_normal"
@@ -166,7 +169,17 @@ BOARD_LOCAL_ADDRESSES: Final = frozenset({13})
 #: come from the BSB bus at all, but they do change, so they are not STATIC.
 INTERFACE_DIAGNOSTIC_ADDRESSES: Final = frozenset(range(9908, 9922))
 
+#: Communication error counters.  If these climb, the fault is in the wiring,
+#: not in Modbus or in this integration (DESIGN.md section 12).
+MODBUS_ERROR_COUNTERS: Final = (9913, 9914, 9915)
+BSB_ERROR_COUNTERS: Final = (9916, 9917, 9918, 9919)
+BSB_UTILISATION_ADDRESSES: Final = (9920, 9921)
+INTERFACE_ERROR_ADDRESS: Final = 9912
+UPTIME_ADDRESS: Final = 9908
+POWER_ON_COUNTER_ADDRESS: Final = 9910
+
 #: Board identification, read once (DESIGN.md 8.1, STATIC tier).
+BOARD_IDENTIFICATION_ADDRESSES: Final = (9900, 9901, 9902, 9903, 9904, 9905, 9906)
 PRODUCT_CODE_ADDRESS: Final = 9900
 VERSION_ADDRESS: Final = 9901
 SERIAL_HIGH_ADDRESS: Final = 9902
@@ -178,10 +191,9 @@ RVS_VERSION_ADDRESS: Final = 440
 class HeatingCircuit(NamedTuple):
     """The registers one ``climate`` entity is built from (DESIGN.md 9.2)."""
 
+    #: Also the entity translation key: two circuits share one device, so
+    #: neither may take the device's own name.
     block: str
-    #: Entity name.  Two circuits can share one device, so neither may take the
-    #: device's own name.
-    label: str
     #: Operating mode: protection / automatic / reduced / comfort.
     mode: int
     #: Room comfort setpoint -- the climate target temperature.
@@ -200,16 +212,9 @@ class HeatingCircuit(NamedTuple):
 
 
 HEATING_CIRCUITS: Final[tuple[HeatingCircuit, ...]] = (
-    HeatingCircuit(
-        "heating_circuit_1", "Heating circuit 1", 100, 101, 102, 103, 104, 120, 124, True
-    ),
-    HeatingCircuit(
-        "heating_circuit_2", "Heating circuit 2", 200, 201, 202, 203, 204, 220, 224, False
-    ),
+    HeatingCircuit("heating_circuit_1", 100, 101, 102, 103, 104, 120, 124, True),
+    HeatingCircuit("heating_circuit_2", 200, 201, 202, 203, 204, 220, 224, False),
 )
-
-#: Entity name of the water heater.  One per installation.
-DHW_LABEL: Final = "Domestic hot water"
 
 #: The ``water_heater`` entity: operating mode, nominal setpoint, B3 sensor.
 DHW_MODE_ADDRESS: Final = 40

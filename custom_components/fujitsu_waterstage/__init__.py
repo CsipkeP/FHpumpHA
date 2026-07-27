@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections.abc import Mapping
+from dataclasses import replace
 from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
@@ -14,6 +15,7 @@ from homeassistant.helpers import device_registry as dr
 
 from .const import (
     CONF_BLOCKS,
+    CONF_DISCOVERY_REASONS,
     CONF_FUNCTION_CODE,
     CONF_INTER_REQUEST_DELAY_MS,
     CONF_MAX_REGISTERS,
@@ -126,6 +128,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
         coordinators=coordinators,
         discovery=DiscoveryResult(
             blocks={name: name in blocks for name in register_map.blocks},
+            reasons=options.get(CONF_DISCOVERY_REASONS) or {},
             room_sensors=tuple(room_sensors or ()),
         ),
         write_level=write_level,
@@ -141,10 +144,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
     if room_sensors is None:
         # An entry created before room sensors were recorded, or one whose
         # discovery failed: fall back to what the first read just told us.
-        room_sensors = find_room_sensors(
-            register_map,
-            [_all_values(runtime)],
-        )
+        room_sensors = find_room_sensors(register_map, [_all_values(runtime)])
+        # Record what was actually used, not what the options happened to hold,
+        # so the diagnostics dump explains the entity set it produced.
+        runtime.discovery = replace(runtime.discovery, room_sensors=tuple(room_sensors))
 
     runtime.board_info = _board_info(runtime)
     runtime.controls = assign_controls(

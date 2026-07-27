@@ -121,7 +121,7 @@ class WaterstageClimate(WaterstageEntity, ClimateEntity):
     ) -> None:
         super().__init__(runtime, entry, register, coordinator)
         self.circuit = circuit
-        self._attr_name = circuit.label
+        self._attr_translation_key = circuit.block
         self._comfort = runtime.register_map.at(circuit.comfort)
         self._target_step = self._comfort.step or 0.5
         self._follow(

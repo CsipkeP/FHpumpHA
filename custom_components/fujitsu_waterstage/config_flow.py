@@ -30,6 +30,7 @@ from .const import (
     ALWAYS_ON_BLOCKS,
     BLOCK_INTERFACE,
     CONF_BLOCKS,
+    CONF_DISCOVERY_REASONS,
     CONF_FUNCTION_CODE,
     CONF_INTER_REQUEST_DELAY_MS,
     CONF_MAX_REGISTERS,
@@ -227,6 +228,7 @@ class WaterstageConfigFlow(ConfigFlow, domain=DOMAIN):
                 )
             blocks = list(result.enabled)
             room_sensors = list(result.room_sensors)
+            reasons = dict(result.reasons)
         except (TimeoutError, MbioError) as err:
             _LOGGER.warning(
                 "Block discovery did not finish (%s); enabling every block, "
@@ -235,12 +237,14 @@ class WaterstageConfigFlow(ConfigFlow, domain=DOMAIN):
             )
             blocks = list(register_map.blocks)
             room_sensors = []
+            reasons = dict.fromkeys(blocks, "discovery failed, enabled by default")
         finally:
             await async_release_gateway(gateway)
 
         return {
             CONF_BLOCKS: blocks,
             CONF_ROOM_SENSORS: room_sensors,
+            CONF_DISCOVERY_REASONS: reasons,
             CONF_WRITE_LEVEL: DEFAULT_WRITE_LEVEL.value,
         }
 
@@ -339,6 +343,9 @@ class WaterstageOptionsFlow(OptionsFlow):
         """Numbers arrive as floats from the selector; keep the entry tidy."""
         data = dict(user_input)
         data[CONF_BLOCKS] = sorted({*data.get(CONF_BLOCKS, []), *ALWAYS_ON_BLOCKS})
+        stored = self.config_entry.options.get(CONF_DISCOVERY_REASONS)
+        if stored:
+            data[CONF_DISCOVERY_REASONS] = dict(stored)
         for key in (
             CONF_SCAN_INTERVAL_FAST,
             CONF_SCAN_INTERVAL_NORMAL,
