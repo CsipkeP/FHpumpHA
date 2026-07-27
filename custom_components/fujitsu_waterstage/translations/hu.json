@@ -31,6 +31,7 @@
         "description": "Mely részeit kérdezzük le a rendszernek, milyen gyakran, és mennyi paraméter írható.",
         "data": {
           "blocks": "Funkcióblokkok",
+          "room_sensors": "Szobaérzékelők",
           "write_level": "Írási szint",
           "scan_interval_fast": "Gyors lekérdezés (mp)",
           "scan_interval_normal": "Normál lekérdezés (mp)",
@@ -44,7 +45,8 @@
           "blocks": "A felderítés töltötte ki. Kapcsold be azt a blokkot, ami létezik, de nem lett felismerve.",
           "write_level": "basic: csak a napi setpointok. advanced: minden írható paraméter. expert: ezen felül a fizikai kimeneteket kapcsoló és újraindító regiszterek is.",
           "scan_interval_fast": "A panel legfeljebb 30 másodpercenként frissíti ezeket a BSB buszról, ennél sűrűbben kérdezni csak a buszt terheli.",
-          "inter_request_delay_ms": "Ennyi ideig hagyjuk szabadon az RS-485 buszt a többi eszköznek."
+          "inter_request_delay_ms": "Ennyi ideig hagyjuk szabadon az RS-485 buszt a többi eszköznek.",
+          "room_sensors": "Azok a fűtőkörök, amelyekhez van szobahőmérséklet-érzékelő. Csak ezek kapnak termosztát entitást; a többinél marad az üzemmód-választó és a setpoint, mert egy termosztát aktuális hőmérséklet nélkül félrevezető."
         }
       }
     }

@@ -19,11 +19,11 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import ATTR_CODE
+from .const import ATTR_CODE, Control
 from .coordinator import WaterstageRuntime
+from .discovery import registers_for
 from .entity import WaterstageEntity
 from .registers import Register
-from .sensor import is_two_state
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -46,15 +46,14 @@ async def async_setup_entry(
 ) -> None:
     """Create a binary sensor for every two-state register being polled."""
     runtime: WaterstageRuntime = entry.runtime_data
-    entities: list[WaterstageBinarySensor] = []
-    for register in runtime.registers:
-        if not is_two_state(register):
-            continue
-        coordinator = runtime.coordinator_for(register)
-        if coordinator is None:  # pragma: no cover - every tier gets one
-            continue
-        entities.append(WaterstageBinarySensor(runtime, entry, register, coordinator))
-    async_add_entities(entities)
+    async_add_entities(
+        WaterstageBinarySensor(
+            runtime, entry, register, runtime.coordinator_for(register)
+        )
+        for register in registers_for(
+            runtime.registers, runtime.controls, Control.BINARY_SENSOR
+        )
+    )
 
 
 class WaterstageBinarySensor(WaterstageEntity, BinarySensorEntity):

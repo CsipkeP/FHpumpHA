@@ -26,8 +26,9 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util import dt as dt_util
 
 from .codec import RegisterType
-from .const import ATTR_CODE
+from .const import ATTR_CODE, Control
 from .coordinator import WaterstageRuntime
+from .discovery import registers_for
 from .entity import WaterstageEntity
 from .registers import Register
 
@@ -45,18 +46,12 @@ _UNITS: dict[str, tuple[str | None, SensorDeviceClass | None, SensorStateClass |
 }
 
 
-def is_two_state(register: Register) -> bool:
-    """Whether this register belongs to the binary sensor platform.
-
-    Exactly two options, one of which is 0.  The second condition matters: the
-    RVS software version (440) and the cooling release (143) also have two
-    options, but neither is an on/off pair.
-    """
-    return (
-        register.type is RegisterType.UINT16
-        and register.options is not None
-        and len(register.options) == 2
-        and 0 in register.options
+def unit_traits(
+    register: Register,
+) -> tuple[str | None, SensorDeviceClass | None, SensorStateClass | None]:
+    """Unit, device class and state class for the register's ``unit`` field."""
+    return _UNITS.get(
+        register.unit or "", (None, None, SensorStateClass.MEASUREMENT)
     )
 
 
@@ -65,17 +60,12 @@ async def async_setup_entry(
     entry: ConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Create a sensor for every non-binary register being polled."""
+    """Create a sensor for every register that does not have a control."""
     runtime: WaterstageRuntime = entry.runtime_data
-    entities: list[WaterstageSensor] = []
-    for register in runtime.registers:
-        if is_two_state(register):
-            continue
-        coordinator = runtime.coordinator_for(register)
-        if coordinator is None:  # pragma: no cover - every tier gets one
-            continue
-        entities.append(WaterstageSensor(runtime, entry, register, coordinator))
-    async_add_entities(entities)
+    async_add_entities(
+        WaterstageSensor(runtime, entry, register, runtime.coordinator_for(register))
+        for register in registers_for(runtime.registers, runtime.controls, Control.SENSOR)
+    )
 
 
 class WaterstageSensor(WaterstageEntity, SensorEntity):
@@ -123,9 +113,7 @@ class WaterstageSensor(WaterstageEntity, SensorEntity):
                 self._attr_suggested_display_precision = 1
             return
 
-        unit, device_class, state_class = _UNITS.get(
-            register.unit or "", (None, None, SensorStateClass.MEASUREMENT)
-        )
+        unit, device_class, state_class = unit_traits(register)
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._attr_state_class = state_class

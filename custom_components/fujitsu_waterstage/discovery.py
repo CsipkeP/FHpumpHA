@@ -25,10 +25,17 @@ from types import MappingProxyType
 from .codec import DecodedValue, RegisterType
 from .const import (
     ALWAYS_ON_BLOCKS,
+    BASIC_WRITE_ADDRESSES,
     BOARD_LOCAL_ADDRESSES,
+    DHW_MODE_ADDRESS,
+    DHW_SETPOINT_ADDRESS,
     DISCOVERABLE_BLOCKS,
+    EXPERT_ACTIONS,
+    HEATING_CIRCUITS,
     INTERFACE_DIAGNOSTIC_ADDRESSES,
+    RESET_BY_WRITE_ADDRESSES,
     SETUP_SECOND_READ_DELAY,
+    Control,
     Tier,
     WriteLevel,
 )
@@ -40,11 +47,14 @@ _LOGGER = logging.getLogger(__name__)
 __all__ = [
     "DiscoveryResult",
     "analyse_blocks",
+    "assign_controls",
     "async_run_discovery",
     "is_board_local",
+    "is_two_state",
     "select_registers",
     "tier_for_register",
     "tier_registers",
+    "write_allowed",
 ]
 
 
@@ -113,16 +123,154 @@ def tier_registers(registers: Iterable[Register]) -> dict[Tier, tuple[Register, 
 
 
 # ---------------------------------------------------------------------------
+# Which entity a register turns into
+# ---------------------------------------------------------------------------
+
+
+def is_two_state(register: Register) -> bool:
+    """Whether this register is an on/off indicator.
+
+    Exactly two options, one of which is 0.  The second condition matters: the
+    RVS software version (440) and the cooling release (143) also have two
+    options, but neither is an on/off pair.
+    """
+    return (
+        register.type is RegisterType.UINT16
+        and register.options is not None
+        and len(register.options) == 2
+        and 0 in register.options
+    )
+
+
+def write_allowed(register: Register, write_level: WriteLevel | str) -> bool:
+    """Whether this configuration may write this register.
+
+    The register map's ``R/W`` is a statement about the hardware, not a licence
+    to expose a control.  ``basic`` -- the default -- writes exactly the seven
+    data points of DESIGN.md 10.1 and nothing else, so a user who wanted to
+    adjust a setpoint cannot accidentally re-plumb the system.
+    """
+    level = WriteLevel(write_level)
+    if not (register.writable or register.resettable):
+        return False
+    if register.expert_only:
+        return level is WriteLevel.EXPERT
+    if level is WriteLevel.BASIC:
+        return register.writable and register.address in BASIC_WRITE_ADDRESSES
+    return True
+
+
+def is_reset_action(register: Register) -> bool:
+    """Whether writing this register clears a counter instead of setting it."""
+    return register.resettable or register.address in RESET_BY_WRITE_ADDRESSES
+
+
+def control_for_write(register: Register) -> Control:
+    """The kind of control a writable register gets."""
+    if register.address in EXPERT_ACTIONS or is_reset_action(register):
+        return Control.BUTTON
+    if register.options is not None:
+        return Control.SELECT
+    return Control.NUMBER
+
+
+def assign_controls(
+    registers: Iterable[Register],
+    *,
+    write_level: WriteLevel | str = WriteLevel.BASIC,
+    room_sensors: Iterable[str] = (),
+) -> dict[str, frozenset[Control]]:
+    """Decide which entities each register turns into.
+
+    One register normally produces one entity.  The exceptions:
+
+    * a counter that can be reset keeps its sensor *and* gains a button -- the
+      runtime is worth reading whether or not you may clear it;
+    * the registers a ``climate`` or ``water_heater`` entity is built from get
+      that entity instead of a bare number or select, so there is never a second
+      control for the same value.
+
+    ``room_sensors`` names the circuits that actually have a room temperature
+    sensor.  Without one, a climate entity would show a target temperature and
+    no current temperature, which reads as broken; DESIGN.md 9.2 keeps the
+    select and number pair for those circuits instead.
+    """
+    level = WriteLevel(write_level)
+    by_address = {register.address: register for register in registers}
+    controls: dict[str, set[Control]] = {}
+
+    for register in by_address.values():
+        kinds: set[Control] = set()
+        if write_allowed(register, level):
+            kind = control_for_write(register)
+            kinds.add(kind)
+            # A button is an action, not a display: the value stays a sensor.
+            if kind is Control.BUTTON:
+                kinds.add(
+                    Control.BINARY_SENSOR if is_two_state(register) else Control.SENSOR
+                )
+        else:
+            kinds.add(
+                Control.BINARY_SENSOR if is_two_state(register) else Control.SENSOR
+            )
+        controls[register.key] = kinds
+
+    def _claim(address: int, entity: Control) -> bool:
+        """Hand a register over to a composite entity, if it is being written."""
+        register = by_address.get(address)
+        if register is None or not write_allowed(register, level):
+            return False
+        controls[register.key] = {entity}
+        return True
+
+    wanted_room_sensors = set(room_sensors)
+    for circuit in HEATING_CIRCUITS:
+        if circuit.block not in wanted_room_sensors:
+            continue
+        # Both halves have to be writable, or the entity would be half dead.
+        mode = by_address.get(circuit.mode)
+        comfort = by_address.get(circuit.comfort)
+        if mode is None or comfort is None:
+            continue
+        if not (write_allowed(mode, level) and write_allowed(comfort, level)):
+            continue
+        _claim(circuit.mode, Control.CLIMATE)
+        _claim(circuit.comfort, Control.CLIMATE)
+
+    dhw = [by_address.get(DHW_MODE_ADDRESS), by_address.get(DHW_SETPOINT_ADDRESS)]
+    if all(register is not None and write_allowed(register, level) for register in dhw):
+        _claim(DHW_MODE_ADDRESS, Control.WATER_HEATER)
+        _claim(DHW_SETPOINT_ADDRESS, Control.WATER_HEATER)
+
+    return {key: frozenset(kinds) for key, kinds in controls.items()}
+
+
+def registers_for(
+    registers: Iterable[Register],
+    controls: Mapping[str, frozenset[Control]],
+    control: Control,
+) -> tuple[Register, ...]:
+    """Every register that produces an entity on one platform."""
+    return tuple(
+        register
+        for register in registers
+        if control in controls.get(register.key, frozenset())
+    )
+
+
+# ---------------------------------------------------------------------------
 # Block presence heuristic
 # ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True, slots=True)
 class DiscoveryResult:
-    """Which blocks to enable, and why."""
+    """Which blocks to enable, which circuits have a room sensor, and why."""
 
     blocks: Mapping[str, bool]
     reasons: Mapping[str, str] = field(default_factory=lambda: MappingProxyType({}))
+    #: Heating circuits whose room temperature register reads a real value.
+    room_sensors: tuple[str, ...] = ()
 
     @property
     def enabled(self) -> tuple[str, ...]:
@@ -133,6 +281,32 @@ class DiscoveryResult:
     def excluded(self) -> tuple[str, ...]:
         """Block names discovery decided against."""
         return tuple(name for name, present in self.blocks.items() if not present)
+
+
+def find_room_sensors(
+    register_map: RegisterMap, rounds: Iterable[Mapping[str, DecodedValue]]
+) -> tuple[str, ...]:
+    """Heating circuits that report a plausible room temperature.
+
+    A climate entity without a current temperature is misleading, so this is
+    what decides whether one is created at all (DESIGN.md 9.2).  The answer is
+    stored in the config entry rather than re-derived on every start, because a
+    board that was only just powered up answers 0 for a few minutes and that
+    would silently drop the entity on an unlucky restart.
+    """
+    rounds = list(rounds)
+    found: list[str] = []
+    for circuit in HEATING_CIRCUITS:
+        register = register_map.at(circuit.room_temperature)
+        if register is None:  # pragma: no cover - the map is closed
+            continue
+        for values in rounds:
+            decoded = values.get(register.key)
+            if decoded is None or decoded.disabled or not decoded.value:
+                continue
+            found.append(circuit.block)
+            break
+    return tuple(found)
 
 
 def _block_is_alive(
@@ -197,7 +371,9 @@ def analyse_blocks(
         )
 
     return DiscoveryResult(
-        blocks=MappingProxyType(blocks), reasons=MappingProxyType(reasons)
+        blocks=MappingProxyType(blocks),
+        reasons=MappingProxyType(reasons),
+        room_sensors=find_room_sensors(register_map, rounds),
     )
 
 
@@ -243,6 +419,8 @@ async def async_run_discovery(
             "Discovery read nothing; enabling every block and leaving the choice "
             "to the options flow"
         )
+        # Every block on, and no room sensor: a missing climate entity is a
+        # smaller surprise than one that never shows a temperature.
         return DiscoveryResult(
             blocks=MappingProxyType({name: True for name in register_map.blocks}),
             reasons=MappingProxyType(

@@ -15,6 +15,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from custom_components.fujitsu_waterstage.const import (
     CONF_BLOCKS,
     CONF_FUNCTION_CODE,
+    CONF_ROOM_SENSORS,
     CONF_SLAVE_ID,
     CONF_WRITE_LEVEL,
     DOMAIN,
@@ -40,7 +41,9 @@ ENTRY_DATA: dict[str, Any] = {
 
 
 @contextlib.contextmanager
-def patch_board(client: FakeClient) -> Iterator[FakeClient]:
+def patch_board(
+    client: FakeClient, *, reread_delay: float = 0
+) -> Iterator[FakeClient]:
     """Put a fake board behind the real gateway, and skip every test delay.
 
     The gateway, its lock, the retry policy and the read groups are all the real
@@ -53,6 +56,10 @@ def patch_board(client: FakeClient) -> Iterator[FakeClient]:
         ),
         patch("custom_components.fujitsu_waterstage.SETUP_SECOND_READ_DELAY", 0),
         patch("custom_components.fujitsu_waterstage.config_flow._DISCOVERY_DELAY", 0),
+        patch(
+            "custom_components.fujitsu_waterstage.coordinator.WRITE_REREAD_DELAY",
+            reread_delay,
+        ),
     ):
         yield client
 
@@ -63,6 +70,7 @@ async def setup_integration(
     *,
     blocks: list[str] | None = None,
     write_level: WriteLevel = WriteLevel.BASIC,
+    room_sensors: list[str] | None = None,
     options: dict[str, Any] | None = None,
     expect_success: bool = True,
 ) -> tuple[MockConfigEntry, FakeClient]:
@@ -76,6 +84,9 @@ async def setup_integration(
         options={
             CONF_BLOCKS: blocks,
             CONF_WRITE_LEVEL: write_level.value,
+            # Left out entirely by default, so setup falls back to deciding
+            # from what it just read.
+            **({} if room_sensors is None else {CONF_ROOM_SENSORS: room_sensors}),
             **(options or {}),
         },
     )
@@ -103,7 +114,22 @@ async def poll(
     wanted = [coordinators[tier] for tier in tiers] if tiers else coordinators.values()
     for coordinator in wanted:
         await coordinator.async_refresh()
-    await hass.async_block_till_done()
+    await hass.async_block_till_done(wait_background_tasks=True)
+
+
+def entity_id_of(
+    hass: HomeAssistant,
+    entry: MockConfigEntry,
+    register_key: str,
+    platform: str = "sensor",
+) -> str:
+    """The entity id for a register key, or a clear failure."""
+    registry = er.async_get(hass)
+    entity_id = registry.async_get_entity_id(
+        platform, DOMAIN, f"{entry.entry_id}_{register_key}"
+    )
+    assert entity_id is not None, f"no {platform} entity for {register_key}"
+    return entity_id
 
 
 def state_of(
@@ -113,9 +139,4 @@ def state_of(
     platform: str = "sensor",
 ) -> Any:
     """Look a state up by register key rather than by guessed entity id."""
-    registry = er.async_get(hass)
-    entity_id = registry.async_get_entity_id(
-        platform, DOMAIN, f"{entry.entry_id}_{register_key}"
-    )
-    assert entity_id is not None, f"no {platform} entity for {register_key}"
-    return hass.states.get(entity_id)
+    return hass.states.get(entity_id_of(hass, entry, register_key, platform))

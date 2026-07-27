@@ -34,6 +34,7 @@ from .const import (
     CONF_INTER_REQUEST_DELAY_MS,
     CONF_MAX_REGISTERS,
     CONF_RETRIES,
+    CONF_ROOM_SENSORS,
     CONF_SCAN_INTERVAL_BY_TIER,
     CONF_SCAN_INTERVAL_FAST,
     CONF_SCAN_INTERVAL_NORMAL,
@@ -49,6 +50,7 @@ from .const import (
     DEFAULT_TIMEOUT,
     DEFAULT_WRITE_LEVEL,
     DOMAIN,
+    HEATING_CIRCUITS,
     MAX_SCAN_INTERVAL,
     MIN_SCAN_INTERVAL,
     PRODUCT_CODE_ADDRESS,
@@ -224,6 +226,7 @@ class WaterstageConfigFlow(ConfigFlow, domain=DOMAIN):
                     client, register_map, delay=_DISCOVERY_DELAY
                 )
             blocks = list(result.enabled)
+            room_sensors = list(result.room_sensors)
         except (TimeoutError, MbioError) as err:
             _LOGGER.warning(
                 "Block discovery did not finish (%s); enabling every block, "
@@ -231,11 +234,13 @@ class WaterstageConfigFlow(ConfigFlow, domain=DOMAIN):
                 err,
             )
             blocks = list(register_map.blocks)
+            room_sensors = []
         finally:
             await async_release_gateway(gateway)
 
         return {
             CONF_BLOCKS: blocks,
+            CONF_ROOM_SENSORS: room_sensors,
             CONF_WRITE_LEVEL: DEFAULT_WRITE_LEVEL.value,
         }
 
@@ -272,6 +277,17 @@ class WaterstageOptionsFlow(OptionsFlow):
                 ): selector.SelectSelector(
                     selector.SelectSelectorConfig(
                         options=choices, multiple=True, mode="list", translation_key="blocks"
+                    )
+                ),
+                vol.Optional(
+                    CONF_ROOM_SENSORS,
+                    default=sorted(options.get(CONF_ROOM_SENSORS, [])),
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=[circuit.block for circuit in HEATING_CIRCUITS],
+                        multiple=True,
+                        mode="list",
+                        translation_key="blocks",
                     )
                 ),
                 vol.Required(

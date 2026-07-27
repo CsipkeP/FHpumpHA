@@ -18,6 +18,7 @@ from .const import (
     CONF_INTER_REQUEST_DELAY_MS,
     CONF_MAX_REGISTERS,
     CONF_RETRIES,
+    CONF_ROOM_SENSORS,
     CONF_SCAN_INTERVAL_BY_TIER,
     CONF_SLAVE_ID,
     CONF_TIMEOUT,
@@ -38,7 +39,13 @@ from .const import (
     WriteLevel,
 )
 from .coordinator import MbioCoordinator, WaterstageRuntime, async_link_watcher
-from .discovery import DiscoveryResult, select_registers, tier_registers
+from .discovery import (
+    DiscoveryResult,
+    assign_controls,
+    find_room_sensors,
+    select_registers,
+    tier_registers,
+)
 from .entity import board_device_info, heat_pump_device_info
 from .hub import (
     FUNCTION_READ_HOLDING,
@@ -50,7 +57,15 @@ from .registers import load_register_map
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR, Platform.SENSOR]
+PLATFORMS: list[Platform] = [
+    Platform.BINARY_SENSOR,
+    Platform.BUTTON,
+    Platform.CLIMATE,
+    Platform.NUMBER,
+    Platform.SELECT,
+    Platform.SENSOR,
+    Platform.WATER_HEATER,
+]
 
 #: Registers copied into the device registry entries.
 _BOARD_INFO_ADDRESSES = (
@@ -102,13 +117,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
             max_registers=max_registers,
         )
 
+    room_sensors = options.get(CONF_ROOM_SENSORS)
     runtime = WaterstageRuntime(
         gateway=gateway,
         client=client,
         register_map=register_map,
         registers=registers,
         coordinators=coordinators,
-        discovery=DiscoveryResult(blocks={name: name in blocks for name in register_map.blocks}),
+        discovery=DiscoveryResult(
+            blocks={name: name in blocks for name in register_map.blocks},
+            room_sensors=tuple(room_sensors or ()),
+        ),
         write_level=write_level,
     )
 
@@ -119,7 +138,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
         await async_release_gateway(gateway)
         raise
 
+    if room_sensors is None:
+        # An entry created before room sensors were recorded, or one whose
+        # discovery failed: fall back to what the first read just told us.
+        room_sensors = find_room_sensors(
+            register_map,
+            [_all_values(runtime)],
+        )
+
     runtime.board_info = _board_info(runtime)
+    runtime.controls = assign_controls(
+        registers, write_level=write_level, room_sensors=room_sensors
+    )
     entry.runtime_data = runtime
 
     _register_devices(hass, entry, runtime)
@@ -184,6 +214,15 @@ def _interval_for(options: Mapping[str, Any], tier: Tier) -> int:
         )
         return floor
     return configured
+
+
+def _all_values(runtime: WaterstageRuntime) -> dict[str, Any]:
+    """Everything the tiers have read so far, in one mapping."""
+    values: dict[str, Any] = {}
+    for coordinator in runtime.coordinators.values():
+        if coordinator.data:
+            values.update(coordinator.data)
+    return values
 
 
 def _board_info(runtime: WaterstageRuntime) -> dict[int, int]:

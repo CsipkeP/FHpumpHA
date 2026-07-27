@@ -31,7 +31,12 @@ DEFAULT_WORDS: dict[int, int] = {
     63: 480,  # DHW actual 48.0 °C
     100: 1,  # HC1 automatic
     101: 210,  # comfort 21.0 °C
+    102: 180,  # reduced 18.0 °C
+    103: 60,  # frost protection 6.0 °C
+    104: 300,  # maximum comfort 30.0 °C
     105: 250,  # slope 2.5
+    106: 5,  # heating curve displacement 0.5 °C
+    107: 180,  # summer/winter changeover 18.0 °C
     120: 137,
     121: 255,  # HC1 pump running
     124: 215,  # room 21.5 °C
@@ -69,6 +74,7 @@ class FakeClient:
     connected: bool = False
     fail_reads: int = 0
     read_error_response: bool = False
+    write_error_response: bool = False
     connect_failures: int = 0
     calls: list[tuple[str, Any, Any]] = field(default_factory=list)
     connects: int = 0
@@ -107,6 +113,8 @@ class FakeClient:
 
     async def write_register(self, address: int, value: int, **kwargs: Any) -> FakeResponse:
         self.calls.append(("write", address, value))
+        if self.write_error_response:
+            return FakeResponse(error=True)
         self.words[address] = value
         return FakeResponse()
 

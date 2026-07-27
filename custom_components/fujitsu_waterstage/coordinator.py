@@ -11,14 +11,17 @@ entity has to ask -- is the BSB link up?
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import time
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass, field
 from datetime import timedelta
+from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .codec import DecodedValue, RegisterType
@@ -26,6 +29,9 @@ from .const import (
     LINK_STATUS_KEY,
     LINK_STATUS_OK,
     WARMUP_SECONDS,
+    WRITE_OPTIMISTIC_TTL,
+    WRITE_REREAD_DELAY,
+    Control,
     Tier,
     WriteLevel,
 )
@@ -80,6 +86,25 @@ class MbioCoordinator(DataUpdateCoordinator[CoordinatorData]):
     def owns_link_status(self) -> bool:
         """Whether register 0 is read by this tier."""
         return any(register.is_link_status for register in self.registers)
+
+    def group_for(self, register: Register) -> ReadGroup | None:
+        """The read request that covers this register."""
+        for group in self.groups:
+            if group.start <= register.address and register.end_address <= group.end:
+                return group
+        return None
+
+    async def async_refresh_group(self, group: ReadGroup) -> None:
+        """Re-read one group and merge it into the tier's data.
+
+        Used after a write, so a changed setpoint shows up in about two seconds
+        instead of at the end of a five minute cycle -- without re-reading the
+        other hundred registers of the tier (DESIGN.md section 10).
+        """
+        words = await self.client.async_read_group(group)
+        data = dict(self.data or {})
+        data.update(group.decode(words))
+        self.async_set_updated_data(self._apply_warmup(data))
 
     async def _async_update_data(self) -> CoordinatorData:
         """Read every group of this tier.
@@ -148,15 +173,31 @@ class WaterstageRuntime:
     coordinators: Mapping[Tier, MbioCoordinator]
     discovery: DiscoveryResult
     write_level: WriteLevel
+    controls: Mapping[str, frozenset[Control]] = field(default_factory=dict)
     board_info: Mapping[int, int] = field(default_factory=dict)
     _last_link: int | None = field(default=None, init=False, repr=False)
+    #: Values written but not yet confirmed by a read: key -> (value, expiry).
+    _optimistic: dict[str, tuple[DecodedValue, float]] = field(
+        default_factory=dict, init=False, repr=False
+    )
 
     def coordinator_for(self, register: Register) -> MbioCoordinator | None:
         """The coordinator that reads this register, if it is being read."""
         return self.coordinators.get(tier_for_register(register))
 
     def decoded(self, register: Register) -> DecodedValue | None:
-        """The last decoded value of a register, or ``None`` if it has none."""
+        """The last decoded value of a register, or ``None`` if it has none.
+
+        A value that was just written wins until the targeted re-read confirms
+        it, so a slider does not snap back to the old reading for two seconds.
+        """
+        pending = self._optimistic.get(register.key)
+        if pending is not None:
+            value, expires = pending
+            if time.monotonic() < expires:
+                return value
+            del self._optimistic[register.key]
+
         coordinator = self.coordinator_for(register)
         if coordinator is None or coordinator.data is None:
             return None
@@ -201,6 +242,77 @@ class WaterstageRuntime:
         # A BSB outage invalidates everything the RVS21 produced, but not what
         # the board measures or counts itself.
         return self.link_ok or is_board_local(register)
+
+    # -- writing ----------------------------------------------------------
+
+    async def async_write(self, register: Register, value: Any) -> None:
+        """Validate, write, and schedule the confirming read.
+
+        Raises :class:`ServiceValidationError` for a value the controller would
+        reject and :class:`HomeAssistantError` if the write itself fails; in
+        both cases the previously read state stays in place.
+        """
+        try:
+            register.validate(value)
+        except ValueError as err:
+            raise ServiceValidationError(str(err)) from err
+
+        try:
+            # One write, one function code.  The /O disable bit is never set:
+            # a parameter is disabled from the controller's own menu.
+            await self.client.async_write_register(register, value)
+        except MbioError as err:
+            raise HomeAssistantError(
+                f"Writing {register.name} (register {register.address}) failed: {err}"
+            ) from err
+
+        self.async_set_optimistic(register, value)
+        self.async_schedule_confirm(register)
+
+    async def async_press(self, register: Register, value: int) -> None:
+        """Write an action value: a counter reset, a trigger, a restart."""
+        try:
+            await self.client.gateway.async_write_register(
+                register.address, value, slave=self.client.slave_id
+            )
+        except MbioError as err:
+            raise HomeAssistantError(
+                f"Writing {register.name} (register {register.address}) failed: {err}"
+            ) from err
+        self.async_schedule_confirm(register)
+
+    @callback
+    def async_set_optimistic(self, register: Register, value: Any) -> None:
+        """Show a written value until a read confirms or contradicts it."""
+        self._optimistic[register.key] = (
+            DecodedValue(value, False),
+            time.monotonic() + WRITE_OPTIMISTIC_TTL,
+        )
+
+    @callback
+    def async_schedule_confirm(self, register: Register) -> None:
+        """Re-read only the group the written register belongs to."""
+        coordinator = self.coordinator_for(register)
+        if coordinator is None:
+            return
+        group = coordinator.group_for(register)
+        if group is None:  # pragma: no cover - every register is in a group
+            return
+
+        async def _confirm() -> None:
+            await asyncio.sleep(WRITE_REREAD_DELAY)
+            try:
+                await coordinator.async_refresh_group(group)
+            except MbioError as err:
+                _LOGGER.debug("Could not confirm the write to %s: %s", register.key, err)
+            finally:
+                for member in group.registers:
+                    self._optimistic.pop(member.key, None)
+                coordinator.async_update_listeners()
+
+        coordinator.config_entry.async_create_background_task(
+            coordinator.hass, _confirm(), f"waterstage confirm {register.key}"
+        )
 
     @callback
     def async_notify_link_change(self) -> None:

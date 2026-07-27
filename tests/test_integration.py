@@ -30,15 +30,19 @@ from homeassistant.util import dt as dt_util
 from custom_components.fujitsu_waterstage.const import (
     ATTR_CODE,
     DOMAIN,
+    Control,
     Tier,
     WriteLevel,
 )
-from custom_components.fujitsu_waterstage.discovery import select_registers
+from custom_components.fujitsu_waterstage.discovery import (
+    assign_controls,
+    is_two_state,
+    select_registers,
+)
 from custom_components.fujitsu_waterstage.entity import (
     board_device_id,
     heat_pump_device_id,
 )
-from custom_components.fujitsu_waterstage.sensor import is_two_state
 
 from .fake_board import FakeClient, make_board
 from .helpers import poll, setup_integration, state_of
@@ -51,15 +55,33 @@ class TestSetup:
         entry, _ = await setup_integration(hass)
         assert entry.state is ConfigEntryState.LOADED
 
-    async def test_every_selected_register_becomes_one_entity(
+    async def test_every_selected_register_gets_an_entity(
         self, hass: HomeAssistant, register_map
     ) -> None:
+        """One entity per register, except where a composite entity merges two."""
         entry, _ = await setup_integration(hass)
-        expected = select_registers(register_map, write_level=WriteLevel.BASIC)
+        selected = select_registers(register_map, write_level=WriteLevel.BASIC)
+        controls = assign_controls(
+            selected,
+            write_level=WriteLevel.BASIC,
+            room_sensors=["heating_circuit_1"],
+        )
+        merged = sum(
+            1
+            for kinds in controls.values()
+            if kinds & {Control.CLIMATE, Control.WATER_HEATER}
+        )
 
         entities = er.async_entries_for_config_entry(er.async_get(hass), entry.entry_id)
-        assert len(entities) == len(expected)
-        assert {entity.domain for entity in entities} == {"sensor", "binary_sensor"}
+        # Two registers per composite entity, so each one costs a net entity.
+        assert len(entities) == len(selected) - merged // 2
+        assert {entity.domain for entity in entities} == {
+            "binary_sensor",
+            "climate",
+            "number",
+            "sensor",
+            "water_heater",
+        }
 
     async def test_expert_registers_have_no_entity(
         self, hass: HomeAssistant, register_map
@@ -227,10 +249,10 @@ class TestSensorValues:
 
     async def test_inline_options_become_an_enum(self, hass: HomeAssistant) -> None:
         entry, _ = await setup_integration(hass)
-        state = state_of(hass, entry, "dhw_dhw_operating_mode")
-        assert state.state == "On"
+        state = state_of(hass, entry, "dhw_dhw_legionella_function")
+        assert state.state == "Off"
         assert state.attributes[ATTR_DEVICE_CLASS] == "enum"
-        assert state.attributes["options"] == ["Off", "On", "Eco"]
+        assert state.attributes["options"] == ["Off", "Periodically", "Fixed weekday"]
 
     async def test_timestamp(self, hass: HomeAssistant) -> None:
         entry, _ = await setup_integration(hass)
@@ -256,7 +278,7 @@ class TestSensorValues:
         registry = er.async_get(hass)
         setpoint = registry.async_get(
             registry.async_get_entity_id(
-                "sensor", DOMAIN, f"{entry.entry_id}_dhw_dhw_nominal_temperature_setpoint"
+                "sensor", DOMAIN, f"{entry.entry_id}_dhw_dhw_reduced_temperature_setpoint"
             )
         )
         assert setpoint.entity_category is EntityCategory.DIAGNOSTIC
@@ -347,7 +369,7 @@ class TestAvailability:
             == STATE_UNAVAILABLE
         )
         assert (
-            state_of(hass, entry, "dhw_dhw_nominal_temperature_setpoint").state
+            state_of(hass, entry, "dhw_dhw_reduced_temperature_setpoint").state
             == STATE_UNAVAILABLE
         )
         assert (
@@ -391,7 +413,7 @@ class TestAvailability:
         polled = {call[1] for call in client.calls[before:]}
         assert not polled & slow_groups  # the slow tier did not read anything
         assert (
-            state_of(hass, entry, "dhw_dhw_nominal_temperature_setpoint").state
+            state_of(hass, entry, "dhw_dhw_reduced_temperature_setpoint").state
             == STATE_UNAVAILABLE
         )
 

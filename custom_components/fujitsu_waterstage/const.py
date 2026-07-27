@@ -7,7 +7,7 @@ without a Home Assistant installation.
 from __future__ import annotations
 
 from enum import StrEnum
-from typing import Final
+from typing import Final, NamedTuple
 
 DOMAIN: Final = "fujitsu_waterstage"
 
@@ -22,6 +22,7 @@ DEFAULT_SLAVE_ID: Final = 1
 # -- config entry options ----------------------------------------------------
 
 CONF_BLOCKS: Final = "blocks"
+CONF_ROOM_SENSORS: Final = "room_sensors"
 CONF_WRITE_LEVEL: Final = "write_level"
 CONF_SCAN_INTERVAL_FAST: Final = "scan_interval_fast"
 CONF_SCAN_INTERVAL_NORMAL: Final = "scan_interval_normal"
@@ -56,6 +57,56 @@ class WriteLevel(StrEnum):
 
 
 DEFAULT_WRITE_LEVEL: Final = WriteLevel.BASIC
+
+
+#: DESIGN.md 10.1 -- the only seven data points the ``basic`` level may write.
+#: DHW mode and setpoint, HC1 mode, comfort, reduced, curve displacement and
+#: the summer/winter changeover.  Everything else stays a read-only sensor, no
+#: matter that the register map calls it ``R/W``.
+BASIC_WRITE_ADDRESSES: frozenset[int] = frozenset({40, 41, 100, 101, 102, 106, 107})
+
+#: ``R/W`` registers that are really counters: writing any value clears them.
+#: DESIGN.md 10.1 lists 9912-9921 among the reset buttons even though the
+#: register map marks them ``R/W``; a number box for "Modbus CRC error count"
+#: would be nonsense.  9920 is read-only and stays out.
+RESET_BY_WRITE_ADDRESSES: frozenset[int] = frozenset(
+    {9912, 9913, 9914, 9915, 9916, 9917, 9918, 9919, 9921}
+)
+
+#: ``expert`` registers that perform an action rather than hold a value:
+#: address -> (value to write, button label).
+EXPERT_ACTIONS: Final[dict[int, tuple[int, str]]] = {
+    38: (1, "Trigger defrost"),
+    39: (1, "Reset heat pump"),
+    9907: (0xAFAF, "Restart interface board"),
+}
+
+#: Any value clears an ``R/Reset`` counter; 0 is the obvious one.
+RESET_VALUE: Final = 0
+
+#: Seconds between a write and the targeted re-read of the affected group.
+#: The controller needs a moment to take the value; until then the entity shows
+#: the value that was written so the UI does not bounce (DESIGN.md section 10).
+WRITE_REREAD_DELAY: Final = 2.0
+
+#: How long an optimistic value survives if the re-read never lands.
+WRITE_OPTIMISTIC_TTL: Final = 30.0
+
+
+class Control(StrEnum):
+    """Entity platforms this integration creates.
+
+    The values match Home Assistant's ``Platform`` members, but this module
+    stays import-free so the write-level rules can be tested on their own.
+    """
+
+    SENSOR = "sensor"
+    BINARY_SENSOR = "binary_sensor"
+    NUMBER = "number"
+    SELECT = "select"
+    BUTTON = "button"
+    CLIMATE = "climate"
+    WATER_HEATER = "water_heater"
 
 
 class Tier(StrEnum):
@@ -123,6 +174,52 @@ SERIAL_LOW_ADDRESS: Final = 9903
 RVS_VERSION_ADDRESS: Final = 440
 
 # -- functional blocks -------------------------------------------------------
+
+class HeatingCircuit(NamedTuple):
+    """The registers one ``climate`` entity is built from (DESIGN.md 9.2)."""
+
+    block: str
+    #: Entity name.  Two circuits can share one device, so neither may take the
+    #: device's own name.
+    label: str
+    #: Operating mode: protection / automatic / reduced / comfort.
+    mode: int
+    #: Room comfort setpoint -- the climate target temperature.
+    comfort: int
+    reduced: int
+    #: Frost protection and maximum comfort, used as the UI temperature range
+    #: so Home Assistant offers exactly what the controller accepts.
+    frost_protection: int
+    max_comfort: int
+    #: Status code, translated into an HVAC action.
+    status: int
+    #: Room temperature.  Without a room sensor here there is no climate entity.
+    room_temperature: int
+    #: Whether the ``basic`` write level covers this circuit.
+    basic: bool
+
+
+HEATING_CIRCUITS: Final[tuple[HeatingCircuit, ...]] = (
+    HeatingCircuit(
+        "heating_circuit_1", "Heating circuit 1", 100, 101, 102, 103, 104, 120, 124, True
+    ),
+    HeatingCircuit(
+        "heating_circuit_2", "Heating circuit 2", 200, 201, 202, 203, 204, 220, 224, False
+    ),
+)
+
+#: Entity name of the water heater.  One per installation.
+DHW_LABEL: Final = "Domestic hot water"
+
+#: The ``water_heater`` entity: operating mode, nominal setpoint, B3 sensor.
+DHW_MODE_ADDRESS: Final = 40
+DHW_SETPOINT_ADDRESS: Final = 41
+DHW_TEMPERATURE_ADDRESS: Final = 63
+
+#: RVS status codes that mean the circuit is actively heating (DESIGN.md 9.2).
+STATUS_CODES_HEATING: Final = frozenset({114, 116, 137})
+#: ...and the ones that mean it is up but not calling for heat.
+STATUS_CODES_IDLE: Final = frozenset({118, 162})
 
 BLOCK_INTERFACE: Final = "interface"
 BLOCK_HEAT_PUMP: Final = "heat_pump"

@@ -13,6 +13,8 @@ invalidates the first device's entities and leaves the second device's alone.
 
 from __future__ import annotations
 
+from typing import Any
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EntityCategory
 from homeassistant.helpers.device_registry import DeviceInfo
@@ -20,6 +22,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .codec import DecodedValue
 from .const import (
+    BASIC_WRITE_ADDRESSES,
     DEFAULT_MODEL_HEAT_PUMP,
     DOMAIN,
     MANUFACTURER_BOARD,
@@ -140,13 +143,41 @@ class WaterstageEntity(CoordinatorEntity[MbioCoordinator]):
             if is_board_local(register)
             else heat_pump_device_info(entry, runtime)
         )
+        self._extra_coordinators: list[MbioCoordinator] = []
+
+    def _follow(self, *addresses: int) -> None:
+        """Also update when these registers' tiers refresh.
+
+        A climate entity is built from registers in more than one tier: the
+        operating mode is read every five minutes, the room temperature every
+        two.  Subscribing only to the entity's own coordinator would hold the
+        faster values back to the slower tier's pace.
+        """
+        for address in addresses:
+            register = self.runtime.register_map.at(address)
+            if register is None:  # pragma: no cover - the map is closed
+                continue
+            coordinator = self.runtime.coordinator_for(register)
+            if (
+                coordinator is None
+                or coordinator is self.coordinator
+                or coordinator in self._extra_coordinators
+            ):
+                continue
+            self._extra_coordinators.append(coordinator)
+
+    async def async_added_to_hass(self) -> None:
+        """Subscribe to this entity's own tier, and to any others it reads."""
+        await super().async_added_to_hass()
+        for coordinator in self._extra_coordinators:
+            self.async_on_remove(
+                coordinator.async_add_listener(self._handle_coordinator_update)
+            )
 
     @property
     def decoded(self) -> DecodedValue | None:
         """The last decoded value, or ``None`` when the register was not read."""
-        if self.coordinator.data is None:
-            return None
-        return self.coordinator.data.get(self.register.key)
+        return self.runtime.decoded(self.register)
 
     @property
     def available(self) -> bool:
@@ -157,3 +188,31 @@ class WaterstageEntity(CoordinatorEntity[MbioCoordinator]):
         be worse than publishing nothing (DESIGN.md section 3).
         """
         return self.runtime.register_is_available(self.register)
+
+
+class WaterstageWritableEntity(WaterstageEntity):
+    """Base for the entities that write back.
+
+    Writable entities are configuration by definition, so they land in the
+    config category rather than on the main dashboard -- except the seven the
+    ``basic`` level exposes, which are the everyday controls (DESIGN.md 10.1).
+    """
+
+    def __init__(
+        self,
+        runtime: WaterstageRuntime,
+        entry: ConfigEntry,
+        register: Register,
+        coordinator: MbioCoordinator,
+    ) -> None:
+        super().__init__(runtime, entry, register, coordinator)
+        self._attr_entity_category = (
+            None
+            if register.address in BASIC_WRITE_ADDRESSES
+            else EntityCategory.CONFIG
+        )
+
+    async def async_write(self, value: Any) -> None:
+        """Validate and write, then let the confirming read follow."""
+        await self.runtime.async_write(self.register, value)
+        self.async_write_ha_state()

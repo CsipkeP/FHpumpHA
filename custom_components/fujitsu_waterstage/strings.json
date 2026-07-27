@@ -31,6 +31,7 @@
         "description": "Which parts of the installation to poll, how often, and how much of the parameter surface may be written.",
         "data": {
           "blocks": "Function blocks",
+          "room_sensors": "Room sensors",
           "write_level": "Write level",
           "scan_interval_fast": "Fast interval (s)",
           "scan_interval_normal": "Normal interval (s)",
@@ -44,7 +45,8 @@
           "blocks": "Discovery filled these in. Turn a block on if it exists but was not detected.",
           "write_level": "basic writes only the everyday setpoints. advanced exposes every writable parameter. expert also exposes the registers that switch physical outputs and restart hardware.",
           "scan_interval_fast": "The board refreshes these values from the BSB bus every 30 s at best, so a shorter interval only loads the bus.",
-          "inter_request_delay_ms": "Idle time left on the RS-485 bus for other devices."
+          "inter_request_delay_ms": "Idle time left on the RS-485 bus for other devices.",
+          "room_sensors": "Heating circuits that have a room temperature sensor. Only those get a thermostat entity; the others keep a mode select and a setpoint number, because a thermostat with no current temperature is misleading."
         }
       }
     }
