@@ -241,13 +241,18 @@ BLOCK_FAULTS: Final = "faults"
 BLOCK_RELAYS: Final = "relays"
 BLOCK_HEATING_CIRCUIT_1: Final = "heating_circuit_1"
 
-#: Always present: the heat pump itself, DHW, heating circuit 1, the fault log,
-#: the relay feedback and the interface diagnostics (DESIGN.md section 6).
+#: Always present: the heat pump itself, heating circuit 1, the fault log, the
+#: relay feedback and the interface diagnostics (DESIGN.md section 6).
+#:
+#: DESIGN.md also listed domestic hot water here, on the assumption that every
+#: Waterstage has a tank.  Verified otherwise on hardware 2026-07-27: an
+#: installation with no DHW plumbed in reports ``---`` on register 60 and zero
+#: on every DHW temperature, while the setpoints still hold configured values.
+#: It is discovered like any other optional block now.
 ALWAYS_ON_BLOCKS: Final = frozenset(
     {
         BLOCK_INTERFACE,
         BLOCK_HEAT_PUMP,
-        BLOCK_DHW,
         BLOCK_HEATING_CIRCUIT_1,
         BLOCK_FAULTS,
         BLOCK_RELAYS,
@@ -258,6 +263,7 @@ ALWAYS_ON_BLOCKS: Final = frozenset(
 #: the user can override it in the options flow.
 DISCOVERABLE_BLOCKS: Final = frozenset(
     {
+        BLOCK_DHW,
         "heating_circuit_2",
         "cooling_circuit_1",
         "cooling_circuit_2",

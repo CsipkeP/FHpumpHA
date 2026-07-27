@@ -331,38 +331,48 @@ def find_room_sensors(
 
 def _block_is_alive(
     registers: Iterable[Register], rounds: Iterable[Mapping[str, DecodedValue]]
-) -> bool:
-    """True when any status or measured temperature register carries a value.
+) -> tuple[bool, str]:
+    """Whether a hydraulic block exists, and the register that decided it.
 
-    A block counts as present when at least one of its indicator registers is
-    neither zero nor flagged disabled, in at least one of the read rounds.  Two
-    rounds are used because a single early read can legitimately answer 0 while
-    the MBIO is still fetching the value from the BSB bus (DESIGN.md section 5).
+    The status register decides where a block has one.  Temperatures are not
+    trustworthy on their own: a circuit that is not fitted still reports fixed
+    placeholder values -- 50.0 °C for a missing room sensor, 140.0 °C for a
+    missing flow setpoint -- and reading those as "not zero, therefore present"
+    invents a whole hydraulic circuit out of nothing.  A status register that
+    is absent answers ``---`` (code 0), which is the honest signal.
 
-    Only read-only registers count.  A setpoint keeps whatever the controller
-    was configured with whether or not the circuit is plumbed in, so including
-    them would report every block as present.
+    Only read-only registers count either way: a setpoint holds whatever the
+    controller was configured with whether or not the circuit is plumbed in.
+
+    Two rounds are used because a single early read can legitimately answer 0
+    while the MBIO is still fetching the value from the BSB bus (DESIGN.md
+    section 5).
     """
-    indicators = [
+    registers = list(registers)
+    rounds = list(rounds)
+    status = [
         register
         for register in registers
-        if not register.writable
-        and (
-            register.type is RegisterType.TEMP
-            or register.options_ref == "status_codes"
-        )
+        if not register.writable and register.options_ref == "status_codes"
+    ]
+    indicators = status or [
+        register
+        for register in registers
+        if not register.writable and register.type is RegisterType.TEMP
     ]
     if not indicators:
         # No usable signal -- assume present rather than silently hiding it.
-        return True
+        return True, "no status or temperature register to judge by"
+
     for values in rounds:
         for register in indicators:
             decoded = values.get(register.key)
-            if decoded is None or decoded.disabled or decoded.value is None:
+            if decoded is None or decoded.disabled or not decoded.value:
                 continue
-            if decoded.value != 0:
-                return True
-    return False
+            return True, f"register {register.address} reported {decoded.value}"
+
+    kind = "status register" if status else "temperature register"
+    return False, f"every {kind} read 0 or disabled in {len(rounds)} round(s)"
 
 
 def analyse_blocks(
@@ -382,13 +392,9 @@ def analyse_blocks(
             blocks[name] = True
             reasons[name] = "not part of the discovery heuristic"
             continue
-        alive = _block_is_alive(register_map.in_blocks([name]), rounds)
+        alive, reason = _block_is_alive(register_map.in_blocks([name]), rounds)
         blocks[name] = alive
-        reasons[name] = (
-            "a status or temperature register reported a value"
-            if alive
-            else f"every indicator register read 0 or disabled in {len(rounds)} round(s)"
-        )
+        reasons[name] = reason
 
     return DiscoveryResult(
         blocks=MappingProxyType(blocks),

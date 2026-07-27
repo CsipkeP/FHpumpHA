@@ -91,8 +91,14 @@ scriptje az első dolog, ami valós hardveren igazolja a regisztertérképet.
   és nem csak a hiányzó szót veszíted el, hanem a *teljes* kérést. 2026-07-27-én
   igazolva: a 8 csoportból 5 elhalt egyetlen lyuk miatt. Olvasási csoport tehát
   átolvashat olyan címen, amit épp nem pollozunk, de definiálatlanon soha.
-- **Szobaérzékelő nélkül a vezérlő 50,0 °C-ot ad a 124/224-en, nem 0-t.**
-  A „nem nulla → van érzékelő" szabály ezért kevés; hihető tartomány kell.
+- **Szobaérzékelő nélkül a vezérlő 50,0 °C-ot ad a 124/224-en, nem 0-t**, a be
+  nem kötött előremenő alapjelre (262) pedig 140,0 °C-ot. A „nem nulla → létezik"
+  szabály ezért kevés: ahol van státuszregiszter, az dönt.
+- **Ehhez a telepítéshez nincs HMV bekötve.** A DESIGN eredetileg mindig
+  bekapcsolt blokknak vette — nem az. A 60-as státusz `---`, miközben a 40/41
+  setpoint konfigurált értéket tart.
+- Élő blokkok: hőszivattyú, HC1, **CC1** (a 160-as valódi státuszkódot ad),
+  hibák, relék, illesztő. HC2/CC2/szolár/puffer/medence/HMV nincs.
 - Átjáró: `192.168.1.37:502`, MBIO slave ID = **3**. Ugyanazon az átjárón egy másik eszköz is
   van slave 1-en — az nem tartozik ide, marad a meglévő `modbus:` YAML konfigban.
 - A jelenlegi működő YAML `input_type: input` (FC `0x04`) módban olvas, tehát a `0x04` biztosan működik.

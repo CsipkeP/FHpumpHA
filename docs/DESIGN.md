@@ -169,7 +169,18 @@ Nincs „hidraulikai séma" regiszter, mint a közvetlen RVS Modbusnál. A felde
 1. **`/O` letiltás bit** — a `R/O` és `R/W/O` regisztereknél közvetlenül megmondja, hogy a paraméter aktív-e.
 2. **Blokk-jelenlét heurisztika** — egy funkcióblokk (HC2, CC1, CC2, szolár, puffer, medence, kiegészítő hőforrás) akkor kerül be, ha a hozzá tartozó státuszregiszter és hőmérséklet-regiszterek **nem mind 0/letiltott** két egymást követő teljes olvasókörben.
 
-A heurisztika bizonytalan, ezért **a felhasználó felülbírálhatja**: a config flow options oldalán minden blokk külön be-/kikapcsolható, a felderítés eredménye csak az alapértelmezést adja. Alapból bekapcsolva: hőszivattyú, HMV, HC1, hibák, illesztő diagnosztika. A többi a felderítéstől függ.
+A heurisztika bizonytalan, ezért **a felhasználó felülbírálhatja**: a config flow options oldalán minden blokk külön be-/kikapcsolható, a felderítés eredménye csak az alapértelmezést adja. Alapból bekapcsolva: hőszivattyú, HC1, hibák, relék, illesztő diagnosztika. A többi a felderítéstől függ.
+
+**Két javítás a 2026-07-27-i hardveres validációból:**
+
+1. **A HMV nem mindig van bekötve.** Ez a fejezet eredetileg a mindig-bekapcsolt
+   blokkok közé sorolta; a valóságban létezik tartály nélküli telepítés. A 60-as
+   státusz ilyenkor `---`, miközben a 40/41 setpoint továbbra is konfigurált
+   értéket tart. A HMV azóta felderített blokk.
+2. **Ahol van státuszregiszter, az dönt — a hőmérséklet önmagában nem.** A be nem
+   kötött kör is fix placeholder értéket ad (szobahőmérséklet 50,0 °C, előremenő
+   alapjel 140,0 °C), és a „nem nulla, tehát létezik" szabály ezekből egy egész
+   hidraulikai kört talált ki. A hiányzó blokk becsületesen `---`-t ad.
 
 A felderítés eredménye a config entry-be kerül; egy `fujitsu_waterstage.rescan` szolgáltatás újrafuttatja.
 

@@ -243,8 +243,19 @@ class TestControlAssignment:
     def test_a_disabled_block_contributes_nothing(
         self, register_map: RegisterMap
     ) -> None:
+        """An installation with no hot water tank gets no water heater."""
         selected = select_registers(register_map, blocks=["heat_pump"])
         controls = assign_controls(selected, write_level=WriteLevel.ADVANCED)
         assert not any(
             Control.WATER_HEATER in kinds for kinds in controls.values()
         )
+
+    def test_the_basic_seven_shrink_with_the_blocks(
+        self, register_map: RegisterMap
+    ) -> None:
+        """Without DHW, four of the seven writable data points are gone."""
+        selected = select_registers(
+            register_map, blocks=["interface", "heat_pump", "heating_circuit_1"]
+        )
+        writable = [r.address for r in selected if write_allowed(r, WriteLevel.BASIC)]
+        assert sorted(writable) == [100, 101, 102, 106, 107]

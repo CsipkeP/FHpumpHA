@@ -229,7 +229,7 @@ that are not fitted.
 |---|---|---|---|
 | Interface | 21 | always | Board identification, uptime, Modbus and BSB error counters, bus utilisation, BSB link status |
 | Heat pump | 33 | always | Flow, return, outside and condenser temperatures, compressor modulation and status, immersion heaters, runtime and start counters, maintenance interval |
-| Domestic hot water | 28 | always | Tank temperatures, pump and heater status, setpoints, legionella settings, runtime counters |
+| Domestic hot water | 28 | discovered | Tank temperatures, pump and heater status, setpoints, legionella settings, runtime counters |
 | Heating circuit 1 | 24 | always | Status, pump, mixing valve, room and flow temperatures, setpoints, heating curve |
 | Faults | 22 | always | Active error count, ten-entry fault history with codes and timestamps, RVS software version |
 | Relays | 12 | always | QX1–QX5 and QX31–QX35 output states |
@@ -271,10 +271,18 @@ level, because its registers are not among the basic seven.
 ### Blocks
 
 There is no "hydraulic scheme" register, so which blocks exist is a heuristic:
-a block is enabled if any of its read-only temperature or status registers
-reported a non-zero, non-disabled value in either of the two setup reads.
-Setpoints do not count — they hold a value whether or not the circuit is
-plumbed in.
+where a block has a status register, that register decides, and it must report
+a real status code in one of the two setup reads.
+
+Neither setpoints nor temperatures are evidence on their own. A setpoint holds
+whatever the controller was configured with whether or not the circuit is
+plumbed in, and an unconnected sensor does not read 0 — it reads a fixed
+placeholder (50.0 °C for a missing room sensor, 140.0 °C for a missing flow
+setpoint). A block that is not fitted answers `---` on its status register,
+which is the honest signal.
+
+Hot water is discovered like anything else: an installation without a tank is
+perfectly ordinary, and its setpoints still look configured.
 
 The heuristic is a default, not a verdict. Every block can be turned on or off
 in the options.

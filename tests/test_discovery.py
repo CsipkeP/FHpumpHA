@@ -124,16 +124,6 @@ class TestBlockHeuristic:
         result = analyse_blocks(register_map, [_all_zero(register_map)])
         assert set(result.excluded) == DISCOVERABLE_BLOCKS
 
-    def test_a_live_temperature_enables_the_block(
-        self, register_map: RegisterMap
-    ) -> None:
-        values = _all_zero(register_map)
-        values["swimming_pool_swimming_pool_temperature"] = DecodedValue(24.5, False)
-        result = analyse_blocks(register_map, [values])
-        assert result.blocks["swimming_pool"] is True
-        assert "swimming_pool" in result.enabled
-        assert result.blocks["solar"] is False
-
     def test_a_live_status_code_enables_the_block(
         self, register_map: RegisterMap
     ) -> None:
@@ -141,6 +131,60 @@ class TestBlockHeuristic:
         values["solar_solar_status"] = DecodedValue(137, False)
         result = analyse_blocks(register_map, [values])
         assert result.blocks["solar"] is True
+        assert result.reasons["solar"] == "register 80 reported 137"
+
+    def test_a_temperature_alone_does_not_enable_a_block_with_a_status(
+        self, register_map: RegisterMap
+    ) -> None:
+        """Hardware, 2026-07-27: HC2 and CC2 are not fitted, yet register 224
+        reported 50.0 °C and register 262 reported 140.0 °C.  Both are fixed
+        placeholders, and taking them as evidence invented two circuits."""
+        values = _all_zero(register_map)
+        values["heating_circuit_2_room_temperature_2_actual_value"] = DecodedValue(
+            50.0, False
+        )
+        values["cooling_circuit_2_flow_temperature_resulting_setpoint_cc2"] = (
+            DecodedValue(140.0, False)
+        )
+        result = analyse_blocks(register_map, [values])
+        assert result.blocks["heating_circuit_2"] is False
+        assert result.blocks["cooling_circuit_2"] is False
+        assert "status register" in result.reasons["heating_circuit_2"]
+
+    def test_an_installation_with_no_hot_water_tank(
+        self, register_map: RegisterMap
+    ) -> None:
+        """Confirmed by the owner: no DHW is plumbed in.
+
+        The setpoints still hold configured values -- mode "On", 55.0 °C -- so
+        only the status register tells the truth.
+        """
+        values = _all_zero(register_map)
+        values["dhw_dhw_operating_mode"] = DecodedValue(1, False)
+        values["dhw_dhw_nominal_temperature_setpoint"] = DecodedValue(55.0, False)
+
+        result = analyse_blocks(register_map, [values])
+        assert result.blocks["dhw"] is False
+
+    def test_the_real_installation_is_classified_correctly(
+        self, register_map: RegisterMap
+    ) -> None:
+        """Every value here came off the board on 2026-07-27."""
+        values = _all_zero(register_map)
+        for address, value in (
+            (160, 119),  # cooling circuit 1: "24-hour Eco active"
+            (162, 26.9),
+            (224, 50.0),  # HC2 room temperature placeholder
+            (225, 4.0),
+            (262, 140.0),  # CC2 flow setpoint placeholder
+            (40, 1),  # DHW configured, but nothing is connected to it
+            (41, 55.0),
+        ):
+            values[register_map.at(address).key] = DecodedValue(value, False)
+
+        result = analyse_blocks(register_map, [values])
+        assert set(result.enabled) == ALWAYS_ON_BLOCKS | {"cooling_circuit_1"}
+        assert "dhw" in result.excluded
 
     def test_a_disabled_value_does_not_count(self, register_map: RegisterMap) -> None:
         """A /O disabled data point is not evidence of anything."""
@@ -162,13 +206,13 @@ class TestBlockHeuristic:
         """The first read may answer 0 while it is still fetching the value."""
         first = _all_zero(register_map)
         second = _all_zero(register_map)
-        second["cooling_circuit_1_flow_temperature_cooling_circuit_1_actual_value"] = (
-            DecodedValue(18.0, False)
-        )
+        second["cooling_circuit_1_cooling_circuit_1_status"] = DecodedValue(119, False)
         result = analyse_blocks(register_map, [first, second])
         assert result.blocks["cooling_circuit_1"] is True
 
-    def test_reasons_are_recorded(self, register_map: RegisterMap) -> None:
+    def test_reasons_name_the_deciding_register(
+        self, register_map: RegisterMap
+    ) -> None:
         result = analyse_blocks(register_map, [_all_zero(register_map)])
         assert result.reasons["heat_pump"] == "always enabled"
         assert "0 or disabled" in result.reasons["solar"]
@@ -196,8 +240,10 @@ class TestRunDiscovery:
         reads = [call for call in fake.calls if call[0] == "read"]
         assert len(reads) == 2 * len(groups)
         assert result.blocks["heat_pump"] is True
-        # The default board has no pool, no solar and no second circuit.
-        assert set(result.excluded) == DISCOVERABLE_BLOCKS
+        # The default board has a hot water tank, but no pool, no solar and no
+        # second circuit.
+        assert result.blocks["dhw"] is True
+        assert set(result.excluded) == DISCOVERABLE_BLOCKS - {"dhw"}
 
     async def test_a_placeholder_room_temperature_is_not_a_sensor(
         self, register_map: RegisterMap
@@ -219,8 +265,8 @@ class TestRunDiscovery:
         assert find_room_sensors(register_map, [values]) == ("heating_circuit_1",)
 
     async def test_finds_a_swimming_pool(self, register_map: RegisterMap) -> None:
-        fake = make_board(**{"90": 0})
-        fake.words[90] = 245  # 24.5 °C
+        fake = make_board()
+        fake.words[92] = 137  # the pool's status register reports a real code
         result = await async_run_discovery(
             self._client(fake), register_map, delay=0, rounds=1
         )
