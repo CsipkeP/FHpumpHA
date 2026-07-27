@@ -5,9 +5,11 @@ pymodbus>=3.6.9,<4.0.0
 pytest>=8.0
 pytest-asyncio>=0.23
 
-# Home Assistant test harness.  It pins its own Home Assistant version, which is
-# what the integration is developed against.  Home Assistant does not support
-# Windows; tests/win_compat.py patches around the two places that matter.
-pytest-homeassistant-custom-component
+# Home Assistant test harness.  Pinned, because it pins Home Assistant in turn:
+# an unpinned upgrade silently moves the whole test environment underneath the
+# suite.  Bumping it is a deliberate act, and worth doing regularly -- releases
+# from 0.13.348 on require Python 3.14, which is what current Home Assistant
+# runs on.
+pytest-homeassistant-custom-component==0.13.316
 
 ruff

@@ -11,6 +11,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DUMP = REPO_ROOT / "tools" / "dump.py"
 
@@ -54,3 +56,26 @@ def test_does_not_import_home_assistant() -> None:
     result = _run("--host", "192.0.2.1", "--groups-only")
     assert result.returncode == 0
     assert "homeassistant" not in result.stderr.lower()
+
+
+def test_the_suite_runs_from_the_console_script() -> None:
+    """``pytest`` and ``python -m pytest`` must both work.
+
+    Only the second one puts the working directory on ``sys.path``, and the
+    ``-p tests.win_compat`` plugin needs the repository root importable. CI
+    calls the console script, so this failed there while passing locally.
+    """
+    script = Path(sys.executable).with_name(
+        "pytest.exe" if sys.platform == "win32" else "pytest"
+    )
+    if not script.exists():  # pragma: no cover - depends on the install layout
+        pytest.skip(f"no pytest console script next to {sys.executable}")
+
+    result = subprocess.run(
+        [str(script), "--collect-only", "-q"],
+        capture_output=True,
+        text=True,
+        timeout=300,
+        cwd=REPO_ROOT,
+    )
+    assert result.returncode == 0, result.stdout[-2000:] + result.stderr[-2000:]
