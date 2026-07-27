@@ -72,6 +72,17 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="3 = read holding, 4 = read input; probed automatically by default",
     )
+    parser.add_argument(
+        "--framing",
+        choices=hub.FRAMINGS,
+        default=None,
+        help=(
+            "tcp = Modbus TCP with an MBAP header (what a protocol converting "
+            "gateway speaks, and what Home Assistant calls type: tcp); "
+            "rtu = a raw RTU frame tunnelled over TCP, for a transparent "
+            "gateway. Probed automatically by default"
+        ),
+    )
     parser.add_argument("--timeout", type=float, default=hub.DEFAULT_TIMEOUT)
     parser.add_argument("--retries", type=int, default=hub.DEFAULT_RETRIES)
     parser.add_argument(
@@ -309,6 +320,7 @@ async def _run(args: argparse.Namespace) -> int:
     gateway = hub.ModbusGateway(
         args.host,
         args.port,
+        framing=args.framing or hub.DEFAULT_FRAMING,
         timeout=args.timeout,
         retries=args.retries,
         inter_request_delay=args.delay,
@@ -316,9 +328,14 @@ async def _run(args: argparse.Namespace) -> int:
     client = hub.MbioClient(gateway, args.slave)
 
     try:
-        if args.function_code is None:
-            code = await client.async_probe_function_code()
-            print(f"Reading with function code {code:#04x}", file=sys.stderr)
+        if args.framing is None or args.function_code is None:
+            framing, code = await client.async_probe()
+            if args.function_code is not None:
+                client.function_code = code = args.function_code
+            print(
+                f"Reading with {framing} framing and function code {code:#04x}",
+                file=sys.stderr,
+            )
         else:
             client.function_code = args.function_code
 

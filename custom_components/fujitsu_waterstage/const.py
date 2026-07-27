@@ -15,6 +15,8 @@ DOMAIN: Final = "fujitsu_waterstage"
 
 CONF_SLAVE_ID: Final = "slave_id"
 CONF_FUNCTION_CODE: Final = "function_code"
+#: How the gateway frames Modbus over TCP: "tcp" (MBAP) or "rtu" (raw RTU).
+CONF_FRAMING: Final = "framing"
 
 DEFAULT_NAME: Final = "Waterstage"
 DEFAULT_SLAVE_ID: Final = 1

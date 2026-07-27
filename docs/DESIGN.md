@@ -51,6 +51,7 @@ A `slave: 1` / 400–402 regiszterek egy **másik eszközhöz** tartoznak ugyana
 | Tulajdonság | Érték |
 |---|---|
 | Protokoll | Modbus RTU, RS-485, az MBIO **slave** |
+| Keretezés a TCP oldalon | **Az átjárótól függ, nem feltételezhető.** Protokoll-konvertáló átjáró Modbus TCP-t (MBAP) ad, transzparens átjáró nyers RTU keretet. Rossz választás esetén *semmilyen* slave nem válaszol, egyik függvénykóddal sem — ez pontosan úgy néz ki, mint egy halott busz. A setup ezért mindkettőt próbálja, és a működőt eltárolja. *(Ennél a telepítésnél: Modbus TCP.)* |
 | Slave cím | 1–15, az SW2 [1–4] DIP kapcsolóval. DIP = 0 → fix 1-es cím, 9600 8N1. *(Ennél a telepítésnél: 3)* |
 | Baud | 9600 / 19200 / 28800 / 38400 (SW2 [5–8]) |
 | Keretezés | 8N1 / 8N2 / 8O1 / 8E1 |

@@ -1,7 +1,18 @@
 """Shared async Modbus transport for the FWS-MBIO-002.
 
-The board is a Modbus **RTU** slave on RS-485; a serial-to-TCP gateway carries
-the raw RTU frames.  Hence an ``AsyncModbusTcpClient`` with the RTU framer.
+The board is a Modbus **RTU** slave on RS-485, but what reaches Home Assistant
+depends on the gateway in between, and the two kinds behave very differently on
+the wire:
+
+* a *transparent* gateway forwards the raw RTU frames, CRC and all -- framing
+  ``rtu``;
+* a *protocol converting* gateway speaks Modbus TCP with an MBAP header on the
+  network side and does the RTU framing itself -- framing ``tcp``.
+
+Sending the wrong one produces no answer at all, from any slave id and any
+function code, which looks exactly like a dead bus.  So the framing is not
+assumed: it is probed at setup alongside the function code and stored in the
+config entry.
 
 Three properties matter for a bus that is shared with other devices
 (DESIGN.md section 8.4):
@@ -34,11 +45,11 @@ from pymodbus.exceptions import ModbusException
 try:  # pymodbus >= 3.7
     from pymodbus import FramerType
 
-    _RTU_FRAMER: Final = FramerType.RTU
+    _FRAMERS: Final = {"tcp": FramerType.SOCKET, "rtu": FramerType.RTU}
 except ImportError:  # pragma: no cover - pymodbus 3.6.x
     from pymodbus.framer import Framer
 
-    _RTU_FRAMER = Framer.RTU
+    _FRAMERS = {"tcp": Framer.SOCKET, "rtu": Framer.RTU}
 
 from .codec import DecodedValue
 from .registers import Register
@@ -51,6 +62,9 @@ __all__ = [
     "DEFAULT_PORT",
     "DEFAULT_RETRIES",
     "DEFAULT_TIMEOUT",
+    "FRAMING_RTU",
+    "FRAMING_TCP",
+    "FRAMINGS",
     "FUNCTION_READ_HOLDING",
     "FUNCTION_READ_INPUT",
     "MAX_REGISTERS_PER_READ",
@@ -76,6 +90,17 @@ DEFAULT_BACKOFF: Final = 0.5
 #: the default because writes go there too.
 FUNCTION_READ_HOLDING: Final = 0x03
 FUNCTION_READ_INPUT: Final = 0x04
+
+#: How the gateway frames what it sends over TCP.  ``tcp`` is the Modbus TCP
+#: MBAP header, ``rtu`` is a raw RTU frame tunnelled over TCP.
+FRAMING_TCP: Final = "tcp"
+FRAMING_RTU: Final = "rtu"
+
+#: Probed in this order.  Protocol converting gateways are the common case, and
+#: Home Assistant's own ``modbus:`` platform calls the same thing ``type: tcp``.
+FRAMINGS: Final = (FRAMING_TCP, FRAMING_RTU)
+
+DEFAULT_FRAMING: Final = FRAMING_TCP
 
 #: Registers per read request.  Below the Modbus RTU limit of 125.
 MAX_REGISTERS_PER_READ: Final = 120
@@ -212,6 +237,7 @@ class ModbusGateway:
         host: str,
         port: int = DEFAULT_PORT,
         *,
+        framing: str = DEFAULT_FRAMING,
         timeout: float = DEFAULT_TIMEOUT,
         retries: int = DEFAULT_RETRIES,
         inter_request_delay: float = DEFAULT_INTER_REQUEST_DELAY,
@@ -220,6 +246,7 @@ class ModbusGateway:
     ) -> None:
         self.host = host
         self.port = port
+        self.framing = framing
         self.timeout = timeout
         self.retries = max(1, retries)
         self.inter_request_delay = inter_request_delay
@@ -233,13 +260,38 @@ class ModbusGateway:
     def _default_client_factory(self) -> Any:
         # retries=1: this class owns the retry policy, so pymodbus must not add
         # a second, invisible one on top of it.
+        try:
+            framer = _FRAMERS[self.framing]
+        except KeyError:
+            raise ValueError(
+                f"unknown framing {self.framing!r}, expected one of {FRAMINGS}"
+            ) from None
         return AsyncModbusTcpClient(
             self.host,
             port=self.port,
-            framer=_RTU_FRAMER,
+            framer=framer,
             timeout=self.timeout,
             retries=1,
         )
+
+    async def async_set_framing(self, framing: str) -> None:
+        """Switch framing, dropping the connection so the next one uses it.
+
+        A gateway has exactly one framing, so this is a property of the hardware
+        rather than of a config entry: whoever discovers the right one fixes it
+        for everyone sharing the connection.
+        """
+        if framing == self.framing:
+            return
+        if framing not in FRAMINGS:
+            raise ValueError(f"unknown framing {framing!r}, expected one of {FRAMINGS}")
+        _LOGGER.debug(
+            "Switching %s:%s from %s to %s framing", self.host, self.port,
+            self.framing, framing,
+        )
+        async with self._lock:
+            self._disconnect()
+            self.framing = framing
 
     @property
     def key(self) -> tuple[str, int]:
@@ -421,26 +473,48 @@ class MbioClient:
             address, count, slave=self.slave_id, function_code=self.function_code
         )
 
-    async def async_probe_function_code(self, address: int = 9900) -> int:
-        """Find a read function code the board answers to, 0x03 first.
+    async def async_probe(self, address: int = 9900) -> tuple[str, int]:
+        """Find the framing and function code this gateway answers to.
 
-        Both codes map onto the same holding-register space, but not every
-        gateway or firmware honours both -- the working one belongs in the
+        Both function codes map onto the same holding-register space, but not
+        every gateway or firmware honours both, and the framing depends on
+        whether the gateway forwards raw RTU or converts to Modbus TCP.  Neither
+        can be assumed, so both are probed and the working pair goes into the
         config entry (DESIGN.md section 1).
+
+        The two failure modes are worth telling apart, and the exception type
+        does it: a Modbus exception response means the board is listening and
+        the framing is right, just not that function code.  Silence on every
+        combination usually means something else entirely -- wrong slave id,
+        or another master holding the gateway's only connection.
         """
         errors: list[str] = []
-        for code in (FUNCTION_READ_HOLDING, FUNCTION_READ_INPUT):
-            try:
-                await self.gateway.async_read_registers(
-                    address, 1, slave=self.slave_id, function_code=code
-                )
-            except MbioError as err:
-                errors.append(f"{code:#04x}: {err}")
-            else:
-                self.function_code = code
-                return code
+        answered = False
+        for framing in FRAMINGS:
+            await self.gateway.async_set_framing(framing)
+            for code in (FUNCTION_READ_HOLDING, FUNCTION_READ_INPUT):
+                try:
+                    await self.gateway.async_read_registers(
+                        address, 1, slave=self.slave_id, function_code=code
+                    )
+                except MbioResponseError as err:
+                    answered = True
+                    errors.append(f"{framing}/{code:#04x}: {err}")
+                except MbioError as err:
+                    errors.append(f"{framing}/{code:#04x}: {err}")
+                else:
+                    self.function_code = code
+                    return framing, code
+
+        detail = "; ".join(errors)
+        if answered:
+            raise MbioConnectionError(
+                f"slave {self.slave_id} rejected every read function code ({detail})"
+            )
         raise MbioConnectionError(
-            f"slave {self.slave_id} answered neither 0x03 nor 0x04 ({'; '.join(errors)})"
+            f"slave {self.slave_id} did not answer with either framing. Check the "
+            f"slave id, and that no other master is holding the gateway's "
+            f"connection ({detail})"
         )
 
     async def async_read_group(self, group: ReadGroup) -> tuple[int, ...]:

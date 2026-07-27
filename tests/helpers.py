@@ -14,6 +14,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.fujitsu_waterstage.const import (
     CONF_BLOCKS,
+    CONF_FRAMING,
     CONF_FUNCTION_CODE,
     CONF_ROOM_SENSORS,
     CONF_SLAVE_ID,
@@ -21,7 +22,7 @@ from custom_components.fujitsu_waterstage.const import (
     DOMAIN,
     WriteLevel,
 )
-from custom_components.fujitsu_waterstage.hub import FUNCTION_READ_HOLDING
+from custom_components.fujitsu_waterstage.hub import FRAMING_TCP, FUNCTION_READ_HOLDING
 
 from .fake_board import FakeClient, make_board
 
@@ -36,6 +37,7 @@ ENTRY_DATA: dict[str, Any] = {
     CONF_HOST: "192.168.1.37",
     CONF_PORT: 502,
     CONF_SLAVE_ID: 3,
+    CONF_FRAMING: FRAMING_TCP,
     CONF_FUNCTION_CODE: FUNCTION_READ_HOLDING,
 }
 
@@ -49,10 +51,17 @@ def patch_board(
     The gateway, its lock, the retry policy and the read groups are all the real
     ones -- only the socket is replaced.
     """
+    def _factory(*args: Any, **kwargs: Any) -> FakeClient:
+        # framer is a FramerType; its value is "socket" for Modbus TCP.
+        client.requested_framing = (
+            "tcp" if str(kwargs["framer"].value) == "socket" else "rtu"
+        )
+        return client
+
     with (
         patch(
             "custom_components.fujitsu_waterstage.hub.AsyncModbusTcpClient",
-            return_value=client,
+            side_effect=_factory,
         ),
         patch("custom_components.fujitsu_waterstage.SETUP_SECOND_READ_DELAY", 0),
         patch("custom_components.fujitsu_waterstage.config_flow._DISCOVERY_DELAY", 0),

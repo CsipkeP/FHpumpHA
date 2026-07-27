@@ -55,10 +55,14 @@ Fujitsu Waterstage  --BSB-->  FWS-MBIO-002  --RS-485-->  Gateway  --TCP-->  Home
 ```
 
 The interface board connects to the RVS21's BSB terminal and presents an RS-485
-Modbus RTU slave. Home Assistant needs an RS-485 to TCP gateway that passes raw
-RTU frames through (a "transparent" or "Modbus RTU over TCP" gateway, **not** one
-that converts to Modbus TCP). Wire the RS-485 A/B pair from the board to the
-gateway.
+Modbus RTU slave. Either kind of RS-485 to TCP gateway works: a *protocol converting* one that
+speaks Modbus TCP on the network side (what Home Assistant's own `modbus:`
+platform calls `type: tcp`), or a *transparent* one that forwards raw RTU frames
+(`type: rtuovertcp`). Setup probes both and remembers which one answered, so you
+do not have to know. Wire the RS-485 A/B pair from the board to the gateway.
+
+Getting this wrong is worth recognising: with the wrong framing **no slave
+answers at all, with any function code**, which looks exactly like a dead bus.
 
 **Follow the FWS-MBIO-002 manual for the actual terminals, polarity and power.**
 This README does not repeat them, because getting them wrong on a live heating
@@ -117,8 +121,8 @@ Copy `custom_components/fujitsu_waterstage/` into your Home Assistant
 Setup reads register **9900** and refuses anything that does not answer with the
 MBIO product code `0x0401`. This matters: gateways are often shared, and writing
 to a neighbouring device because a slave address was mistyped would be a real
-problem. Both read function codes (`0x03` and `0x04`) are tried, and the one
-that works is remembered.
+problem. The framing (`tcp` / `rtu`) and both read function codes (`0x03` and
+`0x04`) are probed, and the combination that works is remembered.
 
 Setup then reads the whole register map twice, ten seconds apart, to work out
 which parts of the installation exist. That is why adding the integration takes
@@ -333,10 +337,16 @@ requests would be made without connecting to anything.
 | Symptom | Likely cause |
 |---|---|
 | "Something answered, but it is not an FWS-MBIO-002 board" | Wrong slave address, or the address of another device on the gateway |
+| "did not answer with either framing" | The slave address is wrong, or another master is holding the gateway's only TCP connection — see below |
 | Everything unavailable | The gateway or the board is not answering: check the network, the gateway, and the RS-485 wiring |
 | Only the board's entities are available | The board is fine but cannot reach the controller: BSB wiring, or the heat pump is powered down |
 | Temperatures unknown for a few minutes after a restart | Expected — see [After a power cut](#after-a-power-cut) |
 | A value shows as unavailable and never comes back | The parameter is disabled in the controller. That is what the `/O` disable bit means; enable it from the controller's menu |
+
+Many cheap gateways accept only one or two TCP connections at a time. If Home
+Assistant is already polling the same gateway from a `modbus:` YAML
+configuration, that connection is taken. Stop the other integration briefly to
+tell a connection limit apart from a wiring or addressing problem.
 
 ---
 

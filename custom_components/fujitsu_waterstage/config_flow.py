@@ -31,6 +31,7 @@ from .const import (
     BLOCK_INTERFACE,
     CONF_BLOCKS,
     CONF_DISCOVERY_REASONS,
+    CONF_FRAMING,
     CONF_FUNCTION_CODE,
     CONF_INTER_REQUEST_DELAY_MS,
     CONF_MAX_REGISTERS,
@@ -63,6 +64,7 @@ from .discovery import async_run_discovery
 from .entity import format_board_serial
 from .hub import (
     DEFAULT_PORT,
+    FRAMINGS,
     FUNCTION_READ_HOLDING,
     FUNCTION_READ_INPUT,
     MBIO_PRODUCT_CODE,
@@ -118,20 +120,28 @@ async def async_identify(host: str, port: int, slave_id: int) -> dict[str, Any]:
     try:
         words: tuple[int, ...] | None = None
         function_code = FUNCTION_READ_HOLDING
+        framing = gateway.framing
         errors: list[str] = []
-        for candidate in (FUNCTION_READ_HOLDING, FUNCTION_READ_INPUT):
-            try:
-                words = await gateway.async_read_registers(
-                    PRODUCT_CODE_ADDRESS,
-                    _IDENTIFY_COUNT,
-                    slave=slave_id,
-                    function_code=candidate,
-                )
-            except MbioError as err:
-                errors.append(f"{candidate:#04x}: {err}")
-                continue
-            function_code = candidate
-            break
+        # Framing first: a raw RTU frame sent to a protocol converting gateway
+        # gets no answer at all, from any slave and any function code, which
+        # looks exactly like a dead bus.
+        for candidate_framing in FRAMINGS:
+            await gateway.async_set_framing(candidate_framing)
+            for candidate in (FUNCTION_READ_HOLDING, FUNCTION_READ_INPUT):
+                try:
+                    words = await gateway.async_read_registers(
+                        PRODUCT_CODE_ADDRESS,
+                        _IDENTIFY_COUNT,
+                        slave=slave_id,
+                        function_code=candidate,
+                    )
+                except MbioError as err:
+                    errors.append(f"{candidate_framing}/{candidate:#04x}: {err}")
+                    continue
+                function_code, framing = candidate, candidate_framing
+                break
+            if words is not None:
+                break
 
         if words is None:
             raise CannotConnect("; ".join(errors))
@@ -145,6 +155,7 @@ async def async_identify(host: str, port: int, slave_id: int) -> dict[str, Any]:
             )
 
         return {
+            CONF_FRAMING: framing,
             CONF_FUNCTION_CODE: function_code,
             "product_code": words[0],
             "version": words[1],
@@ -196,6 +207,7 @@ class WaterstageConfigFlow(ConfigFlow, domain=DOMAIN):
                         CONF_HOST: host,
                         CONF_PORT: port,
                         CONF_SLAVE_ID: slave_id,
+                        CONF_FRAMING: info[CONF_FRAMING],
                         CONF_FUNCTION_CODE: info[CONF_FUNCTION_CODE],
                     },
                     options=options,
@@ -219,7 +231,8 @@ class WaterstageConfigFlow(ConfigFlow, domain=DOMAIN):
         the entry options and the user can override it (DESIGN.md section 6).
         """
         register_map = await self.hass.async_add_executor_job(load_register_map)
-        gateway = await async_get_gateway(host, port)
+        gateway = await async_get_gateway(host, port, framing=info[CONF_FRAMING])
+        await gateway.async_set_framing(info[CONF_FRAMING])
         client = MbioClient(gateway, slave_id, function_code=info[CONF_FUNCTION_CODE])
         try:
             async with asyncio.timeout(_DISCOVERY_TIMEOUT):

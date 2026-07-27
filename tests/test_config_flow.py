@@ -19,6 +19,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.fujitsu_waterstage.const import (
     CONF_BLOCKS,
+    CONF_FRAMING,
     CONF_FUNCTION_CODE,
     CONF_RETRIES,
     CONF_SCAN_INTERVAL_FAST,
@@ -28,6 +29,8 @@ from custom_components.fujitsu_waterstage.const import (
     WriteLevel,
 )
 from custom_components.fujitsu_waterstage.hub import (
+    FRAMING_RTU,
+    FRAMING_TCP,
     FUNCTION_READ_HOLDING,
     FUNCTION_READ_INPUT,
 )
@@ -64,8 +67,31 @@ class TestUserStep:
             CONF_HOST: "192.168.1.37",
             CONF_PORT: 502,
             CONF_SLAVE_ID: 3,
+            CONF_FRAMING: FRAMING_TCP,
             CONF_FUNCTION_CODE: FUNCTION_READ_HOLDING,
         }
+
+    async def test_finds_a_transparent_gateway(self, hass: HomeAssistant) -> None:
+        """A gateway that forwards raw RTU is silent to Modbus TCP framing."""
+        board = make_board()
+        board.framing = FRAMING_RTU
+
+        result = await _run_user_flow(hass, board)
+
+        assert result["type"] is FlowResultType.CREATE_ENTRY
+        assert result["data"][CONF_FRAMING] == FRAMING_RTU
+
+    async def test_the_wrong_framing_is_not_reported_as_a_wrong_device(
+        self, hass: HomeAssistant
+    ) -> None:
+        """It is silence, not a wrong answer -- and silence means cannot_connect."""
+        board = make_board()
+        board.framing = "none"
+
+        result = await _run_user_flow(hass, board)
+
+        assert result["type"] is FlowResultType.FORM
+        assert result["errors"] == {"base": "cannot_connect"}
 
     async def test_stores_the_discovered_blocks(self, hass: HomeAssistant) -> None:
         result = await _run_user_flow(hass, make_board())

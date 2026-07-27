@@ -12,6 +12,8 @@ import pytest
 from fujitsu_waterstage.codec import RegisterType
 from fujitsu_waterstage.hub import (
     DEFAULT_MAX_GAP,
+    FRAMING_RTU,
+    FRAMING_TCP,
     FUNCTION_READ_HOLDING,
     FUNCTION_READ_INPUT,
     MAX_REGISTERS_PER_READ,
@@ -143,6 +145,12 @@ def _gateway(client: FakeClient, **kwargs: Any) -> ModbusGateway:
     kwargs.setdefault("inter_request_delay", 0.0)
     kwargs.setdefault("backoff", 0.0)
     return ModbusGateway("gateway.test", 502, client_factory=lambda: client, **kwargs)
+
+
+def _set_framing(client: FakeClient, gateway: ModbusGateway) -> FakeClient:
+    """Client factory that tells the fake which framing it was built with."""
+    client.requested_framing = gateway.framing
+    return client
 
 
 # ---------------------------------------------------------------------------
@@ -339,7 +347,7 @@ class TestMbioClient:
 
     async def test_probe_prefers_function_code_3(self) -> None:
         client = MbioClient(_gateway(FakeClient(words={9900: 0x0401})), slave_id=3)
-        assert await client.async_probe_function_code() == FUNCTION_READ_HOLDING
+        assert await client.async_probe() == (FRAMING_TCP, FUNCTION_READ_HOLDING)
 
     async def test_probe_falls_back_to_function_code_4(self) -> None:
         class HoldingRejected(FakeClient):
@@ -352,10 +360,45 @@ class TestMbioClient:
                 return FakeResponse([0x0401])
 
         client = MbioClient(_gateway(HoldingRejected()), slave_id=3)
-        assert await client.async_probe_function_code() == FUNCTION_READ_INPUT
+        assert await client.async_probe() == (FRAMING_TCP, FUNCTION_READ_INPUT)
         assert client.function_code == FUNCTION_READ_INPUT
 
     async def test_probe_failure(self) -> None:
         client = MbioClient(_gateway(FakeClient(fail_reads=99), retries=1), slave_id=3)
-        with pytest.raises(MbioConnectionError):
-            await client.async_probe_function_code()
+        with pytest.raises(
+            MbioConnectionError, match="did not answer with either framing"
+        ):
+            await client.async_probe()
+
+    async def test_probe_finds_the_framing(self) -> None:
+        """A protocol converting gateway is silent to raw RTU, and the reverse."""
+        fake = FakeClient(words={9900: 0x0401}, framing=FRAMING_RTU)
+        gateway = _gateway(fake, retries=1, framing=FRAMING_TCP)
+        gateway._client_factory = lambda: _set_framing(fake, gateway)  # noqa: SLF001
+        client = MbioClient(gateway, slave_id=3)
+
+        assert await client.async_probe() == (FRAMING_RTU, FUNCTION_READ_HOLDING)
+        assert gateway.framing == FRAMING_RTU
+
+    async def test_a_framing_mismatch_names_the_likely_causes(self) -> None:
+        """This failure looks like a dead bus, so the message has to point somewhere."""
+        fake = FakeClient(words={9900: 0x0401}, framing="none")
+        gateway = _gateway(fake, retries=1)
+        gateway._client_factory = lambda: _set_framing(fake, gateway)  # noqa: SLF001
+        client = MbioClient(gateway, slave_id=3)
+
+        with pytest.raises(MbioConnectionError) as raised:
+            await client.async_probe()
+        assert "slave id" in str(raised.value)
+        assert "tcp/0x03" in str(raised.value)
+        assert "rtu/0x03" in str(raised.value)
+
+    async def test_a_rejecting_board_is_a_different_message(self) -> None:
+        """An exception response proves the framing is right."""
+        client = MbioClient(
+            _gateway(FakeClient(read_error_response=True), retries=1), slave_id=3
+        )
+        with pytest.raises(
+            MbioConnectionError, match="rejected every read function code"
+        ):
+            await client.async_probe()

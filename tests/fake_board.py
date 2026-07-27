@@ -81,6 +81,11 @@ class FakeClient:
     #: Addresses the board refuses to answer, as a real one does for an
     #: unimplemented register.
     rejected: set[int] = field(default_factory=set)
+    #: The framing this gateway speaks.  Anything else gets no answer at all,
+    #: which is exactly how a real mismatch behaves.
+    framing: str = "tcp"
+    #: Set by the gateway before every connection, so the fake can compare.
+    requested_framing: str = "tcp"
 
     async def connect(self) -> bool:
         self.connects += 1
@@ -97,6 +102,8 @@ class FakeClient:
         self, address: int, *, count: int = 1, **kwargs: Any
     ) -> FakeResponse:
         self.calls.append(("read", address, count))
+        if self.requested_framing != self.framing:
+            raise TimeoutError("no answer: wrong framing")
         if self.fail_reads > 0:
             self.fail_reads -= 1
             raise TimeoutError("bus busy")

@@ -16,6 +16,7 @@ from homeassistant.helpers import device_registry as dr
 from .const import (
     CONF_BLOCKS,
     CONF_DISCOVERY_REASONS,
+    CONF_FRAMING,
     CONF_FUNCTION_CODE,
     CONF_INTER_REQUEST_DELAY_MS,
     CONF_MAX_REGISTERS,
@@ -50,6 +51,7 @@ from .discovery import (
 )
 from .entity import board_device_info, heat_pump_device_info
 from .hub import (
+    DEFAULT_FRAMING,
     FUNCTION_READ_HOLDING,
     MbioClient,
     async_get_gateway,
@@ -89,6 +91,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
     gateway = await async_get_gateway(
         entry.data[CONF_HOST],
         entry.data[CONF_PORT],
+        framing=entry.data.get(CONF_FRAMING, DEFAULT_FRAMING),
         timeout=float(options.get(CONF_TIMEOUT, DEFAULT_TIMEOUT)),
         retries=int(options.get(CONF_RETRIES, DEFAULT_RETRIES)),
         inter_request_delay=int(
@@ -96,6 +99,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: WaterstageConfigEntry) -
         )
         / 1000,
     )
+    # A gateway has one framing; an entry added before it was probed falls back
+    # to the common case rather than guessing per request.
+    await gateway.async_set_framing(entry.data.get(CONF_FRAMING, DEFAULT_FRAMING))
     client = MbioClient(
         gateway,
         entry.data[CONF_SLAVE_ID],

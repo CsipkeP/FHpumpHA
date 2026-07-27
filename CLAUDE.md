@@ -83,6 +83,10 @@ scriptje az első dolog, ami valós hardveren igazolja a regisztertérképet.
 
 ## Ismert tények erről a konkrét telepítésről
 
+- **Az átjáró Modbus TCP-t (MBAP) beszél, NEM nyers RTU-t.** A működő YAML
+  `type: tcp` — nem `rtuovertcp`. 2026-07-27-én a hardveren igazolva: RTU
+  keretezéssel mind a 14 slave néma, mindkét függvénykóddal. A `hub.py` ezért
+  keretezést is felderít (`tcp` / `rtu`), nem feltételezi.
 - Átjáró: `192.168.1.37:502`, MBIO slave ID = **3**. Ugyanazon az átjárón egy másik eszköz is
   van slave 1-en — az nem tartozik ide, marad a meglévő `modbus:` YAML konfigban.
 - A jelenlegi működő YAML `input_type: input` (FC `0x04`) módban olvas, tehát a `0x04` biztosan működik.
