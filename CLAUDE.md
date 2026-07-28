@@ -104,3 +104,13 @@ scriptje az első dolog, ami valós hardveren igazolja a regisztertérképet.
 - A jelenlegi működő YAML `input_type: input` (FC `0x04`) módban olvas, tehát a `0x04` biztosan működik.
 - A jelenlegi YAML-ben a **2-es regiszter „PumpStatusHC1" néven szerepel, ez téves** —
   a 2-es a Compressor 1 status (0/255). A HC1 szivattyú a **121**-es regiszter.
+- **Az írás működik, és eljut az RVS21-ig.** 2026-07-28-án igazolva a 101-esen
+  (23,0 → 23,5 → 23,0): a nyers szó 230 → 235 → 230, és **a frissítési ciklus után is
+  megmaradt**. A `temp` kodek ×10 skálázása írási irányban is helyes. A bizonyíték
+  mindig a `refresh_s`-nél hosszabb várakozás utáni visszaolvasás — az azonnali
+  visszaolvasás az MBIO gyorsítótárát is mutathatja. Részletek a DESIGN 15. fejezetében.
+- **A BSB busz terhelt, és a pollozás mérhetően rontja.** A 9921 (max kihasználtság)
+  **92%**. Hibaütem pollozás nélkül ~16/h (9916) és ~15/h (9919); pollozás mellett
+  ~23,5/h és ~22,8/h, 10,4 órás ablakon mérve. Egyetlen írás nem okoz ugrást
+  (+7/+7 a teljes 1000 s-os írási teszt alatt, ami a háttérütem). Ha új tiert vagy
+  gyorsabb pollozást vezetsz be, ez a szám a mérce.

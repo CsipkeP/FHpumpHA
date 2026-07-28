@@ -516,6 +516,30 @@ A 2. fázis CLI dump scriptje a legfontosabb korai eredmény: **ezzel lehet a va
 2. Egyetlen ártalmatlan írás: a **42-es** regiszter (HMV csökkentett setpoint) ±1 °C, majd ellenőrzés a hőszivattyú kijelzőjén és visszaállítás.
 3. Csak ezután üzemmódok és fűtésgörbe.
 
+**Amit a 2. lépés a valóságban jelentett (2026-07-28, elvégezve).** A 42-es
+regiszterhez nincs entitás — ehhez a telepítéshez nincs HMV bekötve —, ezért a
+próba a **101**-esre ment (HC1 komfort szobaalapjel, RVS 710), 23,0 → 23,5 → 23,0,
+a HA `number` entitásán keresztül, hogy az éles kódút legyen tesztelve. A
+kezelőegység kijelzőjéhez nincs hozzáférés, tehát a kézikönyv szerinti vizuális
+ellenőrzés sem volt járható. Ami helyettesítette, és ami minden további írási
+teszt mintája marad:
+
+> **Az írás bizonyítéka nem az azonnali visszaolvasás, hanem az, hogy az érték
+> túlél egy teljes BSB frissítési ciklust.** Az azonnali visszaolvasás csak azt
+> mutatja, hogy az MBIO elfogadta az értéket — akár a saját gyorsítótárába. Ha a
+> BSB-írás elbukott volna, a `refresh_s` szerinti következő frissítés visszaírta
+> volna a régi értéket. A 101 `refresh_s`-e 255 s, a mérés 370 s várakozással ment.
+
+Eredmény: nyers szó 230 → 235 → 230, mindkét irányban a frissítési ciklus után is.
+Ez egyszerre igazolja, hogy **az írás eljut az RVS21-ig**, és hogy a `temp` kodek
+skálázása írási irányban is ×10. Mellékhatás nem volt: a link, a `400` aktív
+hibaszám, a `401`/`412` naplóbejegyzés, a `120` státusz, a `121` szivattyú és a
+`125`/`126`/`127` eredő alapjelek mind változatlanok maradtak, a fűtőkör nem indult el.
+A kör végig `Protection` módban, nyári leállásban volt — a `125` ezért **nem** követi
+a `101`-et, vagyis ebben az üzemállapotban nincs oksági megfigyelhető, csak a
+round-trip. Ha egy későbbi teszthez oksági bizonyíték kell, a kört előbb `Comfort`
+módba kell tenni, ami maga is írás.
+
 ---
 
 ## 16. Amit ez a terv szándékosan nem tartalmaz
